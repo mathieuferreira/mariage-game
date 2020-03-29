@@ -7,9 +7,9 @@ using UnityEngine.UI;
 
 public class InitialWindow : MonoBehaviour
 {
-    private static float ERROR_MAX_TIME = 8f;
+    private static float ERROR_MAX_TIME = 6f;
     
-    public float blinkTime = .4f;
+    public float blinkTime = 1f;
     
     private PlayerButton[] buttons;
     private GameObject errorText;

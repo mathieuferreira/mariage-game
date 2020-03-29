@@ -25,7 +25,7 @@ public class LoadingWindow : MonoBehaviour
     {
         if (!nextSceneStartLoaded)
         {
-            //Loader.LoadTargetScene();
+            Loader.LoadTargetScene();
             nextSceneStartLoaded = true;
         }
         
