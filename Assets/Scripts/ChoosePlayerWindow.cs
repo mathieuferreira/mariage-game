@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class ChoosePlayerWindow : MonoBehaviour
 {
     private ChoosePlayer[] players;
+    private bool isRedirected;
 
     private void Awake()
     {
@@ -17,6 +18,8 @@ public class ChoosePlayerWindow : MonoBehaviour
 
         players[0].Init(GameAssets.getInstance().Player1PicturesSprites);
         players[1].Init(GameAssets.getInstance().Player2PicturesSprites);
+
+        isRedirected = false;
     }
 
     private void Update()
@@ -31,12 +34,13 @@ public class ChoosePlayerWindow : MonoBehaviour
                 allPlayerChosen = false;
         }
 
-        if (allPlayerChosen)
+        if (allPlayerChosen && !isRedirected)
         {
             FunctionTimer.Create(() =>
             {
                 Loader.Load(Loader.Scene.Initial);
             }, .5f);
+            isRedirected = true;
         }
     }
 
@@ -47,6 +51,7 @@ public class ChoosePlayerWindow : MonoBehaviour
         private int pictureSelectedY;
         private bool playerChosen;
         private PlayerPicture[,] pictures;
+        private PlayerReadyButton button;
 
         public ChoosePlayer(int number, Transform baseTransform)
         {
@@ -57,6 +62,7 @@ public class ChoosePlayerWindow : MonoBehaviour
             pictures[0,1] = new PlayerPicture(baseTransform.Find("PlayerPicture2"));
             pictures[1,0] = new PlayerPicture(baseTransform.Find("PlayerPicture3"));
             pictures[1,1] = new PlayerPicture(baseTransform.Find("PlayerPicture4"));
+            button = baseTransform.Find("PlayerReadyButton").GetComponent<PlayerReadyButton>();
         }
 
         public void SelectPicture(int x, int y)
@@ -92,6 +98,7 @@ public class ChoosePlayerWindow : MonoBehaviour
         {
             pictures[pictureSelectedX, pictureSelectedY].Choose();
             playerChosen = true;
+            button.SetPlayerReady();
         }
 
         public void HandleInputs()
@@ -146,14 +153,14 @@ public class ChoosePlayerWindow : MonoBehaviour
         public void Select()
         {
             overlay.SetActive(false);
-            text.color = Color.black;
+            text.color = GameColor.BLACK;
             selected = true;
         }
 
         public void Unselect()
         {
             overlay.SetActive(true);
-            text.color = GameColor.COLOR_GREY_BUTTON;
+            text.color = GameColor.GREY;
             selected = false;
         }
 

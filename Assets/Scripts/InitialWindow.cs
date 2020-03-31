@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using CodeMonkey.Utils;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,15 +7,14 @@ public class InitialWindow : MonoBehaviour
 {
     private static float ERROR_MAX_TIME = 6f;
     
-    public float blinkTime = 1f;
+    //public float blinkTime = 1f;
     
     private PlayerButton[] buttons;
     private GameObject errorText;
     private int selectedButton;
-    private float blinkTimer;
     private bool isBlinkShown;
     private float errorTimer;
-    private InitialWindowPlayer[] players;
+    private PlayerReadyButton[] players;
     private void Awake()
     {
         selectedButton = 0;
@@ -26,12 +23,11 @@ public class InitialWindow : MonoBehaviour
         buttons[1] = transform.Find("2PlayerButton").GetComponent<PlayerButton>();
         buttons[2] = transform.Find("3PlayerButton").GetComponent<PlayerButton>();
         buttons[3] = transform.Find("4PlayerButton").GetComponent<PlayerButton>();
-        blinkTimer = blinkTime;
         isBlinkShown = true;
         errorTimer = 0f;
-        players = new InitialWindowPlayer[2];
-        players[0] = new InitialWindowPlayer(0, transform.Find("PressPlayer1Text"));
-        players[1] = new InitialWindowPlayer(1, transform.Find("PressPlayer2Text"));
+        players = new PlayerReadyButton[2];
+        players[0] = transform.Find("Player1ReadyButton").GetComponent<PlayerReadyButton>();
+        players[1] = transform.Find("Player2ReadyButton").GetComponent<PlayerReadyButton>();
         errorText = transform.Find("ErrorText").gameObject;
     }
 
@@ -43,7 +39,6 @@ public class InitialWindow : MonoBehaviour
     private void Update()
     {
         HandleInputs();
-        HandleBlink();
         HandleError();
     }
 
@@ -73,31 +68,11 @@ public class InitialWindow : MonoBehaviour
         errorText.SetActive(true);
     }
 
-    private void HandleBlink()
-    {
-        blinkTimer -= Time.deltaTime;
-
-        if (blinkTimer < 0)
-        {
-            blinkTimer += blinkTime;
-            ToggleBlink();
-        }
-    }
-
-    private void ToggleBlink()
-    {
-        isBlinkShown = !isBlinkShown;
-        for (int i = 0; i < players.Length; i++)
-        {
-            players[i].BlinkPressToPlay(isBlinkShown);
-        }
-    }
-
     private void HandleInputs()
     {
         for (int i = 0; i < 2; i++)
         {
-            if (players[i].HasJoinGame())
+            if (players[i].isPlayerReady())
                 continue;
             
             if (UserInput.isKeyDown(i, UserInput.Key.Up))
@@ -124,7 +99,7 @@ public class InitialWindow : MonoBehaviour
 
         if (error == null)
         {
-            players[player].ActivatePlayer();
+            players[player].SetPlayerReady();
             HideError();
 
             if (areAllPlayersJoinedTheGame())
@@ -145,7 +120,7 @@ public class InitialWindow : MonoBehaviour
     {
         for (int i = 0; i < players.Length; i++)
         {
-            if (!players[i].HasJoinGame())
+            if (!players[i].isPlayerReady())
             {
                 return false;
             }
@@ -179,38 +154,5 @@ public class InitialWindow : MonoBehaviour
         buttons[selectedButton].Unselect();
         buttons[button].Select();
         selectedButton = button;
-    }
-
-    private class InitialWindowPlayer
-    {
-        private int number;
-        private Transform pressToPlayGameObject;
-        private bool gameJoined;
-        
-        public InitialWindowPlayer(int playerNumber, Transform transform)
-        {
-            number = playerNumber;
-            pressToPlayGameObject = transform;
-            gameJoined = false;
-        }
-
-        public void BlinkPressToPlay(bool active)
-        {
-            if (!gameJoined)
-                pressToPlayGameObject.gameObject.SetActive(active);
-        }
-
-        public void ActivatePlayer()
-        {
-            gameJoined = true;
-            pressToPlayGameObject.GetComponent<Text>().text = "JOUEUR PRET !";
-            pressToPlayGameObject.gameObject.SetActive(true);
-            pressToPlayGameObject.GetComponent<Animator>().SetTrigger("PlayerEnterGame");
-        }
-
-        public bool HasJoinGame()
-        {
-            return gameJoined;
-        }
     }
 }
