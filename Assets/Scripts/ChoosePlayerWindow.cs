@@ -38,7 +38,7 @@ public class ChoosePlayerWindow : MonoBehaviour
         {
             FunctionTimer.Create(() =>
             {
-                Loader.Load(Loader.Scene.Initial);
+                Loader.Load(Loader.Scene.SchoolExplanation);
             }, .5f);
             isRedirected = true;
         }

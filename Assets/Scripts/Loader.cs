@@ -11,6 +11,7 @@ public static class Loader
         Initial,
         Loading,
         ChoosePlayer,
+        SchoolExplanation
     }
 
     public static Scene targetScene;

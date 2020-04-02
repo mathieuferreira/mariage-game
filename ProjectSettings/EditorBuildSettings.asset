@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ChoosePlayer.unity
     guid: c1e2b84b10a3d414b8b019472ce55446
+  - enabled: 1
+    path: Assets/Scenes/SchoolExplanation.unity
+    guid: afc31bfb1658f43a48dd9d1b226e93d6
   m_configObjects: {}
