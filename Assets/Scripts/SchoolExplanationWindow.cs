@@ -9,20 +9,12 @@ public class SchoolExplanationWindow : MonoBehaviour
     private PlayerReadyButton[] playersReady;
     private Animator anim;
 
-    private static SchoolExplanationWindow instance;
-
-    public static SchoolExplanationWindow GetInstance()
-    {
-        return instance;
-    }
-
     private void Awake()
     {
         playersReady = new PlayerReadyButton[2];
         playersReady[0] = transform.Find("Player1ReadyButton").GetComponent<PlayerReadyButton>();
         playersReady[1] = transform.Find("Player2ReadyButton").GetComponent<PlayerReadyButton>();
         anim = GetComponent<Animator>();
-        instance = this;
     }
 
     private void Update()

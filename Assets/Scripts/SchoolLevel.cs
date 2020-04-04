@@ -1,21 +1,52 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Packages.Rider.Editor.Util;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SchoolLevel : MonoBehaviour
 {
-    private bool gameStarted;
-    private SchoolPlayer[] players;
-    private List<SchoolEnemy> zombies;
+    [SerializeField] private SchoolExplanationWindow explanationWindow;
+    [SerializeField] private SchoolPlayer[] players;
+    [SerializeField] private SchoolShuriken shuriken;
     
+    private bool gameStarted;
+    private List<SchoolEnemy> zombies;
+    private List<SchoolShuriken> shurikens;
+
     private void Awake()
     {
         gameStarted = false;
-        SchoolExplanationWindow.GetInstance().onClosed += OnExplanationClosed;
-        players = new SchoolPlayer[2];
-        players[0] = transform.Find("Player1").GetComponent<SchoolPlayer>();
-        players[1] = transform.Find("Player2").GetComponent<SchoolPlayer>();
+        explanationWindow.onClosed += OnExplanationClosed;
+        for (int i = 0; i < players.Length; i++)
+        {
+            players[i].OnShurikenLaunch += OnOnShurikenLaunch;
+        }
+        shurikens = new List<SchoolShuriken>();
+    }
+
+    private void OnOnShurikenLaunch(object sender, ShurikenLaunchEventArgs e)
+    {
+        SchoolShuriken newShuriken = Instantiate(shuriken, e.getPosition(), Quaternion.identity);
+        newShuriken.OnDestroyed += OnShurikenDestroyed;
+        newShuriken.StartMoving();
+        shurikens.Add(newShuriken);
+    }
+
+    private void OnShurikenDestroyed(object sender, EventArgs args)
+    {
+        bool remainsShurikens = false;
+        for (int i = 0; i < shurikens.Count; i++)
+        {
+            if (!shurikens[i].IsDestroyed())
+            {
+                remainsShurikens = true;
+            }
+        }
+        
+        if (!remainsShurikens)
+            InitShuriken();
     }
 
     private void Update()
@@ -40,6 +71,24 @@ public class SchoolLevel : MonoBehaviour
             players[i].UnlockMove();
         }
 
+        InitShuriken();
         gameStarted = true;
+    }
+
+    private void InitShuriken()
+    {
+        List<SchoolPlayer> listPlayers = new List<SchoolPlayer>();
+        for (int i = 0; i < players.Length; i++)
+        {
+            if (!players[i].HasShuriken())
+            {
+                listPlayers.Add(players[i]);
+            }
+        }
+        
+        if (listPlayers.Count == 0)
+            return;
+
+        listPlayers[Random.Range(0, listPlayers.Count)].StartShuriken();
     }
 }

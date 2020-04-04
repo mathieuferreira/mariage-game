@@ -5,12 +5,26 @@ using UnityEngine;
 
 public class SchoolPlayer : MonoBehaviour
 {
-    [SerializeField] private int playerId;
+    public event EventHandler<ShurikenLaunchEventArgs> OnShurikenLaunch;
+    
+    private static float ACCELERATION = 18f;
+    private static float DECCELERATION = 10f;
+    
+    [SerializeField] private UserInput.Player player;
     private bool moveLocked;
+    private Rigidbody2D rigidBody;
+    private GameObject shuriken;
+    private Vector2 shurikenPosition;
+    private bool hasShuriken;
 
     private void Awake()
     {
         moveLocked = true;
+        rigidBody = GetComponent<Rigidbody2D>();
+        Transform shurikenTransform = transform.Find("Shuriken");
+        shuriken = shurikenTransform.gameObject;
+        shurikenPosition = shurikenTransform.localPosition;
+        shuriken.SetActive(false);
     }
 
     private void Update()
@@ -18,29 +32,44 @@ public class SchoolPlayer : MonoBehaviour
         if (moveLocked)
             return;
 
-        if (UserInput.isKeyDown(playerId, UserInput.Key.Up))
+        Deccelerate();
+        
+        if (UserInput.isKey(player, UserInput.Key.Up))
             MoveUp();
-
-        if (UserInput.isKeyDown(playerId, UserInput.Key.Down))
+        else if (UserInput.isKey(player, UserInput.Key.Down))
             MoveDown();
 
-        if (UserInput.isKeyDown(playerId, UserInput.Key.Action))
-            MoveAction();
+        if (UserInput.isKeyDown(player, UserInput.Key.Action))
+            LaunchShuriken();
+    }
+
+    private void Deccelerate()
+    {
+        float currentVelocity = rigidBody.velocity.y;
+        float potentialDeccelerationAmount = DECCELERATION * Time.deltaTime;
+        float deccelerationAmount = Math.Min(potentialDeccelerationAmount, Math.Abs(currentVelocity));
+        rigidBody.velocity += (currentVelocity > 0 ? Vector2.down : Vector2.up) * deccelerationAmount;
     }
 
     private void MoveUp()
     {
-        
+        rigidBody.velocity += Vector2.up * ACCELERATION * Time.deltaTime;
     }
 
     private void MoveDown()
     {
-        
+        rigidBody.velocity += Vector2.down * ACCELERATION * Time.deltaTime;
     }
 
-    private void MoveAction()
+    private void LaunchShuriken()
     {
+        if (!HasShuriken())
+            return;
         
+        hasShuriken = false;
+        shuriken.SetActive(false);
+        if (OnShurikenLaunch != null)
+            OnShurikenLaunch(this, new ShurikenLaunchEventArgs(transform.rotation.z == 0f ? rigidBody.position + shurikenPosition : rigidBody.position - shurikenPosition));
     }
 
     public void LockMove()
@@ -51,5 +80,31 @@ public class SchoolPlayer : MonoBehaviour
     public void UnlockMove()
     {
         moveLocked = false;
+    }
+
+    public bool HasShuriken()
+    {
+        return hasShuriken;
+    }
+
+    public void StartShuriken()
+    {
+        hasShuriken = true;
+        shuriken.SetActive(true);
+    }
+}
+
+public class ShurikenLaunchEventArgs : EventArgs
+{
+    private Vector2 position;
+
+    public ShurikenLaunchEventArgs(Vector2 position)
+    {
+        this.position = position;
+    }
+
+    public Vector2 getPosition()
+    {
+        return position;
     }
 }

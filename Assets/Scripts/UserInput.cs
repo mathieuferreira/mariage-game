@@ -21,15 +21,15 @@ public static class UserInput
 
     public static bool isKeyDown(Player player, Key key)
     {
-        switch (player)
+        KeyCode[] codes = GetKeyCodesForPlayer(player, key);
+
+        for (int i = 0; i < codes.Length; i++)
         {
-            case Player.Player1:
-                return isPlayer1KeyDown(key);
-            case Player.Player2:
-                return isPlayer2KeyDown(key);
-            default:
-                return false;
+            if (Input.GetKeyDown(codes[i]))
+                return true;
         }
+        
+        return false;
     }
 
     public static bool isKeyDown(int player, Key key)
@@ -37,49 +37,87 @@ public static class UserInput
         switch (player)
         {
             case 0:
-                return isPlayer1KeyDown(key);
+                return isKeyDown(Player.Player1, key);
             case 1:
-                return isPlayer2KeyDown(key);
+                return isKeyDown(Player.Player2, key);
             default:
                 return false;
         }
     }
 
-    private static bool isPlayer1KeyDown(Key key)
+    public static bool isKey(Player player, Key key)
     {
-        switch (key)
+        KeyCode[] codes = GetKeyCodesForPlayer(player, key);
+
+        for (int i = 0; i < codes.Length; i++)
         {
-            case Key.Action:
-                return Input.GetKeyDown(KeyCode.Tab);
-            case Key.Up:
-                return Input.GetKeyDown(KeyCode.Z);
-            case Key.Down:
-                return Input.GetKeyDown(KeyCode.S);
-            case Key.Left:
-                return Input.GetKeyDown(KeyCode.Q);
-            case Key.Right:
-                return Input.GetKeyDown(KeyCode.D);
+            if (Input.GetKey(codes[i]))
+                return true;
+        }
+        
+        return false;
+    }
+
+    public static bool isKey(int player, Key key)
+    {
+        switch (player)
+        {
+            case 0:
+                return isKey(Player.Player1, key);
+            case 1:
+                return isKey(Player.Player2, key);
             default:
                 return false;
         }
     }
 
-    private static bool isPlayer2KeyDown(Key key)
+    private static KeyCode[] GetKeyCodesForPlayer(Player player, Key key)
+    {
+        switch (player)
+        {
+            case Player.Player1:
+                return GetKeyCodesForPlayer1(key);
+            case Player.Player2:
+                return GetKeyCodesForPlayer2(key);
+            default:
+                return new KeyCode[0];
+        }
+    }
+
+    private static KeyCode[] GetKeyCodesForPlayer1(Key key)
     {
         switch (key)
         {
             case Key.Action:
-                return Input.GetKeyDown(KeyCode.RightShift);
+                return new[] { KeyCode.Tab };
             case Key.Up:
-                return Input.GetKeyDown(KeyCode.UpArrow);
+                return new[] { KeyCode.Z };
             case Key.Down:
-                return Input.GetKeyDown(KeyCode.DownArrow);
+                return new[] { KeyCode.S };
             case Key.Left:
-                return Input.GetKeyDown(KeyCode.LeftArrow);
+                return new[] { KeyCode.Q };
             case Key.Right:
-                return Input.GetKeyDown(KeyCode.RightArrow);
+                return new[] { KeyCode.D };
             default:
-                return false;
+                return new KeyCode[0];
+        }
+    }
+    private static KeyCode[] GetKeyCodesForPlayer2(Key key)
+    {
+        switch (key)
+        {
+            case Key.Action:
+                return new[] { KeyCode.RightShift };
+            case Key.Up:
+                return new[] { KeyCode.UpArrow };
+            case Key.Down:
+                return new[] { KeyCode.DownArrow };
+            case Key.Left:
+                return new[] { KeyCode.LeftArrow };
+            case Key.Right:
+                return new[] { KeyCode.RightArrow };
+            default:
+                return new KeyCode[0];
         }
     }
 }
