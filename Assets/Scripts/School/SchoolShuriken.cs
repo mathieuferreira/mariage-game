@@ -41,6 +41,11 @@ public class SchoolShuriken : MonoBehaviour
         velocity = (transform.position.x > 0 ? Vector3.left : Vector3.right) * INITIAL_SPEED;
     }
 
+    public void StartMoving(Vector3 velocity)
+    {
+        this.velocity = velocity;
+    }
+
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -48,7 +53,7 @@ public class SchoolShuriken : MonoBehaviour
             Rigidbody2D rigidbody2D = other.transform.GetComponent<Rigidbody2D>();
             Vector3 playerPosition = rigidbody2D.position;
             Vector3 playerVelocity = rigidbody2D.velocity;
-            velocity = new Vector3( - velocity.x, (transform.position.y - playerPosition.y) * 2f + playerVelocity.y * .75f , 0f);
+            velocity = new Vector3( - velocity.x * 1.1f, (transform.position.y - playerPosition.y) * 2f + playerVelocity.y * .75f , 0f);
         }
         else if(other.gameObject.CompareTag("Border"))
         {
@@ -59,5 +64,15 @@ public class SchoolShuriken : MonoBehaviour
     public bool IsDestroyed()
     {
         return isDestroyed;
+    }
+
+    public Vector3 GetPosition()
+    {
+        return transform.position;
+    }
+
+    public Vector3 GetVelocity()
+    {
+        return velocity;
     }
 }
