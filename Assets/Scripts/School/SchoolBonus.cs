@@ -9,9 +9,9 @@ public class SchoolBonus : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Destroy(gameObject);
+        
         if(OnConsume != null)
             OnConsume(this, EventArgs.Empty);
-        
-        Destroy(gameObject);
     }
 }

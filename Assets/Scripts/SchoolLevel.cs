@@ -129,6 +129,7 @@ public class SchoolLevel : MonoBehaviour
         Vector3 position = spawnPositions[Random.Range(0, spawnPositions.Count)];
         SchoolEnemy newEnemy = Instantiate(enemy, position, Quaternion.identity);
         newEnemy.OnDied += NewEnemyOnOnDied;
+        newEnemy.OnDisappear += NewEnemyOnOnDisappear;
         enemySpawnTimer = ENEMY_SPAWN_MAX_TIME;
         enemies.Add(newEnemy);
     }
@@ -139,8 +140,11 @@ public class SchoolLevel : MonoBehaviour
         {
             SpawnEnemy();
         }
+    }
 
-        if (Random.Range(0, 1) == 1)
+    private void NewEnemyOnOnDisappear(object sender, EventArgs e)
+    {
+        if (Random.value >= .5f)
         {
             SpawnBonus(((SchoolEnemy)sender).GetCurrentPosition());
         }
@@ -154,7 +158,8 @@ public class SchoolLevel : MonoBehaviour
 
     private void BonusOnOnConsume(object sender, EventArgs e)
     {
-        for (int i = 0; i < shurikens.Count; i++)
+        int shurikenCount = shurikens.Count;
+        for (int i = 0; i < shurikenCount; i++)
         {
             SchoolShuriken actualShiruken = shurikens[i];
             if (!actualShiruken.IsDestroyed())

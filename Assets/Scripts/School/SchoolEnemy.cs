@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 public class SchoolEnemy : MonoBehaviour
 {
     public event EventHandler OnDied;
+    public event EventHandler OnDisappear;
     
     private static int MAX_POSITION_RETRY = 20;
     private static float POSITION_X_MAX = 7f;
@@ -93,6 +94,8 @@ public class SchoolEnemy : MonoBehaviour
     public void DestroySelf()
     {
         Destroy(gameObject);
+        if (OnDisappear != null)
+            OnDisappear(this, EventArgs.Empty);
     }
 
     public Vector3 GetCurrentPosition()
