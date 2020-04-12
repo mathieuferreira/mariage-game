@@ -29,10 +29,7 @@ public class SchoolShuriken : MonoBehaviour
 
         if (transform1.position.x > DESTROY_MAX_X || transform1.position.x < DESTROY_MIN_X)
         {
-            isDestroyed = true;
-            if (OnDestroyed != null)
-                OnDestroyed(this, EventArgs.Empty);
-            Destroy(gameObject);
+            DestroySelf();
         }
     }
 
@@ -74,5 +71,13 @@ public class SchoolShuriken : MonoBehaviour
     public Vector3 GetVelocity()
     {
         return velocity;
+    }
+
+    public void DestroySelf()
+    {
+        isDestroyed = true;
+        if (OnDestroyed != null)
+            OnDestroyed(this, EventArgs.Empty);
+        Destroy(gameObject);
     }
 }

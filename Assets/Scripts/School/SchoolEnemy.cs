@@ -7,9 +7,8 @@ using Random = UnityEngine.Random;
 
 public class SchoolEnemy : MonoBehaviour
 {
-    public event EventHandler OnDied;
     public event EventHandler OnDisappear;
-    
+
     private static int MAX_POSITION_RETRY = 20;
     private static float POSITION_X_MAX = 7f;
     private static float POSITION_X_MIN = -7f;
@@ -21,19 +20,30 @@ public class SchoolEnemy : MonoBehaviour
     private Vector3 nextPosition;
     private int nextAngle;
     private Vector3 currentDirection;
-    private bool alive;
     private Animator animator;
+    private HealthSystem healthSystem;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         animator = GetComponent<Animator>();
-        alive = true;
         FindNextPosition();
+        healthSystem = new HealthSystem(GetMaxHealth());
+        healthSystem.OnDied += HealthSystemOnDied;
+    }
+
+    private void HealthSystemOnDied(object sender, EventArgs e)
+    {
+        animator.SetTrigger("Dead");
+    }
+
+    protected virtual int GetMaxHealth()
+    {
+        return 75;
     }
 
     private void Update()
     {
-        if (!alive)
+        if (!healthSystem.IsAlive())
             return;
         
         float currentAngle = Utils.ConvertAngle360(transform.eulerAngles.z);
@@ -81,13 +91,9 @@ public class SchoolEnemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("EnemyDead");
         if (other.gameObject.CompareTag("Projectile"))
         {
-            alive = false;
-            if (OnDied != null)
-                OnDied(this, EventArgs.Empty);
-            animator.SetTrigger("Dead");
+            healthSystem.Damage(100);
         }
     }
 
@@ -101,5 +107,10 @@ public class SchoolEnemy : MonoBehaviour
     public Vector3 GetCurrentPosition()
     {
         return transform.position;
+    }
+
+    public HealthSystem GetHealthSystem()
+    {
+        return healthSystem;
     }
 }
