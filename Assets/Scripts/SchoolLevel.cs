@@ -133,7 +133,12 @@ public class SchoolLevel : MonoBehaviour
                 shurikens[i].DestroySelf();
         }
         
-        winWindow.beforeClose += (o, args) => { Loader.Load(Loader.Scene.Initial); };
+        winWindow.beforeClose += (o, args) =>
+        {
+            PlayerPrefs.SetInt("AdventureStage", 2);
+            PlayerPrefs.Save();
+            Loader.Load(Loader.Scene.Adventure);
+        };
         winWindow.Open();
     }
 

@@ -46,10 +46,10 @@ public class CubicBezierCurve
     /// <param name="totalChange">total change in the value (not the end value, but the end - start)</param>
     /// <param name="duration">the total amount of time (when current == duration, the returned value will == initial + totalChange)</param>
     /// <returns></returns>
-    public float Ease(float c, float s, float e, float d)
+    public float Ease(float current, float initialValue, float totalChange, float duration)
     {
-        var t = c / d;
+        var t = current / duration;
         var r = GetPosition(t);
-        return s + e * r;
+        return initialValue + totalChange * r;
     }
 }
