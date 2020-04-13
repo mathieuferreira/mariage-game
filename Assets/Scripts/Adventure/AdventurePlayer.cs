@@ -9,6 +9,7 @@ public class AdventurePlayer : MonoBehaviour
     private static float MOVE_SPEED = 4f;
     
     [SerializeField] private UserInput.Player player;
+    [SerializeField] private Move2DConstraint moveConstraint;
 
     private Animator animator;
 
@@ -43,7 +44,12 @@ public class AdventurePlayer : MonoBehaviour
 
     private void Move(Vector3 direction)
     {
-        transform.position += direction * MOVE_SPEED * Time.deltaTime;
+        Vector3 candidatePosition = transform.position + direction * MOVE_SPEED * Time.deltaTime;
+
+        if (!moveConstraint.IsPositionAllowed(candidatePosition))
+            return;
+
+        transform.position = candidatePosition;
         animator.SetFloat("speed", MOVE_SPEED);
         animator.SetFloat("vertical", direction.x);
         animator.SetFloat("horizontal", direction.y);
@@ -52,5 +58,10 @@ public class AdventurePlayer : MonoBehaviour
     private void Idle()
     {
         animator.SetFloat("speed", 0f);
+    }
+
+    public Vector3 GetPosition()
+    {
+        return transform.position;
     }
 }

@@ -7,6 +7,7 @@ using UnityEngine;
 public class AdventureLevel : MonoBehaviour
 {
     [SerializeField] private AdventurePlayer[] players;
+    [SerializeField] private QuestPointer questPointer;
     
     private enum Stage
     {
@@ -48,6 +49,7 @@ public class AdventureLevel : MonoBehaviour
                 break;
             default:
                 currentStage = Stage.Stage1;
+                questPointer.Show(new Vector3(0f, 21f, 0f));
                 break;
         }
     }
