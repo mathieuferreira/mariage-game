@@ -26,8 +26,6 @@ public class QuestPointer : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
-        
         Vector3 targetPositionScreenPoint = Camera.main.WorldToScreenPoint(targetPosition);
         bool isOffScreen = targetPositionScreenPoint.x <= BORDER_SIZE || targetPositionScreenPoint.x >= Screen.width - BORDER_SIZE ||
                            targetPositionScreenPoint.y <= BORDER_SIZE || targetPositionScreenPoint.y >= Screen.height - BORDER_SIZE;
@@ -72,6 +70,12 @@ public class QuestPointer : MonoBehaviour
     public void Show(Vector3 targetPosition)
     {
         this.targetPosition = targetPosition;
+        gameObject.SetActive(true);
+    }
+
+    public void Show(QuestPosition quest)
+    {
+        targetPosition = quest.GetPosition();
         gameObject.SetActive(true);
     }
 

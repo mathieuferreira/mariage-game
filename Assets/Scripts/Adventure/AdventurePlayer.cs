@@ -12,14 +12,19 @@ public class AdventurePlayer : MonoBehaviour
     [SerializeField] private Move2DConstraint moveConstraint;
 
     private Animator animator;
+    private bool active;
 
     private void Awake()
     {
+        active = true;
         animator = GetComponent<Animator>();
     }
 
     private void FixedUpdate()
     {
+        if (!active)
+            return;
+        
         if (UserInput.isKey(player, UserInput.Key.Up))
         {
             Move(Vector3.up);
@@ -63,5 +68,16 @@ public class AdventurePlayer : MonoBehaviour
     public Vector3 GetPosition()
     {
         return transform.position;
+    }
+
+    public void SetPosition(Vector3 position)
+    {
+        transform.position = position;
+    }
+
+    public void Disappear()
+    {
+        gameObject.SetActive(false);
+        active = false;
     }
 }

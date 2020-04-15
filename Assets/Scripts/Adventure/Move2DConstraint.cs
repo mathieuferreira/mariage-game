@@ -15,7 +15,6 @@ public class Move2DConstraint
     {
         Vector3 distance = constrainPivot.position - candidatePosition;
 
-        Debug.Log(distance);
         return Math.Abs(distance.x) < maxXDistance && Math.Abs(distance.y) < maxYDistance;
     }
 }

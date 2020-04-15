@@ -48,10 +48,8 @@ public class CameraFollow : MonoBehaviour
             targetOrthoSize = minSizeY;
         }
 
-        targetOrthoSize += 2f;
+        targetOrthoSize += 5f;
 
-        Debug.Log("MinX => " + minSizeX + " - MinY = " + minSizeY + " - Target Ortho Position => " + targetOrthoSize);
-        
         return targetOrthoSize / 2f;
     }
 
@@ -60,5 +58,11 @@ public class CameraFollow : MonoBehaviour
         Vector3 cameraFollowPosition = player1.GetPosition() + (player2.GetPosition() - player1.GetPosition()) / 2 ;
         cameraFollowPosition.z = transform.position.z;
         return cameraFollowPosition;
+    }
+
+    public void InitPosition()
+    {
+        camera.orthographicSize = FindOrthographicSize();
+        transform.position = FindFollowedPosition();
     }
 }
