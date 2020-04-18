@@ -13,11 +13,16 @@ public class AdventurePlayer : MonoBehaviour
 
     private Animator animator;
     private bool active;
+    private GameObject adviceButton;
 
     private void Awake()
     {
         active = true;
         animator = GetComponent<Animator>();
+        animator.SetFloat("speed", 0f);
+        animator.SetFloat("vertical", 0f);
+        animator.SetFloat("horizontal", -1f);
+        adviceButton = transform.Find("AdviceButton").gameObject;
     }
 
     private void FixedUpdate()
@@ -65,6 +70,11 @@ public class AdventurePlayer : MonoBehaviour
         animator.SetFloat("speed", 0f);
     }
 
+    public UserInput.Player GetPlayerId()
+    {
+        return player;
+    }
+
     public Vector3 GetPosition()
     {
         return transform.position;
@@ -79,5 +89,15 @@ public class AdventurePlayer : MonoBehaviour
     {
         gameObject.SetActive(false);
         active = false;
+    }
+
+    public void ShowAdviceButton()
+    {
+        adviceButton.SetActive(true);
+    }
+
+    public void HideAdviceButton()
+    {
+        adviceButton.SetActive(false);
     }
 }
