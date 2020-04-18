@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class AdventureLevel : MonoBehaviour
 {
-    [SerializeField] private AdventurePlayer[] players;
+    [SerializeField] private BaseRPGPlayer[] players;
     [SerializeField] private QuestPointer questPointer;
     [SerializeField] private CameraFollow cameraFollow;
 

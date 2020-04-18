@@ -12,7 +12,8 @@ public static class Loader
         Loading,
         ChoosePlayer,
         Adventure,
-        School
+        School,
+        Bar
     }
 
     public static Scene targetScene;

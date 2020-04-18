@@ -9,8 +9,8 @@ public class CameraFollow : MonoBehaviour
     private static float CAMERA_ZOOM_SPEED = 4f;
     private static float CAMERA_ZOOM_MIN = 7f;
 
-    [SerializeField] private AdventurePlayer player1;
-    [SerializeField] private AdventurePlayer player2;
+    [SerializeField] private BaseRPGPlayer player1;
+    [SerializeField] private BaseRPGPlayer player2;
 
     private Camera camera;
 

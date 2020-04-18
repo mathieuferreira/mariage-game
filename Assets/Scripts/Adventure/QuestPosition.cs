@@ -10,7 +10,7 @@ public class QuestPosition : MonoBehaviour
     
     private void OnTriggerStay2D(Collider2D other)
     {
-        AdventurePlayer player = other.GetComponent<AdventurePlayer>();
+        BaseRPGPlayer player = other.GetComponent<BaseRPGPlayer>();
         if (player != null && UserInput.isKeyDown(player.GetPlayerId(), UserInput.Key.Action))
         {
             CMDebug.TextPopup("Click", player.GetPosition());
@@ -22,7 +22,7 @@ public class QuestPosition : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        AdventurePlayer player = other.GetComponent<AdventurePlayer>();
+        BaseRPGPlayer player = other.GetComponent<BaseRPGPlayer>();
         if (player != null)
         {
             player.ShowAdviceButton();
@@ -31,7 +31,7 @@ public class QuestPosition : MonoBehaviour
     
     private void OnTriggerExit2D(Collider2D other)
     {
-        AdventurePlayer player = other.GetComponent<AdventurePlayer>();
+        BaseRPGPlayer player = other.GetComponent<BaseRPGPlayer>();
         if (player != null)
         {
             player.HideAdviceButton();
@@ -46,5 +46,5 @@ public class QuestPosition : MonoBehaviour
 
 public class QuestCompleteEvent : EventArgs
 {
-    public AdventurePlayer player;
+    public BaseRPGPlayer player;
 }
