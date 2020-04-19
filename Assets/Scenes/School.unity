@@ -6488,6 +6488,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1266439903}
   - component: {fileID: 1266439904}
+  - component: {fileID: 1266439905}
   m_Layer: 0
   m_Name: SchoolLevel
   m_TagString: Untagged
@@ -6522,8 +6523,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32af5b1da06ad4bad813673b4e25dbc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explanationWindow: {fileID: 1304281990}
-  winWindow: {fileID: 1222924097}
   players:
   - {fileID: 234987478}
   - {fileID: 332104554}
@@ -6532,6 +6531,20 @@ MonoBehaviour:
   bonus: {fileID: 8833551657295820057, guid: 551f78cf8f9ae42a49f4b670cd9aa45c, type: 3}
   boss: {fileID: 5929021924913975914, guid: 241a0a4e5fbc74bf9a2b5e6b4d1b9f7c, type: 3}
   bossHealthBar: {fileID: 307855549}
+--- !u!114 &1266439905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266439902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cae82006d0b7949c89270d99e01cdc6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explanationWindow: {fileID: 1304281990}
+  winWindow: {fileID: 1222924097}
 --- !u!1001 &1277066192
 PrefabInstance:
   m_ObjectHideFlags: 0

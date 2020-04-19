@@ -12,7 +12,7 @@ public class BaseRPGPlayer : MonoBehaviour
     private bool active;
     private GameObject adviceButton;
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         active = true;
         animator = GetComponent<Animator>();
@@ -80,7 +80,17 @@ public class BaseRPGPlayer : MonoBehaviour
     public void Disappear()
     {
         gameObject.SetActive(false);
+        LockMove();
+    }
+
+    public void LockMove()
+    {
         active = false;
+    }
+
+    public void UnlockMove()
+    {
+        active = true;
     }
 
     public void ShowAdviceButton()

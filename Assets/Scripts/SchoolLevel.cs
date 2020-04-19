@@ -8,11 +8,9 @@ using Random = UnityEngine.Random;
 public class SchoolLevel : MonoBehaviour
 {
     private static float ENEMY_SPAWN_MAX_TIME = 8f;
-    private static int ENEMY_MAX_COUNT = 1;
+    private static int ENEMY_MAX_COUNT = 10;
     private static float BOSS_APPEAR_TIMEOUT = 100f;
     
-    [SerializeField] private Modal explanationWindow;
-    [SerializeField] private Modal winWindow;
     [SerializeField] private SchoolPlayer[] players;
     [SerializeField] private SchoolShuriken shuriken;
     [SerializeField] private SchoolEnemy enemy;
@@ -34,11 +32,13 @@ public class SchoolLevel : MonoBehaviour
     private float enemySpawnTimer;
     private Stage currentStage;
     private float bossSpawnTimer;
+    private ModalLevel modalLevel;
 
     private void Awake()
     {
         currentStage = Stage.WaitingForStart;
-        explanationWindow.afterClose += OnExplanationClosed;
+        modalLevel = GetComponent<ModalLevel>();
+        modalLevel.gameStart += StartGame;
         for (int i = 0; i < players.Length; i++)
         {
             players[i].OnShurikenLaunch += OnOnShurikenLaunch;
@@ -81,15 +81,7 @@ public class SchoolLevel : MonoBehaviour
         }
     }
 
-    private void OnExplanationClosed(object sender, EventArgs e)
-    {
-        CountDown.GetInstance().StartCounter(3, () =>
-        {
-            StartGame();
-        });
-    }
-
-    private void StartGame()
+    private void StartGame(object sender, EventArgs e)
     {
         for (int i = 0; i < players.Length; i++)
         {
@@ -133,13 +125,13 @@ public class SchoolLevel : MonoBehaviour
                 shurikens[i].DestroySelf();
         }
         
-        winWindow.beforeClose += (o, args) =>
-        {
-            PlayerPrefs.SetInt("AdventureStage", 2);
-            PlayerPrefs.Save();
-            Loader.Load(Loader.Scene.Adventure);
-        };
-        winWindow.Open();
+        modalLevel.OpenWinWindow(() =>
+                {
+                    PlayerPrefs.SetInt("AdventureStage", 2);
+                    PlayerPrefs.Save();
+                    Loader.Load(Loader.Scene.Adventure);
+                }
+            );
     }
 
     #region Shurikens
@@ -234,7 +226,7 @@ public class SchoolLevel : MonoBehaviour
 
     private void NewEnemyOnOnDisappear(object sender, EventArgs e)
     {
-        if (Random.Range(0, 3) == 0)
+        if (Random.Range(0, 2) == 0)
         {
             SpawnBonus(((SchoolEnemy)sender).GetCurrentPosition());
         }
