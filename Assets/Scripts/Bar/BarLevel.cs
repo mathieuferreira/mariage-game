@@ -9,6 +9,7 @@ public class BarLevel : MonoBehaviour
     [SerializeField] private BarGuest[] guests;
     [SerializeField] private BarConsumableWorker[] workers;
     [SerializeField] private BarConsumableCounter[] counters;
+    [SerializeField] private Avatar[] avatars;
     
     private ModalLevel modalLevel;
 
@@ -33,6 +34,16 @@ public class BarLevel : MonoBehaviour
         for (int i = 0; i < counters.Length; i++)
         {
             counters[i].Show();
+        }
+        
+        for (int i = 0; i < guests.Length; i++)
+        {
+            guests[i].Activate();
+        }
+        
+        for (int i = 0; i < avatars.Length; i++)
+        {
+            avatars[i].Show();
         }
     }
 }
