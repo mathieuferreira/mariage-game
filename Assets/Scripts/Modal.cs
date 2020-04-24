@@ -34,6 +34,11 @@ public class Modal : MonoBehaviour
         playersReady[0] = transform.Find("Player1ReadyButton").GetComponent<PlayerReadyButton>();
         playersReady[1] = transform.Find("Player2ReadyButton").GetComponent<PlayerReadyButton>();
 
+        for (int i = 0; i < playersReady.Length; i++)
+        {
+            playersReady[i].OnPlayerReady += OnOnPlayerReady;
+        }
+
         active = activeByDefault;
         gameObject.SetActive(active);
         animationTimer = 0f;
@@ -42,14 +47,17 @@ public class Modal : MonoBehaviour
         rectTransform.anchoredPosition = new Vector2(0f, active ? 0f : CLOSE_Y_POSITION);
     }
 
+    private void OnOnPlayerReady(object sender, EventArgs e)
+    {
+        if (areAllPlayersReady())
+        {
+            Close();
+        }
+    }
+
     private void FixedUpdate()
     {
         HandleAnimation();
-        
-        if (!active)
-            return;
-
-        HandleInputs();
     }
 
     private void HandleAnimation()
@@ -85,26 +93,11 @@ public class Modal : MonoBehaviour
         rectTransform.anchoredPosition = new Vector2(0f, position);
     }
 
-    private void HandleInputs()
-    {
-        for (int i = 0; i < playersReady.Length; i++)
-        {
-            if (UserInput.isKeyDown(i, UserInput.Key.Action))
-            {
-                playersReady[i].SetPlayerReady();
-                if (areAllPlayersReady())
-                {
-                    Close();
-                }
-            }
-        }
-    }
-
     private bool areAllPlayersReady()
     {
         for (int i = 0; i < playersReady.Length; i++)
         {
-            if (!playersReady[i].isPlayerReady())
+            if (!playersReady[i].IsPlayerReady())
                 return false;
         }
 

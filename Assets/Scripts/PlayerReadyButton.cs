@@ -8,7 +8,11 @@ using UnityEngine.UI;
 
 public class PlayerReadyButton : MonoBehaviour
 {
+    public event EventHandler<BeforePlayerReadyEventArgs> BeforePlayerReady;
+    public event EventHandler OnPlayerReady;
+    
     [SerializeField] private string readyText = "JOUEUR PRET !";
+    [SerializeField] private UserInput.Player player;
 
     private bool playerReady;
     private Text text;
@@ -27,6 +31,17 @@ public class PlayerReadyButton : MonoBehaviour
     {
         if (playerReady)
             return;
+
+        if (UserInput.isKeyDown(player, UserInput.Key.Action))
+        {
+            BeforePlayerReadyEventArgs eventArgs = new BeforePlayerReadyEventArgs();
+            
+            if (BeforePlayerReady != null)
+                BeforePlayerReady(this, eventArgs);
+            
+            if (!eventArgs.IsCancelled())
+                SetPlayerReady();
+        }
     }
 
     private void Hide()
@@ -39,16 +54,44 @@ public class PlayerReadyButton : MonoBehaviour
         gameObject.SetActive(true);
     }
 
-    public void SetPlayerReady()
+    private void SetPlayerReady()
     {
         text.text = readyText;
         button.SetActive(false);
         animator.SetTrigger("PlayerEnterGame");
         playerReady = true;
+        
+        if (OnPlayerReady != null)
+            OnPlayerReady(this, EventArgs.Empty);
     }
 
-    public bool isPlayerReady()
+    public bool IsPlayerReady()
     {
         return playerReady;
+    }
+    
+    public class BeforePlayerReadyEventArgs : EventArgs
+    {
+        private bool cancel;
+
+        public BeforePlayerReadyEventArgs()
+        {
+            cancel = false;
+        }
+
+        public bool IsCancelled()
+        {
+            return cancel;
+        }
+
+        public void Cancel()
+        {
+            cancel = true;
+        }
+    }
+
+    public UserInput.Player GetPlayerId()
+    {
+        return player;
     }
 }

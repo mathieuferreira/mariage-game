@@ -7,33 +7,58 @@ public class InitialWindow : MonoBehaviour
 {
     private static float ERROR_MAX_TIME = 6f;
     
-    //public float blinkTime = 1f;
+    [SerializeField] private Transform[] buttons;
+    [SerializeField] private Transform[] ticks;
+    [SerializeField] private GameObject errorText;
+    [SerializeField] private PlayerReadyButton[] players;
     
-    private PlayerButton[] buttons;
-    private GameObject errorText;
-    private int selectedButton;
+    private int[] selectedButtons;
     private bool isBlinkShown;
     private float errorTimer;
-    private PlayerReadyButton[] players;
+    
     private void Awake()
     {
-        selectedButton = 0;
-        buttons = new PlayerButton[4];
-        buttons[0] = transform.Find("1PlayerButton").GetComponent<PlayerButton>();
-        buttons[1] = transform.Find("2PlayerButton").GetComponent<PlayerButton>();
-        buttons[2] = transform.Find("3PlayerButton").GetComponent<PlayerButton>();
-        buttons[3] = transform.Find("4PlayerButton").GetComponent<PlayerButton>();
+        selectedButtons = new [] {0, 0};
         isBlinkShown = true;
         errorTimer = 0f;
-        players = new PlayerReadyButton[2];
-        players[0] = transform.Find("Player1ReadyButton").GetComponent<PlayerReadyButton>();
-        players[1] = transform.Find("Player2ReadyButton").GetComponent<PlayerReadyButton>();
-        errorText = transform.Find("ErrorText").gameObject;
+
+        for (int i = 0; i < players.Length; i++)
+        {
+            players[i].BeforePlayerReady += OnBeforePlayerReady;
+            players[i].OnPlayerReady += OnOnPlayerReady;
+        }
     }
 
-    private void Start()
+    private void OnOnPlayerReady(object sender, EventArgs e)
     {
-        buttons[selectedButton].Select();
+        if (areAllPlayersJoinedTheGame())
+        {
+            FunctionTimer.Create(() =>
+            {
+                Loader.Load(Loader.Scene.ChoosePlayer);
+            }, .5f);
+        }
+    }
+
+    private void OnBeforePlayerReady(object sender, PlayerReadyButton.BeforePlayerReadyEventArgs e)
+    {
+        PlayerReadyButton playerReadyButton = sender as PlayerReadyButton;
+
+        int playerId = playerReadyButton.GetPlayerId() == UserInput.Player.Player1 ? 0 : 1;
+        
+        buttons[selectedButtons[playerId]].transform.GetComponent<Animator>().SetTrigger("PlayerEnterGame");
+        
+        String error = GetErrorText(playerId);
+
+        if (error == null)
+        {
+            HideError();
+        }
+        else
+        {
+            ShowError(error);
+            e.Cancel();
+        }
     }
 
     private void Update()
@@ -72,47 +97,18 @@ public class InitialWindow : MonoBehaviour
     {
         for (int i = 0; i < 2; i++)
         {
-            if (players[i].isPlayerReady())
+            if (players[i].IsPlayerReady())
                 continue;
             
             if (UserInput.isKeyDown(i, UserInput.Key.Up))
             {
-                SelectButton(selectedButton - 1);
+                SelectButton(i, -1);
             }
             
             if (UserInput.isKeyDown(i, UserInput.Key.Down))
             {
-                SelectButton(selectedButton + 1);
+                SelectButton(i, +1);
             }
-    
-            if (UserInput.isKeyDown(i, UserInput.Key.Action))
-            {
-                buttons[selectedButton].Click();
-                ActivePlayer(i);
-            }
-        }
-    }
-
-    private void ActivePlayer(int player)
-    {
-        String error = GetErrorText();
-
-        if (error == null)
-        {
-            players[player].SetPlayerReady();
-            HideError();
-
-            if (areAllPlayersJoinedTheGame())
-            {
-                FunctionTimer.Create(() =>
-                {
-                    Loader.Load(Loader.Scene.ChoosePlayer);
-                }, .5f);
-            }
-        }
-        else
-        {
-            ShowError(error);
         }
     }
 
@@ -120,7 +116,7 @@ public class InitialWindow : MonoBehaviour
     {
         for (int i = 0; i < players.Length; i++)
         {
-            if (!players[i].isPlayerReady())
+            if (!players[i].IsPlayerReady())
             {
                 return false;
             }
@@ -129,30 +125,32 @@ public class InitialWindow : MonoBehaviour
         return true;
     }
 
-    private String GetErrorText()
+    private String GetErrorText(int player)
     {
-        if (selectedButton == 1)
+        if (selectedButtons[player] == 1)
             return null;
 
-        if (selectedButton == 0)
+        if (selectedButtons[player] == 0)
             return "ET NON ! MAINTENANT, TU N'ES PLUS TOUT SEUL !";
 
-        return (selectedButton + 1) + " JOUEURS ?! PAS ENCORE ! PEUT-ETRE DANS QUELQUES MOIS...";
+        return (selectedButtons[player] + 1) + " JOUEURS ?! PAS ENCORE ! PEUT-ETRE DANS QUELQUES MOIS...";
     }
 
-    private void SelectButton(int button)
+    private void SelectButton(int player, int delta)
     {
+        int button = selectedButtons[player] + delta;
+        
         if (button < 0)
             button = 0;
 
         if (button > 3)
             button = 3;
-
-        if (button == selectedButton)
-            return;
         
-        buttons[selectedButton].Unselect();
-        buttons[button].Select();
-        selectedButton = button;
+        selectedButtons[player] = button;
+
+        Vector3 move = buttons[button].position - ticks[player].position;
+        move.x = 0f;
+        move.z = 0f;
+        ticks[player].position += move;
     }
 }

@@ -47,10 +47,28 @@ public class AvatarManager : MonoBehaviour
         }
     }
 
-    public void SetIndexes(int player1, int player2)
+    public Sprite[] GetAvatars(UserInput.Player player)
     {
-        player1Index = player1;
-        player2Index = player2;
+        switch (player)
+        {
+            case UserInput.Player.Player1 :
+                return player1Avatars;
+            default :
+                return player2Avatars;
+        }
+    }
+
+    public void SetIndex(UserInput.Player player, int index)
+    {
+        switch (player)
+        {
+            case UserInput.Player.Player1 :
+                player1Index = index;
+                break;
+            default :
+                player2Index = index;
+                break;
+        }
     }
     
     public void Save()
