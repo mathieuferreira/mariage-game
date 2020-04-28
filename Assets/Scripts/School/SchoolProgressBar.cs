@@ -3,25 +3,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthBar : MonoBehaviour
+public class SchoolProgressBar : MonoBehaviour
 {
-    private HealthSystem healthSystem;
     private ProgressBar progressBar;
-    
+
     private void Awake()
     {
         progressBar = GetComponent<ProgressBar>();
+        progressBar.OnAnimationComplete += ProgressBarOnOnAnimationComplete;
     }
 
-    public void Setup(HealthSystem system)
+    private void ProgressBarOnOnAnimationComplete(object sender, EventArgs e)
     {
-        healthSystem = system;
-        healthSystem.OnHealthChange += HealthSystemOnOnHealthChange;
+        if (progressBar.IsFull())
+        {
+            
+        }
     }
 
-    private void HealthSystemOnOnHealthChange(object sender, HealthChangeEvent e)
+    public ProgressBar GetProgressBar()
     {
-        progressBar.SetFillAmount(healthSystem.GetHealthNormalized());
+        return progressBar;
     }
 
     public void Show()

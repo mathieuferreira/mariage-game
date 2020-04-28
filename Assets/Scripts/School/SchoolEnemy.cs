@@ -8,13 +8,14 @@ using Random = UnityEngine.Random;
 public class SchoolEnemy : MonoBehaviour
 {
     public event EventHandler OnDisappear;
+    public event EventHandler OnHitPlayer;
 
     private static int MAX_POSITION_RETRY = 20;
     private static float POSITION_X_MAX = 7f;
     private static float POSITION_X_MIN = -7f;
     private static float POSITION_Y_MAX = 7f;
     private static float POSITION_Y_MIN = -7f;
-    private static float MOVE_SPEED = 1.5f;
+    private static float MOVE_SPEED = 1f;
     private static float ROTATION_SPEED = 2f;
     
     private Vector3 nextPosition;
@@ -22,13 +23,24 @@ public class SchoolEnemy : MonoBehaviour
     private Vector3 currentDirection;
     private Animator animator;
     private HealthSystem healthSystem;
+    private SchoolPlayer player;
+    private State currentState;
+    private int randomMove;
+
+    private enum State
+    {
+        MoveToRandom,
+        MoveToPlayer
+    }
 
     protected virtual void Awake()
     {
         animator = GetComponent<Animator>();
+        randomMove = 1;
         FindNextPosition();
         healthSystem = new HealthSystem(GetMaxHealth());
         healthSystem.OnDied += HealthSystemOnDied;
+        currentState = State.MoveToRandom;
     }
 
     private void HealthSystemOnDied(object sender, EventArgs e)
@@ -45,9 +57,11 @@ public class SchoolEnemy : MonoBehaviour
     {
         if (!healthSystem.IsAlive())
             return;
+
+        TargetInfo target = GetTargetPosition();
         
         float currentAngle = Utils.ConvertAngle360(transform.eulerAngles.z);
-        float deltaAngle = Utils.ConvertAngle180(nextAngle - currentAngle);
+        float deltaAngle = Utils.ConvertAngle180(target.angle - currentAngle);
         if (Math.Abs(deltaAngle) > 1f)
         {
             float frameDeltaAngle = (deltaAngle / Math.Abs(deltaAngle)) * 360 * ROTATION_SPEED * Time.deltaTime;
@@ -55,20 +69,75 @@ public class SchoolEnemy : MonoBehaviour
                 frameDeltaAngle = deltaAngle;
             
             transform.eulerAngles += new Vector3(0, 0, frameDeltaAngle);
-            return;
         }
         
-        transform.position += currentDirection * MOVE_SPEED * Time.deltaTime;
+        transform.position += target.direction * MOVE_SPEED * Time.deltaTime;
 
-        Vector3 heading = nextPosition - transform.position;
+        Vector3 heading = target.position - transform.position;
+        float range = currentState == State.MoveToPlayer ? 1f : .2f;
 
-        if (heading.sqrMagnitude < .2f * .2f)
+        if (heading.sqrMagnitude < range * range)
         {
-            FindNextPosition();
+            GoToNextState();
         }
     }
 
-    private void FindNextPosition()
+    public void Setup(SchoolPlayer player)
+    {
+        this.player = player;
+    }
+
+    private TargetInfo GetTargetPosition()
+    {
+        if (currentState == State.MoveToPlayer)
+        {
+            Vector3 targetPosition = player.GetPosition();
+            Vector3 heading = targetPosition - transform.position;
+
+            return new TargetInfo
+            {
+                angle = UtilsClass.GetAngleFromVector(heading),
+                direction = Vector3.Normalize(heading),
+                position = targetPosition
+            };
+        }
+        
+        return new TargetInfo
+        {
+            angle = nextAngle,
+            direction = currentDirection,
+            position = nextPosition
+        };
+    }
+
+    protected virtual int GetMaxRandomMove()
+    {
+        return 5;
+    }
+
+    protected void GoToNextState()
+    {
+        switch (currentState)
+        {
+            case State.MoveToRandom:
+                FindNextPosition();
+                randomMove++;
+
+                if (GetMaxRandomMove() > 0 && randomMove > GetMaxRandomMove())
+                {
+                    currentState = State.MoveToPlayer;
+                }
+                
+                break;
+            case State.MoveToPlayer:
+                healthSystem.Damage(GetMaxHealth());
+                if (OnHitPlayer != null)
+                    OnHitPlayer(this, EventArgs.Empty);
+                break;
+        }
+    }
+
+    protected void FindNextPosition()
     {
         Vector3 candidatePosition = Vector3.right;
         Vector3 currentPosition = transform.position;
@@ -78,7 +147,7 @@ public class SchoolEnemy : MonoBehaviour
             candidatePosition = new Vector3(Random.Range(POSITION_X_MIN, POSITION_X_MAX), Random.Range(POSITION_Y_MIN, POSITION_Y_MAX), 0);
             heading = candidatePosition - currentPosition;
             
-            if (heading.sqrMagnitude > 4f)
+            if (heading.sqrMagnitude > 16f)
             {
                 break;
             }
@@ -87,14 +156,6 @@ public class SchoolEnemy : MonoBehaviour
         nextPosition = candidatePosition;
         currentDirection = Vector3.Normalize(heading);
         nextAngle = UtilsClass.GetAngleFromVector(heading);
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Projectile"))
-        {
-            healthSystem.Damage(100);
-        }
     }
 
     public void DestroySelf()
@@ -112,5 +173,12 @@ public class SchoolEnemy : MonoBehaviour
     public HealthSystem GetHealthSystem()
     {
         return healthSystem;
+    }
+
+    private class TargetInfo
+    {
+        public Vector3 position;
+        public Vector3 direction;
+        public float angle;
     }
 }

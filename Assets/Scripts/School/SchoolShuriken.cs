@@ -6,6 +6,7 @@ using UnityEngine;
 public class SchoolShuriken : MonoBehaviour
 {
     public event EventHandler OnDestroyed;
+    public event EventHandler OnHit;
     
     private static float ROTATION_SPEED = 2f;
     private static float INITIAL_SPEED = 4f;
@@ -14,6 +15,7 @@ public class SchoolShuriken : MonoBehaviour
 
     private Vector3 velocity;
     private bool isDestroyed;
+    private UserInput.Player lastPlayerTouched;
 
     private void Awake()
     {
@@ -33,20 +35,24 @@ public class SchoolShuriken : MonoBehaviour
         }
     }
 
-    public void StartMoving()
+    public void StartMoving(UserInput.Player player)
     {
+        lastPlayerTouched = player;
         velocity = (transform.position.x > 0 ? Vector3.left : Vector3.right) * INITIAL_SPEED;
     }
 
-    public void StartMoving(Vector3 velocity)
+    public void StartMoving(UserInput.Player player, Vector3 velocity)
     {
         this.velocity = velocity;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        SchoolPlayer player = other.gameObject.GetComponent<SchoolPlayer>();
+
+        if (player != null)
         {
+            lastPlayerTouched = player.GetPlayerId();
             Rigidbody2D rigidbody2D = other.transform.GetComponent<Rigidbody2D>();
             Vector3 playerPosition = rigidbody2D.position;
             Vector3 playerVelocity = rigidbody2D.velocity;
@@ -55,6 +61,18 @@ public class SchoolShuriken : MonoBehaviour
         else if(other.gameObject.CompareTag("Border"))
         {
             velocity = new Vector3(velocity.x, -velocity.y, 0f);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        SchoolEnemy enemy = other.GetComponent<SchoolEnemy>();
+
+        if (enemy != null && enemy.GetHealthSystem().IsAlive())
+        {
+            enemy.GetHealthSystem().Damage(100);
+            if (OnHit != null)
+                OnHit(this, EventArgs.Empty);
         }
     }
 
@@ -79,5 +97,10 @@ public class SchoolShuriken : MonoBehaviour
         if (OnDestroyed != null)
             OnDestroyed(this, EventArgs.Empty);
         Destroy(gameObject);
+    }
+
+    public UserInput.Player GetLastPlayerTouched()
+    {
+        return lastPlayerTouched;
     }
 }

@@ -9,6 +9,7 @@ public class ModalLevel : MonoBehaviour
     
     [SerializeField] private Modal explanationWindow;
     [SerializeField] private Modal winWindow;
+    [SerializeField] private Modal looseWindow;
 
     private void Awake()
     {
@@ -31,5 +32,14 @@ public class ModalLevel : MonoBehaviour
             afterAction();
         };
         winWindow.Open();
+    }
+
+    public void OpenLooseWindow(Action afterAction)
+    {
+        looseWindow.beforeClose += (o, args) =>
+        {
+            afterAction();
+        };
+        looseWindow.Open();
     }
 }

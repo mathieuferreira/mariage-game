@@ -21,17 +21,10 @@ public class ScoreManager
     private const string ScoreSaveId = "score";
     
     private int[] scores;
-    private int[] sessionScores;
 
     private ScoreManager()
     {
-        scores = new[] {0, 0};
-        string save = PlayerPrefs.GetString(ScoreSaveId, null);
-        
-        if (!string.IsNullOrEmpty(save))
-            scores = JsonUtility.FromJson<int[]>(save);
-        
-        StartSession();
+        Load();
     }
 
     public void IncrementScore(UserInput.Player player)
@@ -42,11 +35,9 @@ public class ScoreManager
     public void IncrementScore(UserInput.Player player, int amount)
     {
         scores[GetPlayerIndex(player)] += amount;
-        sessionScores[GetPlayerIndex(player)] += amount;
         
         if (OnScoreChange != null)
             OnScoreChange(this, EventArgs.Empty);
-
     }
 
     public int GetScore(UserInput.Player player)
@@ -54,24 +45,9 @@ public class ScoreManager
         return scores[GetPlayerIndex(player)];
     }
 
-    public int GetSessionScore(UserInput.Player player)
-    {
-        return sessionScores[GetPlayerIndex(player)];
-    }
-
     public int GetScore()
     {
         return scores.Sum();
-    }
-
-    public int GetSessionScore()
-    {
-        return sessionScores.Sum();
-    }
-
-    public void StartSession()
-    {
-        sessionScores = new[] {0, 0};
     }
 
     private int GetPlayerIndex(UserInput.Player player)
@@ -83,5 +59,19 @@ public class ScoreManager
     {
         PlayerPrefs.SetString(ScoreSaveId, JsonUtility.ToJson(scores));
         PlayerPrefs.Save();
+    }
+
+    public void Restart()
+    {
+        scores = new[] {0, 0};
+    }
+
+    public void Load()
+    {
+        scores = new[] {0, 0};
+        string save = PlayerPrefs.GetString(ScoreSaveId, null);
+        
+        if (!string.IsNullOrEmpty(save))
+            scores = JsonUtility.FromJson<int[]>(save);
     }
 }

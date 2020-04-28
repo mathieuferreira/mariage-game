@@ -12,11 +12,11 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private BaseRPGPlayer player1;
     [SerializeField] private BaseRPGPlayer player2;
 
-    private Camera camera;
+    private Camera mainCamera;
 
     private void Awake()
     {
-        camera = GetComponent<Camera>();
+        mainCamera = GetComponent<Camera>();
     }
 
     // Update is called once per frame
@@ -25,10 +25,10 @@ public class CameraFollow : MonoBehaviour
         Vector3 cameraFollowPosition = FindFollowedPosition();
         Vector3 travel = cameraFollowPosition - transform.position;
         
-        float deltaOrthoSize = FindOrthographicSize() - camera.orthographicSize;
-        float orthoSize = Math.Max(camera.orthographicSize + deltaOrthoSize * CAMERA_ZOOM_SPEED * Time.deltaTime, CAMERA_ZOOM_MIN);
+        float deltaOrthoSize = FindOrthographicSize() - mainCamera.orthographicSize;
+        float orthoSize = Math.Max(mainCamera.orthographicSize + deltaOrthoSize * CAMERA_ZOOM_SPEED * Time.deltaTime, CAMERA_ZOOM_MIN);
         
-        camera.orthographicSize = orthoSize;
+        mainCamera.orthographicSize = orthoSize;
         transform.position += travel * Math.Min(CAMERA_MOVE_SPEED * Time.deltaTime, 1f);
     }
 
@@ -39,9 +39,9 @@ public class CameraFollow : MonoBehaviour
         float minSizeY = Math.Abs(distanceBeetweenPlayers.y);
 
         float targetOrthoSize;
-        if (minSizeX / minSizeY > camera.aspect)
+        if (minSizeX / minSizeY > mainCamera.aspect)
         {
-            targetOrthoSize = minSizeX / camera.aspect;
+            targetOrthoSize = minSizeX / mainCamera.aspect;
         }
         else
         {
@@ -62,7 +62,7 @@ public class CameraFollow : MonoBehaviour
 
     public void InitPosition()
     {
-        camera.orthographicSize = FindOrthographicSize();
+        mainCamera.orthographicSize = FindOrthographicSize();
         transform.position = FindFollowedPosition();
     }
 }

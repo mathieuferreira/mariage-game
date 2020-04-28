@@ -36,7 +36,7 @@ public class HealthSystem
             return;
 
         health = newHealth;
-
+        
         if (OnHealthChange != null)
             OnHealthChange(this, new HealthChangeEvent(oldHealth, newHealth));
         
@@ -49,7 +49,7 @@ public class HealthSystem
         return health > 0;
     }
 
-    public float GetPercentHealth()
+    public float GetHealthNormalized()
     {
         return (float) health / maxHealth;
     }

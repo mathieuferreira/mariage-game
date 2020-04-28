@@ -92,6 +92,16 @@ public class SchoolPlayer : MonoBehaviour
         hasShuriken = true;
         shuriken.SetActive(true);
     }
+
+    public UserInput.Player GetPlayerId()
+    {
+        return player;
+    }
+
+    public Vector3 GetPosition()
+    {
+        return transform.position;
+    }
 }
 
 public class ShurikenLaunchEventArgs : EventArgs

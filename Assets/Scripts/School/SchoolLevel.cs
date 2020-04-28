@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Packages.Rider.Editor.Util;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using Random = UnityEngine.Random;
 
 public class SchoolLevel : MonoBehaviour
@@ -17,13 +18,17 @@ public class SchoolLevel : MonoBehaviour
     [SerializeField] private SchoolBonus bonus;
     [SerializeField] private SchoolBoss boss;
     [SerializeField] private HealthBar bossHealthBar;
+    [SerializeField] private Avatar[] avatars;
+    [SerializeField] private HeartSystemUI heartSystemUI;
+    [SerializeField] private SchoolProgressBar progressBar;
 
     private enum Stage
     {
         WaitingForStart,
         Stage1,
         Boss,
-        Victory
+        Victory,
+        Defeat
     }
     
     private List<SchoolEnemy> enemies;
@@ -33,6 +38,7 @@ public class SchoolLevel : MonoBehaviour
     private Stage currentStage;
     private float bossSpawnTimer;
     private ModalLevel modalLevel;
+    private HeartSystem heartSystem;
 
     private void Awake()
     {
@@ -53,6 +59,23 @@ public class SchoolLevel : MonoBehaviour
         }
         
         enemies = new List<SchoolEnemy>();
+        heartSystem = new HeartSystem(3);
+        heartSystem.OnDied += HeartSystemOnOnDied;
+        
+        heartSystemUI.Setup(heartSystem);
+    }
+
+    private void HeartSystemOnOnDied(object sender, EventArgs e)
+    {
+        currentStage = Stage.Defeat;
+        
+        StopGameUI();
+
+        modalLevel.OpenLooseWindow(() =>
+            {
+                Loader.Load(Loader.Scene.School);
+            }
+        );
     }
 
     private void FixedUpdate()
@@ -83,30 +106,34 @@ public class SchoolLevel : MonoBehaviour
 
     private void StartGame(object sender, EventArgs e)
     {
+        InitShuriken();
+        SpawnEnemy();
+        bossSpawnTimer = BOSS_APPEAR_TIMEOUT;
+        currentStage = Stage.Stage1;
+        StartGameUI();
+    }
+
+    private void StartGameUI()
+    {
         for (int i = 0; i < players.Length; i++)
         {
             players[i].UnlockMove();
         }
 
-        InitShuriken();
-        SpawnEnemy();
-        bossSpawnTimer = BOSS_APPEAR_TIMEOUT;
-        currentStage = Stage.Stage1;
+        for (int i = 0; i < avatars.Length; i++)
+        {
+            avatars[i].Show();
+        }
+
+        heartSystemUI.Show();
+        progressBar.Show();
     }
 
-    private void StartBossStage()
+    private void StopGameUI()
     {
-        currentStage = Stage.Boss;
-        SchoolBoss boss = Instantiate(this.boss, new Vector3(0f, 0f, 0f), Quaternion.identity);
-        boss.GetHealthSystem().OnDied += BossOnDied;
-        bossHealthBar.Show();
-        bossHealthBar.Setup(boss.GetHealthSystem());
-    }
-
-    private void BossOnDied(object sender, EventArgs e)
-    {
-        currentStage = Stage.Victory;
         bossHealthBar.Hide();
+        heartSystemUI.Hide();
+        progressBar.Hide();
 
         for (int i = 0; i < players.Length; i++)
         {
@@ -124,7 +151,24 @@ public class SchoolLevel : MonoBehaviour
             if (!shurikens[i].IsDestroyed())
                 shurikens[i].DestroySelf();
         }
+    }
+
+    private void StartBossStage()
+    {
+        currentStage = Stage.Boss;
+        SchoolBoss boss = Instantiate(this.boss, new Vector3(0f, 0f, 0f), Quaternion.identity);
+        boss.GetHealthSystem().OnDied += BossOnDied;
+        progressBar.Hide();
+        bossHealthBar.Show();
+        bossHealthBar.Setup(boss.GetHealthSystem());
+    }
+
+    private void BossOnDied(object sender, EventArgs e)
+    {
+        currentStage = Stage.Victory;
         
+        StopGameUI();
+
         modalLevel.OpenWinWindow(() =>
                 {
                     PlayerPrefs.SetInt("AdventureStage", 2);
@@ -138,16 +182,24 @@ public class SchoolLevel : MonoBehaviour
     
     private void OnOnShurikenLaunch(object sender, ShurikenLaunchEventArgs e)
     {
+        SchoolPlayer player = sender as SchoolPlayer;
         SchoolShuriken newShuriken = CreateShuriken(e.getPosition());
-        newShuriken.StartMoving();
+        newShuriken.StartMoving(player.GetPlayerId());
     }
 
     private SchoolShuriken CreateShuriken(Vector3 position)
     {
         SchoolShuriken newShuriken = Instantiate(shuriken, position, Quaternion.identity);
         newShuriken.OnDestroyed += OnShurikenDestroyed;
+        newShuriken.OnHit += NewShurikenOnOnHit;
         shurikens.Add(newShuriken);
         return newShuriken;
+    }
+
+    private void NewShurikenOnOnHit(object sender, EventArgs e)
+    {
+        SchoolShuriken shuriken = sender as SchoolShuriken;
+        ScoreManager.GetInstance().IncrementScore(shuriken.GetLastPlayerTouched());
     }
 
     private void OnShurikenDestroyed(object sender, EventArgs args)
@@ -190,14 +242,32 @@ public class SchoolLevel : MonoBehaviour
     {
         Vector3 position = spawnPositions[Random.Range(0, spawnPositions.Count)];
         SchoolEnemy newEnemy = Instantiate(enemy, position, Quaternion.identity);
+        newEnemy.Setup(players[Random.Range(0, players.Length)]);
         newEnemy.GetHealthSystem().OnDied += NewEnemyOnOnDied;
         newEnemy.OnDisappear += NewEnemyOnOnDisappear;
+        newEnemy.OnHitPlayer += NewEnemyOnOnHitPlayer;
         enemySpawnTimer = ENEMY_SPAWN_MAX_TIME;
         enemies.Add(newEnemy);
     }
 
+    private void NewEnemyOnOnHitPlayer(object sender, EventArgs e)
+    {
+        heartSystem.Damage();
+    }
+
     private void NewEnemyOnOnDied(object sender, EventArgs e)
     {
+        int enemiesKilled = 0;
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            if (!enemies[i].GetHealthSystem().IsAlive())
+            {
+                enemiesKilled++;
+            }
+        }
+
+        progressBar.GetProgressBar().SetFillAmount((float)enemiesKilled / ENEMY_MAX_COUNT);
+        
         if (enemies.Count < ENEMY_MAX_COUNT)
         {
             SpawnEnemy();
@@ -242,18 +312,10 @@ public class SchoolLevel : MonoBehaviour
             bonus.OnConsume += BonusOnOnConsume;
         }
     
-        private void BonusOnOnConsume(object sender, EventArgs e)
+        private void BonusOnOnConsume(object sender, SchoolBonus.BonusConsumedeventArgs e)
         {
-            int shurikenCount = shurikens.Count;
-            for (int i = 0; i < shurikenCount; i++)
-            {
-                SchoolShuriken actualShiruken = shurikens[i];
-                if (!actualShiruken.IsDestroyed())
-                {
-                    SchoolShuriken newShuriken = CreateShuriken(actualShiruken.GetPosition());
-                    newShuriken.StartMoving(new Vector3(-1 * actualShiruken.GetVelocity().x * .75f, actualShiruken.GetVelocity().y * .75f, 0));
-                }
-            }
+            SchoolShuriken newShuriken = CreateShuriken(e.shuriken.GetPosition());
+            newShuriken.StartMoving(e.shuriken.GetLastPlayerTouched(), new Vector3(-1 * e.shuriken.GetVelocity().x * .75f, e.shuriken.GetVelocity().y * .75f, 0));
         }
 
     #endregion

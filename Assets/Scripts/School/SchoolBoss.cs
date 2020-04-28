@@ -10,4 +10,9 @@ public class SchoolBoss : SchoolEnemy
     {
         return 450;
     }
+    
+    protected override int GetMaxRandomMove()
+    {
+        return -1;
+    }
 }
