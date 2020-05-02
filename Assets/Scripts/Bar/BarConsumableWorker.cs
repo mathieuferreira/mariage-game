@@ -153,4 +153,9 @@ public class BarConsumableWorker : MonoBehaviour
     {
         active = true;
     }
+
+    public void StopWork()
+    {
+        active = false;
+    }
 }

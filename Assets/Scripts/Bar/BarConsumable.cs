@@ -7,7 +7,8 @@ public class BarConsumable
     public enum Type
     {
         Beer,
-        Cake
+        Cake,
+        Talk
     }
 
     private Type type;

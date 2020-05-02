@@ -59,7 +59,7 @@ public class SchoolLevel : MonoBehaviour
         }
         
         enemies = new List<SchoolEnemy>();
-        heartSystem = new HeartSystem(3);
+        heartSystem = new HeartSystem(5);
         heartSystem.OnDied += HeartSystemOnOnDied;
         
         heartSystemUI.Setup(heartSystem);

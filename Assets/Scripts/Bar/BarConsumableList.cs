@@ -7,26 +7,44 @@ public class BarConsumableList
 {
     public event EventHandler change;
     
-    private const int MAX_CONSUMMABLE_COUNT = 3;
-    
     private List<BarConsumable> list;
+    private bool allowMultipleType;
+    private int limit;
 
-    public BarConsumableList()
+    public BarConsumableList(int limit)
     {
         list = new List<BarConsumable>();
+        allowMultipleType = true;
+        this.limit = limit;
     }
 
-    public void Add(BarConsumable consumable)
+    public BarConsumableList(int limit, bool allowMultipleType)
     {
+        list = new List<BarConsumable>();
+        this.allowMultipleType = allowMultipleType;
+        this.limit = limit;
+        
+    }
+
+    public bool TryAdd(BarConsumable consumable)
+    {
+        if (IsFull())
+            return false;
+        
+        if (!allowMultipleType && ContainsType(consumable.GetType()))
+            return false;
+        
         list.Add(consumable);
         
         if(change != null)
             change(this, EventArgs.Empty);
+
+        return true;
     }
 
     public bool IsFull()
     {
-        return list.Count >= MAX_CONSUMMABLE_COUNT;
+        return list.Count >= limit;
     }
     
     public bool ContainsType(BarConsumable.Type type)
@@ -65,9 +83,26 @@ public class BarConsumableList
             {
                 BarConsumable consumable = list[i];
                 list.RemoveAt(i);
+                
+                if (change != null)
+                    change(this, EventArgs.Empty);
+                
                 return consumable;
             }
         }
+
+        return null;
+    }
+
+    public int Count()
+    {
+        return list.Count;
+    }
+
+    public BarConsumable Get(int i)
+    {
+        if (i < list.Count)
+            return list[i];
 
         return null;
     }

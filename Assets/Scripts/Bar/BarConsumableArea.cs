@@ -30,7 +30,7 @@ public class BarConsumableArea : MonoBehaviour
             if (UserInput.isKeyDown(player.GetPlayerId(), UserInput.Key.Action))
             {
                 BarConsumable consummable = TryConsume();
-                player.GetConsumableList().Add(consummable);
+                player.GetConsumableList().TryAdd(consummable);
                 
                 if (player.GetConsumableList().IsFull())
                     player.HideAdviceButton();

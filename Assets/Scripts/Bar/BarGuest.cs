@@ -7,6 +7,8 @@ using Random = UnityEngine.Random;
 
 public class BarGuest : MonoBehaviour
 {
+    public event EventHandler<NeedCompleteEventArgs> OnNeedsComplete;
+    
     private const float SPEED = 1f;
     
     private enum State
@@ -20,6 +22,9 @@ public class BarGuest : MonoBehaviour
     private bool active;
     private float timer;
     private AnimatorRPGPlayer animator;
+    private BarConsumableList needs;
+    private BubbleSystem bubbleSystem;
+    private BoxCollider2D boxCollider;
 
     private void Awake()
     {
@@ -27,6 +32,10 @@ public class BarGuest : MonoBehaviour
         active = false;
         currentState = State.Idle;
         InitializeRandomTimer();
+        needs = new BarConsumableList(2, false);
+        bubbleSystem = transform.Find("BubbleSystem").GetComponent<BubbleSystem>();
+        bubbleSystem.Setup(needs);
+        boxCollider = GetComponent<BoxCollider2D>();
     }
 
     private void FixedUpdate()
@@ -47,7 +56,6 @@ public class BarGuest : MonoBehaviour
     
     private void StartWalkingState()
     {
-        //CMDebug.TextPopup("Start Walking", transform.position);
         walkingDirection = new [] {
             Vector3.up,
             Vector3.down,
@@ -61,7 +69,6 @@ public class BarGuest : MonoBehaviour
     
     private void StartIdleState()
     {
-        //CMDebug.TextPopup("Start Idle", transform.position);
         currentState = State.Idle;
         InitializeRandomTimer();
         animator.SetSpeed(0f);
@@ -70,10 +77,17 @@ public class BarGuest : MonoBehaviour
     private void HandleWalking()
     {
         timer -= Time.fixedDeltaTime;
-        transform.position += walkingDirection * SPEED * Time.fixedDeltaTime;
 
-        if (timer < 0f)
+        float distance = SPEED * Time.fixedDeltaTime;
+        RaycastHit2D raycastHit2D = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0f, walkingDirection, distance);
+
+        if (raycastHit2D.collider != null || timer < 0f)
+        {
             StartIdleState();
+            return;
+        }
+        
+        transform.position += walkingDirection * distance;  
     }
     
     private void HandleIdle()
@@ -94,6 +108,11 @@ public class BarGuest : MonoBehaviour
         active = true;
     }
 
+    public void Deactivate()
+    {
+        active = false;
+    }
+
     private void OnCollisionEnter2D(Collision2D other)
     {
         StartIdleState();
@@ -103,7 +122,7 @@ public class BarGuest : MonoBehaviour
     {
         BarPlayer player = other.GetComponent<BarPlayer>();
 
-        if (player != null)
+        if (player != null && CanPlayerSatisfyNeeds(player))
         {
             player.ShowAdviceButton();
         }
@@ -117,5 +136,61 @@ public class BarGuest : MonoBehaviour
         {
             player.HideAdviceButton();
         }
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        BarPlayer player = other.GetComponent<BarPlayer>();
+
+        if (player != null && UserInput.isKeyDown(player.GetPlayerId(), UserInput.Key.Action))
+        {
+            for (int i = 0; i < needs.Count(); i++)
+            {
+                BarConsumable consumable = player.GetConsumableList().TryConsume(needs.Get(i).GetType());
+
+                if (consumable != null || needs.Get(i).GetType() == BarConsumable.Type.Talk)
+                {
+                    animator.SetDirection(player.GetPosition() - transform.position);
+                    needs.TryConsume(needs.Get(i).GetType());
+
+                    if (OnNeedsComplete != null)
+                        OnNeedsComplete(this, new NeedCompleteEventArgs()
+                        {
+                            consomable = consumable
+                        });
+
+                    if (!CanPlayerSatisfyNeeds(player))
+                        player.HideAdviceButton();
+                    
+                    break;
+                }
+            }
+        }
+    }
+
+    public BarConsumableList GetNeeds()
+    {
+        return needs;
+    }
+
+    private bool CanPlayerSatisfyNeeds(BarPlayer player)
+    {
+        for (int i = 0; i < needs.Count(); i++)
+        {
+            if (
+                needs.Get(i).GetType() == BarConsumable.Type.Talk ||
+                player.GetConsumableList().ContainsType(needs.Get(i).GetType()) 
+            )
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public class NeedCompleteEventArgs : EventArgs
+    {
+        public BarConsumable consomable;
     }
 }
