@@ -1,0 +1,1430 @@
+fileFormatVersion: 2
+guid: 15dbcafbeac4549bda01e65e0d2ff034
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6103192717573040167
+    second: castle-improved_0
+  - first:
+      213: -3265638592469676404
+    second: castle-improved_1
+  - first:
+      213: -8482020753929196726
+    second: castle-improved_2
+  - first:
+      213: -5931997342783448168
+    second: castle-improved_3
+  - first:
+      213: 569110681119095191
+    second: castle-improved_4
+  - first:
+      213: 1581096361411357883
+    second: castle-improved_5
+  - first:
+      213: 5891196337578255167
+    second: castle-improved_6
+  - first:
+      213: -264330322954745734
+    second: castle-improved_7
+  - first:
+      213: 4212381600829372123
+    second: castle-improved_8
+  - first:
+      213: 6962015094623680988
+    second: castle-improved_9
+  - first:
+      213: -4538844856972941277
+    second: castle-improved_10
+  - first:
+      213: 3133979303729164020
+    second: castle-improved_11
+  - first:
+      213: -2357066854072730305
+    second: castle-improved_12
+  - first:
+      213: -9199150746786879722
+    second: castle-improved_13
+  - first:
+      213: 1084281782358895097
+    second: castle-improved_14
+  - first:
+      213: -7595611577636591268
+    second: castle-improved_15
+  - first:
+      213: 5970905587267709947
+    second: castle-improved_16
+  - first:
+      213: -9200993856696719937
+    second: castle-improved_17
+  - first:
+      213: -6783668986142114240
+    second: castle-improved_18
+  - first:
+      213: -7855506018472948778
+    second: castle-improved_19
+  - first:
+      213: 3764370677488453816
+    second: castle-improved_20
+  - first:
+      213: -5737303501976329892
+    second: castle-improved_21
+  - first:
+      213: -2600226722517902824
+    second: castle-improved_22
+  - first:
+      213: 5559819777946905972
+    second: castle-improved_23
+  - first:
+      213: -601375547980816853
+    second: castle-improved_24
+  - first:
+      213: -6393723369361593690
+    second: castle-improved_25
+  - first:
+      213: -5131236976659097107
+    second: castle-improved_26
+  - first:
+      213: 5072006362605047566
+    second: castle-improved_27
+  - first:
+      213: 7034943431782276360
+    second: castle-improved_28
+  - first:
+      213: 3263622033003998305
+    second: castle-improved_29
+  - first:
+      213: -5350480494134652
+    second: castle-improved_30
+  - first:
+      213: 8396246856903707704
+    second: castle-improved_31
+  - first:
+      213: -5274872497130873373
+    second: castle-improved_32
+  - first:
+      213: -7556689200334566306
+    second: castle-improved_33
+  - first:
+      213: 5749514264730069076
+    second: castle-improved_34
+  - first:
+      213: -5769392557085762141
+    second: castle-improved_35
+  - first:
+      213: 6799719942578916091
+    second: castle-improved_36
+  - first:
+      213: 2633313302327299786
+    second: castle-improved_37
+  - first:
+      213: 1846177675542846287
+    second: castle-improved_38
+  - first:
+      213: -1716220888789289722
+    second: castle-improved_39
+  - first:
+      213: -8053944070971189505
+    second: castle-improved_40
+  - first:
+      213: -7080295400464526074
+    second: castle-improved_41
+  - first:
+      213: 104217898788180525
+    second: castle-improved_42
+  - first:
+      213: -403950329720981947
+    second: castle-improved_43
+  - first:
+      213: -4321751061852944385
+    second: castle-improved_44
+  - first:
+      213: -8226799993134344980
+    second: castle-improved_45
+  - first:
+      213: -3423742756883593463
+    second: castle-improved_46
+  - first:
+      213: -1411991253467802223
+    second: castle-improved_47
+  - first:
+      213: 2567191528096357537
+    second: castle-improved_48
+  - first:
+      213: 7378421436568096862
+    second: castle-improved_49
+  - first:
+      213: 7973834831883879512
+    second: castle-improved_50
+  - first:
+      213: -7405609634289352837
+    second: castle-improved_51
+  - first:
+      213: -7141899558332551591
+    second: castle-improved_52
+  - first:
+      213: 4547356371465434984
+    second: castle-improved_53
+  - first:
+      213: 858684278757534891
+    second: castle-improved_54
+  - first:
+      213: 1596268112716988181
+    second: castle-improved_55
+  - first:
+      213: 6716585282860037010
+    second: castle-improved_56
+  - first:
+      213: 4028306884137274278
+    second: castle-improved_57
+  - first:
+      213: -4730112772592373782
+    second: castle-improved_58
+  - first:
+      213: -6173009768328817639
+    second: castle-improved_59
+  - first:
+      213: -5067330943318365010
+    second: castle-improved_60
+  - first:
+      213: -2425480106567300205
+    second: castle-improved_61
+  - first:
+      213: -7684814838249018936
+    second: castle-improved_62
+  - first:
+      213: 5652904764281235133
+    second: castle-improved_63
+  - first:
+      213: -3923041432811727700
+    second: castle-improved_64
+  - first:
+      213: 8228820880916998954
+    second: castle-improved_65
+  - first:
+      213: -8783224271367194656
+    second: castle-improved_66
+  - first:
+      213: 1048415013822629771
+    second: castle-improved_67
+  - first:
+      213: -6183084482683509992
+    second: castle-improved_68
+  - first:
+      213: -5105263053887321121
+    second: castle-improved_69
+  - first:
+      213: -2225656485669062375
+    second: castle-improved_70
+  - first:
+      213: 1737873409304592315
+    second: castle-improved_71
+  - first:
+      213: -8896130192827874039
+    second: castle-improved_72
+  - first:
+      213: 7268852791046167902
+    second: castle-improved_73
+  - first:
+      213: -350176070539461241
+    second: castle-improved_74
+  - first:
+      213: -6858764371877553030
+    second: castle-improved_75
+  - first:
+      213: 6443415397977713501
+    second: castle-improved_76
+  - first:
+      213: 2852802331052730422
+    second: castle-improved_77
+  - first:
+      213: 6145090490190336473
+    second: castle-improved_78
+  - first:
+      213: 755608275407731023
+    second: castle-improved_79
+  - first:
+      213: -8463319697056900423
+    second: castle-improved_80
+  - first:
+      213: 814450584835836762
+    second: castle-improved_81
+  - first:
+      213: 1102095311794777652
+    second: castle-improved_82
+  - first:
+      213: -3963723325237692773
+    second: castle-improved_83
+  - first:
+      213: -6483418992323915232
+    second: castle-improved_84
+  - first:
+      213: -4165853623533464523
+    second: castle-improved_85
+  - first:
+      213: -8332904222211521695
+    second: castle-improved_86
+  - first:
+      213: -3573699070854672226
+    second: castle-improved_87
+  - first:
+      213: -2870985179742228166
+    second: castle-improved_88
+  - first:
+      213: 155379258311172864
+    second: castle-improved_89
+  - first:
+      213: -2511426264860005355
+    second: castle-improved_90
+  - first:
+      213: 7570806428286474904
+    second: castle-improved_91
+  - first:
+      213: -3282493668620674285
+    second: castle-improved_92
+  - first:
+      213: -1509278668761515285
+    second: castle-improved_93
+  - first:
+      213: 1020392442286210652
+    second: castle-improved_94
+  - first:
+      213: 1836701400818058890
+    second: castle-improved_95
+  - first:
+      213: 8772662614540644364
+    second: castle-improved_96
+  - first:
+      213: 3345120708206316157
+    second: castle-improved_97
+  - first:
+      213: -514905936437221024
+    second: castle-improved_98
+  - first:
+      213: -6429098573134711408
+    second: castle-improved_99
+  - first:
+      213: 4084092162406664346
+    second: castle-improved_100
+  - first:
+      213: 8587381905804176720
+    second: castle-improved_101
+  - first:
+      213: 6424625675012187202
+    second: castle-improved_102
+  - first:
+      213: -373997139354034956
+    second: castle-improved_103
+  - first:
+      213: 4642482117404735437
+    second: castle-improved_104
+  - first:
+      213: -4968090185053883529
+    second: castle-improved_105
+  - first:
+      213: -4944717601362084644
+    second: castle-improved_106
+  - first:
+      213: 2956614860955267667
+    second: castle-improved_107
+  - first:
+      213: -4603383545912832469
+    second: castle-improved_108
+  - first:
+      213: 5116577396851446493
+    second: castle-improved_109
+  - first:
+      213: 93776035101933612
+    second: castle-improved_110
+  - first:
+      213: -685456858495848656
+    second: castle-improved_111
+  - first:
+      213: -7028183571357307943
+    second: castle-improved_112
+  - first:
+      213: 1031237987909159861
+    second: castle-improved_113
+  - first:
+      213: 4324241689014030436
+    second: castle-improved_114
+  - first:
+      213: 238264378701323667
+    second: castle-improved_115
+  - first:
+      213: -6224261027789635767
+    second: castle-improved_116
+  - first:
+      213: -2589702290492368723
+    second: castle-improved_117
+  - first:
+      213: 1018490938686335972
+    second: castle-improved_118
+  - first:
+      213: 8492152810676494459
+    second: castle-improved_119
+  - first:
+      213: 6636189300988830626
+    second: castle-improved_120
+  - first:
+      213: 420244279033615427
+    second: castle-improved_121
+  - first:
+      213: 1162817875038846199
+    second: castle-improved_122
+  - first:
+      213: 586524995411695084
+    second: castle-improved_123
+  - first:
+      213: -4050981225209569465
+    second: castle-improved_124
+  - first:
+      213: 8431024291803660914
+    second: castle-improved_125
+  - first:
+      213: -5500242478720560077
+    second: castle-improved_126
+  - first:
+      213: -7640851658902422408
+    second: castle-improved_127
+  - first:
+      213: -6689333589706349205
+    second: castle-improved_128
+  - first:
+      213: -1712123963153365314
+    second: castle-improved_129
+  - first:
+      213: -4968444332003078863
+    second: castle-improved_130
+  - first:
+      213: -6689762355438767256
+    second: castle-improved_131
+  - first:
+      213: 4169225915421764856
+    second: castle-improved_132
+  - first:
+      213: 6864821660436378832
+    second: castle-improved_133
+  - first:
+      213: -1827591153995693333
+    second: castle-improved_134
+  - first:
+      213: -1162106601010788909
+    second: castle-improved_135
+  - first:
+      213: -8341029878709362016
+    second: castle-improved_136
+  - first:
+      213: -214371215784223608
+    second: castle-improved_137
+  - first:
+      213: -3638399417986826400
+    second: castle-improved_138
+  - first:
+      213: 2818297893514847509
+    second: castle-improved_139
+  - first:
+      213: 5129107466492898617
+    second: castle-improved_140
+  - first:
+      213: 6652162422862424268
+    second: castle-improved_141
+  - first:
+      213: -1408216732496062255
+    second: castle-improved_142
+  - first:
+      213: 2047924084698352162
+    second: castle-improved_143
+  - first:
+      213: -5864862343979210439
+    second: castle-improved_144
+  - first:
+      213: 3809076125589229152
+    second: castle-improved_145
+  - first:
+      213: 3647534757069973029
+    second: castle-improved_146
+  - first:
+      213: -3873110600126215608
+    second: castle-improved_147
+  - first:
+      213: 563847850398254352
+    second: castle-improved_148
+  - first:
+      213: 3244124231732294768
+    second: castle-improved_149
+  - first:
+      213: 6083416256277377945
+    second: castle-improved_150
+  - first:
+      213: -859055867006329077
+    second: castle-improved_151
+  - first:
+      213: 1299053522496705823
+    second: castle-improved_152
+  - first:
+      213: 8883051671464344619
+    second: castle-improved_153
+  - first:
+      213: 2445362715061178932
+    second: castle-improved_154
+  - first:
+      213: 5915297915168072552
+    second: castle-improved_155
+  - first:
+      213: -3542226221371048544
+    second: castle-improved_156
+  - first:
+      213: -3947370828333848144
+    second: castle-improved_157
+  - first:
+      213: 6572550788997541478
+    second: castle-improved_158
+  - first:
+      213: 7913202334482673675
+    second: castle-improved_159
+  - first:
+      213: -1252999527029539910
+    second: castle-improved_160
+  - first:
+      213: -4021472973396663929
+    second: castle-improved_161
+  - first:
+      213: -200216435703315526
+    second: castle-improved_162
+  - first:
+      213: 5661729201021370498
+    second: castle-improved_163
+  - first:
+      213: -6556191337594341216
+    second: castle-improved_164
+  - first:
+      213: 3493328638112565084
+    second: castle-improved_165
+  - first:
+      213: 6955229416364903816
+    second: castle-improved_166
+  - first:
+      213: 1754922213671723747
+    second: castle-improved_167
+  - first:
+      213: -1267384460300929714
+    second: castle-improved_168
+  - first:
+      213: -7545099585758822555
+    second: castle-improved_169
+  - first:
+      213: -6121106636696741984
+    second: castle-improved_170
+  - first:
+      213: -3167607518285315251
+    second: castle-improved_171
+  - first:
+      213: -2035053614371258313
+    second: castle-improved_172
+  - first:
+      213: -2011350728367568912
+    second: castle-improved_173
+  - first:
+      213: 8459342888921880187
+    second: castle-improved_174
+  - first:
+      213: -3417566309770304482
+    second: castle-improved_175
+  - first:
+      213: 8832453884652914704
+    second: castle-improved_176
+  - first:
+      213: -6892445184968726993
+    second: castle-improved_177
+  - first:
+      213: -4664444083269412562
+    second: castle-improved_178
+  - first:
+      213: 8689138900025710890
+    second: castle-improved_179
+  - first:
+      213: -3664194574336693581
+    second: castle-improved_180
+  - first:
+      213: 6469316893558165476
+    second: castle-improved_181
+  - first:
+      213: -4676492590262584542
+    second: castle-improved_28
+  - first:
+      213: 8899569268757744351
+    second: castle-improved_29
+  - first:
+      213: -1215402300533600385
+    second: castle-improved_30
+  - first:
+      213: 2160910933228080662
+    second: castle-improved_31
+  - first:
+      213: 8856894526715921508
+    second: castle-improved_32
+  - first:
+      213: -2750014916873023044
+    second: castle-improved_33
+  - first:
+      213: 5422325821475620480
+    second: castle-improved_34
+  - first:
+      213: 91993219480757386
+    second: castle-improved_35
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 70
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: castle-improved_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 433
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72821b6c075e2b450800000000000000
+      internalID: 6103192717573040167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle-improved_1
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 433
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8ec903900f1ea2d0800000000000000
+      internalID: -3265638592469676404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle-improved_2
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 433
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4b2f80601fc94a80800000000000000
+      internalID: -8482020753929196726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle-improved_3
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 433
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89bd4d688df4dada0800000000000000
+      internalID: -5931997342783448168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle-improved_4
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 433
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 799fbf13623e5e700800000000000000
+      internalID: 569110681119095191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle-improved_5
+      rect:
+        serializedVersion: 2
+        x: 361
+        y: 433
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbc269183ce21f510800000000000000
+      internalID: 1581096361411357883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle-improved_6
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 361
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f332f6b2bdbb1c150800000000000000
+      internalID: 5891196337578255167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle-improved_7
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 361
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a780be4c8f8e45cf0800000000000000
+      internalID: -264330322954745734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle-improved_8
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 361
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd673df6fb2657a30800000000000000
+      internalID: 4212381600829372123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle-improved_9
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 361
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd9b3fb97db0e9060800000000000000
+      internalID: 6962015094623680988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle-improved_10
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 361
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 328e48186a8c201c0800000000000000
+      internalID: -4538844856972941277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle-improved_11
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 289
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fee33c72912e7b20800000000000000
+      internalID: 3133979303729164020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle-improved_12
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 289
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3db52b3f240a4fd0800000000000000
+      internalID: -2357066854072730305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle-improved_13
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 289
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 617af7e822d065080800000000000000
+      internalID: -9199150746786879722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle-improved_14
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 289
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f9ede949842c0f00800000000000000
+      internalID: 1084281782358895097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle-improved_15
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 289
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c59602f6387f69690800000000000000
+      internalID: -7595611577636591268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle-improved_16
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 217
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfbac741ffaecd250800000000000000
+      internalID: 5970905587267709947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle-improved_17
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 217
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb56a0716d08f4080800000000000000
+      internalID: -9200993856696719937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle-improved_18
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 217
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04e3a2f9ff09bd1a0800000000000000
+      internalID: -6783668986142114240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle-improved_19
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 217
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6db0afd75e2abf290800000000000000
+      internalID: -7855506018472948778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle-improved_20
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 217
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b8889acf2bbd3430800000000000000
+      internalID: 3764370677488453816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle-improved_21
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 145
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c51a81cccd00160b0800000000000000
+      internalID: -5737303501976329892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle-improved_22
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 145
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81a97dc82932aebd0800000000000000
+      internalID: -2600226722517902824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle-improved_23
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 145
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47d67bf71a2782d40800000000000000
+      internalID: 5559819777946905972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle-improved_24
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 145
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2e5ff5102c77a7f0800000000000000
+      internalID: -601375547980816853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle-improved_25
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 145
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6aaa611987ee447a0800000000000000
+      internalID: -6393723369361593690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle-improved_26
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 73
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de992ebf72f2ac8b0800000000000000
+      internalID: -5131236976659097107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle-improved_27
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 73
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0f48950ae2636640800000000000000
+      internalID: 5072006362605047566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle-improved_28
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 73
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22bf6aa24c2c91fb0800000000000000
+      internalID: -4676492590262584542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle-improved_29
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 73
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdac946191f918b70800000000000000
+      internalID: 8899569268757744351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle-improved_30
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 73
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7f80811c06022fe0800000000000000
+      internalID: -1215402300533600385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle-improved_31
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61e41567b091dfd10800000000000000
+      internalID: 2160910933228080662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle-improved_32
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 1
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 464010e65a20aea70800000000000000
+      internalID: 8856894526715921508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle-improved_33
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 1
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb112c8d00cf5d9d0800000000000000
+      internalID: -2750014916873023044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle-improved_34
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 1
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0868b7d1b98ff3b40800000000000000
+      internalID: 5422325821475620480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle-improved_35
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 1
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8425e08853d64100800000000000000
+      internalID: 91993219480757386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

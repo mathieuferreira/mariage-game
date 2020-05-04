@@ -1,0 +1,968 @@
+fileFormatVersion: 2
+guid: 4759db6f6b0d44b50a427ec25d67b4ee
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2037784007275155991
+    second: ceiling-improved_0
+  - first:
+      213: 8364271255286670998
+    second: ceiling-improved_1
+  - first:
+      213: 810635715058913648
+    second: ceiling-improved_2
+  - first:
+      213: -7652759975215183858
+    second: ceiling-improved_3
+  - first:
+      213: -854025920883380724
+    second: ceiling-improved_4
+  - first:
+      213: 7134017665729643933
+    second: ceiling-improved_5
+  - first:
+      213: 7605199105426936598
+    second: ceiling-improved_6
+  - first:
+      213: -1076982577828005969
+    second: ceiling-improved_7
+  - first:
+      213: -367143328286637217
+    second: ceiling-improved_8
+  - first:
+      213: 1482818531129787370
+    second: ceiling-improved_9
+  - first:
+      213: 2567743075544784382
+    second: ceiling-improved_10
+  - first:
+      213: -2450923019158223022
+    second: ceiling-improved_11
+  - first:
+      213: -5682011497283963654
+    second: ceiling-improved_12
+  - first:
+      213: 2091062099802956414
+    second: ceiling-improved_13
+  - first:
+      213: -6857229742612534704
+    second: ceiling-improved_14
+  - first:
+      213: 3908458999164166774
+    second: ceiling-improved_15
+  - first:
+      213: -7490956516807063108
+    second: ceiling-improved_16
+  - first:
+      213: 449734830464096165
+    second: ceiling-improved_17
+  - first:
+      213: -3764543464647165737
+    second: ceiling-improved_18
+  - first:
+      213: 4258737797236958303
+    second: ceiling-improved_19
+  - first:
+      213: -8260280738225350627
+    second: ceiling-improved_20
+  - first:
+      213: -7215752499504268534
+    second: ceiling-improved_21
+  - first:
+      213: 5525550021261018405
+    second: ceiling-improved_22
+  - first:
+      213: 1868231144980465168
+    second: ceiling-improved_23
+  - first:
+      213: 5346932609381119788
+    second: ceiling-improved_24
+  - first:
+      213: 7318143381008055153
+    second: ceiling-improved_25
+  - first:
+      213: 1043232687394081468
+    second: ceiling-improved_26
+  - first:
+      213: -3065599080705511795
+    second: ceiling-improved_27
+  - first:
+      213: 6889074176114709984
+    second: ceiling-improved_28
+  - first:
+      213: -2179883844507812387
+    second: ceiling-improved_29
+  - first:
+      213: 5486354869917292347
+    second: ceiling-improved_30
+  - first:
+      213: -3452253696749592750
+    second: ceiling-improved_31
+  - first:
+      213: 8258215543828947108
+    second: ceiling-improved_32
+  - first:
+      213: -6633387241415104032
+    second: ceiling-improved_33
+  - first:
+      213: -406078187264116013
+    second: ceiling-improved_34
+  - first:
+      213: -3350631279403612875
+    second: ceiling-improved_35
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 70
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ceiling-improved_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 433
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ed6465fd3658b3e0800000000000000
+      internalID: -2037784007275155991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceiling-improved_1
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 433
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6966f50146cd31470800000000000000
+      internalID: 8364271255286670998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceiling-improved_2
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 433
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 071d45e43e4ff3b00800000000000000
+      internalID: 810635715058913648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceiling-improved_3
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 433
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e08c8fd395febc590800000000000000
+      internalID: -7652759975215183858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceiling-improved_4
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 433
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0e25c423f3e524f0800000000000000
+      internalID: -854025920883380724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceiling-improved_5
+      rect:
+        serializedVersion: 2
+        x: 361
+        y: 433
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d954d23f44f110360800000000000000
+      internalID: 7134017665729643933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceiling-improved_6
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 361
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6135715da481b8960800000000000000
+      internalID: 7605199105426936598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceiling-improved_7
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 361
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa7f6433d0acd01f0800000000000000
+      internalID: -1076982577828005969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceiling-improved_8
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 361
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5302df8615a7eaf0800000000000000
+      internalID: -367143328286637217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceiling-improved_9
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 361
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae38b560997049410800000000000000
+      internalID: 1482818531129787370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceiling-improved_10
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 361
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efdd05409b472a320800000000000000
+      internalID: 2567743075544784382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceiling-improved_11
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 289
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2570f37ef729cfdd0800000000000000
+      internalID: -2450923019158223022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceiling-improved_12
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 289
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af434b6d5a07521b0800000000000000
+      internalID: -5682011497283963654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceiling-improved_13
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 289
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e72a90e96e1f40d10800000000000000
+      internalID: 2091062099802956414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceiling-improved_14
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 289
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05a265851e936d0a0800000000000000
+      internalID: -6857229742612534704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceiling-improved_15
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 289
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 672eb5870c2ad3630800000000000000
+      internalID: 3908458999164166774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceiling-improved_16
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 217
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb941db9cb6ca0890800000000000000
+      internalID: -7490956516807063108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceiling-improved_17
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 217
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a7deec0277cd3600800000000000000
+      internalID: 449734830464096165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceiling-improved_18
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 217
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d8ff201aa7a1cbc0800000000000000
+      internalID: -3764543464647165737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceiling-improved_19
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 217
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f54a6db76731a1b30800000000000000
+      internalID: 4258737797236958303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceiling-improved_20
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 217
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d189315fe669d5d80800000000000000
+      internalID: -8260280738225350627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceiling-improved_21
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 145
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0b39e7155f7cdb90800000000000000
+      internalID: -7215752499504268534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceiling-improved_22
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 145
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5254aedf772beac40800000000000000
+      internalID: 5525550021261018405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceiling-improved_23
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 145
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 016c1eaf35a4de910800000000000000
+      internalID: 1868231144980465168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceiling-improved_24
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 145
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c273d1401ee143a40800000000000000
+      internalID: 5346932609381119788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceiling-improved_25
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 145
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17b7c50c1a44f8560800000000000000
+      internalID: 7318143381008055153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceiling-improved_26
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 73
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cba43361a9e4a7e00800000000000000
+      internalID: 1043232687394081468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceiling-improved_27
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 73
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8ea8cad0edc475d0800000000000000
+      internalID: -3065599080705511795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceiling-improved_28
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 73
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e552aa9678ea9f50800000000000000
+      internalID: 6889074176114709984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceiling-improved_29
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 73
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dddbf74613f7fb1e0800000000000000
+      internalID: -2179883844507812387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceiling-improved_30
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 73
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b37972dafa2732c40800000000000000
+      internalID: 5486354869917292347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceiling-improved_31
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25f16babd812710d0800000000000000
+      internalID: -3452253696749592750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceiling-improved_32
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 1
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a0a88088431b9270800000000000000
+      internalID: 8258215543828947108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceiling-improved_33
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 1
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e928d9f27971f3a0800000000000000
+      internalID: -6633387241415104032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceiling-improved_34
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 1
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3da76194a025d5af0800000000000000
+      internalID: -406078187264116013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ceiling-improved_35
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 1
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 535c5d19a9a2081d0800000000000000
+      internalID: -3350631279403612875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
