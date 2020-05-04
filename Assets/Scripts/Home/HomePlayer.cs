@@ -11,8 +11,8 @@ public class HomePlayer : MonoBehaviour
     private const float Speed = 10f;
     private const float MinXPosition = -26f;
     private const float MaxXPosition = -14f;
-    private const float MinYPosition = -12.3f;
-    private const float MaxYPosition = 12.3f;
+    private const float MinYPosition = HomeLevel.MinYPosition;
+    private const float MaxYPosition = HomeLevel.MaxYPosition;
 
     [SerializeField] private UserInput.Player playerId;
     [SerializeField] private Transform bullet;
@@ -72,7 +72,9 @@ public class HomePlayer : MonoBehaviour
         projectile.GetComponent<SpriteRenderer>().sprite = bulletSprite;
 
         GameObject launch = new GameObject("LaunchEffect", typeof(SpriteRenderer), typeof(HomeBulletLaunch));
-        launch.GetComponent<SpriteRenderer>().sprite = bulletLaunchSprite;
+        SpriteRenderer launchSpriteRenderer = launch.GetComponent<SpriteRenderer>();
+        launchSpriteRenderer.sprite = bulletLaunchSprite;
+        launchSpriteRenderer.sortingOrder = 110;
         launch.transform.position = position;
         
         if (OnShoot != null)
