@@ -6,7 +6,8 @@ using UnityEngine.Networking;
 
 public class HomePlayer : MonoBehaviour
 {
-    public event EventHandler OnShoot;
+    public event EventHandler<HomePlayerShootEventArgs> OnShoot;
+    public event EventHandler<HomePlayerDamagedEventArgs> OnDamaged;
     
     private const float Speed = 10f;
     private const float MinXPosition = -26f;
@@ -20,10 +21,12 @@ public class HomePlayer : MonoBehaviour
     [SerializeField] private Sprite bulletLaunchSprite;
 
     private Transform gunPosition;
+    private bool moveLocked;
     
     private void Awake()
     {
         gunPosition = transform.Find("GunPosition");
+        moveLocked = true;
     }
 
     private void Update()
@@ -33,6 +36,9 @@ public class HomePlayer : MonoBehaviour
 
     private void HandleInputs()
     {
+        if (moveLocked)
+            return;
+        
         if (UserInput.isKey(playerId, UserInput.Key.Up))
         {
             Move(Vector3.up);
@@ -89,8 +95,36 @@ public class HomePlayer : MonoBehaviour
         return playerId;
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        HomeEnemy spider = other.gameObject.GetComponent<HomeEnemy>();
+
+        if (spider != null)
+        {
+            spider.DestroySelf();
+
+            if (OnDamaged != null)
+                OnDamaged(this, new HomePlayerDamagedEventArgs() { spider = spider });
+        }
+    }
+
+    public void LockMove()
+    {
+        moveLocked = true;
+    }
+
+    public void UnlockMove()
+    {
+        moveLocked = false;
+    }
+
     public class HomePlayerShootEventArgs : EventArgs
     {
         public Vector3 shootPosition;
+    }
+
+    public class HomePlayerDamagedEventArgs : EventArgs
+    {
+        public HomeEnemy spider;
     }
 }
