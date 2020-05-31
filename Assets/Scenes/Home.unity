@@ -490,6 +490,8 @@ MonoBehaviour:
   avatars:
   - {fileID: 1064020019}
   - {fileID: 1486587806}
+  boss: {fileID: 3168087459865800393, guid: 8e6d5d203d18b4858a5ef6f0714badc7, type: 3}
+  web: {fileID: 7590921617193146541, guid: cbcd0f1c3d4d049e58c01908322a4900, type: 3}
 --- !u!114 &591892031
 MonoBehaviour:
   m_ObjectHideFlags: 0

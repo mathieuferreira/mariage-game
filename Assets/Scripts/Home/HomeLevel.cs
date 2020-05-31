@@ -12,21 +12,26 @@ public class HomeLevel : MonoBehaviour
     private const float EnemyXDisappear = -30f;
     private const float SpiderMinTimer = 1f;
     private const float SpiderMaxTimer = 6f;
-    private const float BossMaxTimer = 90f;
+    //private const float BossMaxTimer = 90f;
+    private const float BossMaxTimer = 10f;
     private const float Speed = 5f;
     
     [SerializeField] private HomePlayer[] players;
     [SerializeField] private Transform spider;
     [SerializeField] private HeartSystemUI heartSystemUI;
     [SerializeField] private Avatar[] avatars;
+    [SerializeField] private HomeBoss boss;
+    [SerializeField] private Transform web;
 
     private enum State
     {
         WaitingToStart,
         Stage1,
         WaitingForBoss,
+        WaitingForBossBattleStart,
         Boss,
-        Win
+        Win,
+        Loose
     }
     
     private HomeEnvironment environment;
@@ -36,6 +41,8 @@ public class HomeLevel : MonoBehaviour
     private State state;
     private ModalLevel modalLevel;
     private HeartSystem heartSystem;
+    private HomeBoss bossInstance;
+    private Transform webInstance;
 
     private void Awake()
     {
@@ -96,18 +103,9 @@ public class HomeLevel : MonoBehaviour
         Debug.Log("Game Over !");
     }
 
-    private void OnPlayerDamaged(object sender, HomePlayer.HomePlayerDamagedEventArgs e)
+    private void OnPlayerDamaged(object sender, EventArgs e)
     {
         heartSystem.Damage();
-        
-        for (int i = 0; i < spiders.Count; i++)
-        {
-            if (spiders[i] == e.spider)
-            {
-                spiders.RemoveAt(i);
-                i--;
-            } 
-        }
     }
 
     private void Update()
@@ -129,14 +127,29 @@ public class HomeLevel : MonoBehaviour
                 bossTimer -= Time.deltaTime;
                 if (bossTimer < 0f)
                 {
-                    state = State.Boss;
+                    float webSize = web.GetComponent<Renderer>().bounds.size.x;
+                    webInstance = Instantiate(web, new Vector3(EnemyXSpawn + webSize / 2, 0f, 0f), Quaternion.identity);
+                    
+                    bossInstance = Instantiate(boss, new Vector3(EnemyXSpawn + webSize / 2, 0f, 0f), Quaternion.Euler(0f, 0f, -90f));
+                    bossInstance.Setup(players, Speed);
+                    bossInstance.battleStart += BossInstanceOnBattleStart;
+                    state = State.WaitingForBossBattleStart;
                 }
 
                 break;
+            case State.WaitingForBossBattleStart:
+                webInstance.position = bossInstance.GetPosition();
+                break;
             case State.Boss:
-                Debug.Log("Boss appears");
                 break;
         }
+    }
+
+    private void BossInstanceOnBattleStart(object sender, EventArgs e)
+    {
+        Debug.Log("Boss appears");
+        environment.SetSpeed(0f);
+        state = State.Boss;
     }
 
     private void HandleSpiderSpawn()
@@ -156,7 +169,7 @@ public class HomeLevel : MonoBehaviour
         {
             if (spiders[i].GetPosition().x < EnemyXDisappear)
             {
-                spiders[i].DestroySelf();
+                spiders[i].Disappear();
                 spiders.RemoveAt(i);
                 i--;
             } 
@@ -170,8 +183,21 @@ public class HomeLevel : MonoBehaviour
         HomeEnemy newSpider = spiderTransform.GetComponent<HomeEnemy>();
         newSpider.Setup(Vector2.left * Speed, MinYPosition, MaxYPosition);
         newSpider.GetHealthSystem().OnDied += OnSpiderDied;
+        newSpider.onDisappear += OnSpiderDisappear;
         spiders.Add(newSpider);
         return newSpider;
+    }
+
+    private void OnSpiderDisappear(object sender, EventArgs e)
+    {
+        for (int i = 0; i < spiders.Count; i++)
+        {
+            if (spiders[i] == sender)
+            {
+                spiders.RemoveAt(i);
+                i--;
+            } 
+        }
     }
 
     private void OnSpiderDied(object sender, EventArgs e)

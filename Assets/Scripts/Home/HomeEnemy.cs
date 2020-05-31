@@ -7,6 +7,8 @@ using Random = UnityEngine.Random;
 
 public class HomeEnemy : MonoBehaviour
 {
+    public event EventHandler onDisappear;
+    
     private const float MaxColorTimer = .2f;
     private static Color DamageColor = GameColor.RED;
     
@@ -53,7 +55,7 @@ public class HomeEnemy : MonoBehaviour
 
     private void OnHealthSystemDied(object sender, EventArgs e)
     {
-        animator.SetTrigger("Dead");
+        Disappear();
         state = State.Dead;
     }
 
@@ -113,6 +115,12 @@ public class HomeEnemy : MonoBehaviour
         rigidBody.velocity = new Vector3(rigidBody.velocity.x, isDown ? -speed : speed, 0f);
     }
 
+    public void Disappear()
+    {
+        animator.SetTrigger("Dead");
+        onDisappear?.Invoke(this, EventArgs.Empty);
+    }
+
     public void DestroySelf()
     {
         Destroy(gameObject);
@@ -126,6 +134,14 @@ public class HomeEnemy : MonoBehaviour
         {
             colorTimer = MaxColorTimer;
             healthSystem.Damage(10);
+        }
+
+        HomePlayer player = other.gameObject.GetComponent<HomePlayer>();
+
+        if (player != null)
+        {
+            player.Damage();
+            Disappear();
         }
     }
 

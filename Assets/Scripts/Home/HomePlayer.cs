@@ -6,8 +6,8 @@ using UnityEngine.Networking;
 
 public class HomePlayer : MonoBehaviour
 {
-    public event EventHandler<HomePlayerShootEventArgs> OnShoot;
-    public event EventHandler<HomePlayerDamagedEventArgs> OnDamaged;
+    public event EventHandler OnShoot;
+    public event EventHandler OnDamaged;
     
     private const float Speed = 10f;
     private const float MinXPosition = -26f;
@@ -84,10 +84,7 @@ public class HomePlayer : MonoBehaviour
         launch.transform.position = position;
         
         if (OnShoot != null)
-            OnShoot(this, new HomePlayerShootEventArgs()
-            {
-                shootPosition = position
-            });
+            OnShoot(this, EventArgs.Empty);
     }
     
     public UserInput.Player GetPlayerId()
@@ -95,17 +92,10 @@ public class HomePlayer : MonoBehaviour
         return playerId;
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    public void Damage()
     {
-        HomeEnemy spider = other.gameObject.GetComponent<HomeEnemy>();
-
-        if (spider != null)
-        {
-            spider.DestroySelf();
-
-            if (OnDamaged != null)
-                OnDamaged(this, new HomePlayerDamagedEventArgs() { spider = spider });
-        }
+        if (OnDamaged != null)
+            OnDamaged(this, EventArgs.Empty);
     }
 
     public void LockMove()
@@ -118,13 +108,8 @@ public class HomePlayer : MonoBehaviour
         moveLocked = false;
     }
 
-    public class HomePlayerShootEventArgs : EventArgs
+    public Vector3 GetPosition()
     {
-        public Vector3 shootPosition;
-    }
-
-    public class HomePlayerDamagedEventArgs : EventArgs
-    {
-        public HomeEnemy spider;
+        return transform.position;
     }
 }

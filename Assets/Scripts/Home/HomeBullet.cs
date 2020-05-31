@@ -54,8 +54,7 @@ public class HomeBullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        HomeEnemy enemy = other.gameObject.GetComponent<HomeEnemy>();
-        if (enemy != null)
+        if (other.gameObject.CompareTag("Enemy"))
         {
             Explode();
         }
