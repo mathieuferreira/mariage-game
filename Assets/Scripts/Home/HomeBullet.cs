@@ -7,31 +7,34 @@ public class HomeBullet : MonoBehaviour
 {
     private const float Speed = 20f;
     private const float DisappearXPosition = 40f;
+
+    [SerializeField] private Explosion explosion;
     
     private UserInput.Player playerId;
-    private Animator animator;
     private Rigidbody2D rigidBody;
-    private bool exploding;
 
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         rigidBody.velocity = Vector2.right * Speed;
-        animator = GetComponent<Animator>();
-        exploding = false;
     }
 
     private void FixedUpdate()
     {
         if (transform.position.x > DisappearXPosition)
         {
-            DestroySelf();
+            Destroy(gameObject);
         }
     }
 
-    public void Setup(UserInput.Player player)
+    public void Setup(UserInput.Player player, Sprite sprite)
     {
         playerId = player;
+        GetComponent<SpriteRenderer>().sprite = sprite;
+
+        Debug.Log("Setup");
+        Debug.Log(sprite);
+        Debug.Log(GetComponent<SpriteRenderer>().sprite);
     }
 
     public UserInput.Player GetPlayerId()
@@ -39,24 +42,12 @@ public class HomeBullet : MonoBehaviour
         return playerId;
     }
 
-    public void DestroySelf()
-    {
-        Destroy(gameObject);
-    }
-
-    public void Explode()
-    {
-        rigidBody.velocity = Vector2.zero;
-        Destroy(GetComponent<BoxCollider2D>());
-        animator.SetTrigger("Explode");
-        exploding = true;
-    }
-
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            Explode();
+            Instantiate(explosion, transform.position, Quaternion.identity);
+            Destroy(gameObject);
         }
     }
 }

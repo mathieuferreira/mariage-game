@@ -11,7 +11,7 @@ public class HomeLevel : MonoBehaviour
     private const float EnemyXSpawn = 30f;
     private const float EnemyXDisappear = -30f;
     private const float SpiderMinTimer = 1f;
-    private const float SpiderMaxTimer = 6f;
+    private const float SpiderMaxTimer = 2f;
     //private const float BossMaxTimer = 90f;
     private const float BossMaxTimer = 10f;
     private const float Speed = 5f;
@@ -22,6 +22,9 @@ public class HomeLevel : MonoBehaviour
     [SerializeField] private Avatar[] avatars;
     [SerializeField] private HomeBoss boss;
     [SerializeField] private Transform web;
+    [SerializeField] private GameUI[] UIElements;
+    [SerializeField] private ProgressBar progressBar;
+    [SerializeField] private HealthBar bossHealthBar;
 
     private enum State
     {
@@ -96,6 +99,14 @@ public class HomeLevel : MonoBehaviour
         {
             avatars[i].Show();
         }
+        
+        for (int i = 0; i < UIElements.Length; i++)
+        {
+            UIElements[i].Show();
+            //UIElements[i].gameObject.SetActive(true);
+        }
+        
+        bossHealthBar.Hide();
     }
 
     private void OnHeartSystemDied(object sender, EventArgs e)
@@ -117,6 +128,7 @@ public class HomeLevel : MonoBehaviour
                 HandleSpiderSpawn();
                 
                 bossTimer -= Time.deltaTime;
+                progressBar.SetFillAmount((BossMaxTimer - bossTimer) / BossMaxTimer);
                 if (bossTimer < 0f)
                 {
                     state = State.WaitingForBoss;
@@ -133,6 +145,9 @@ public class HomeLevel : MonoBehaviour
                     bossInstance = Instantiate(boss, new Vector3(EnemyXSpawn + webSize / 2, 0f, 0f), Quaternion.Euler(0f, 0f, -90f));
                     bossInstance.Setup(players, Speed);
                     bossInstance.battleStart += BossInstanceOnBattleStart;
+                    
+                    bossHealthBar.Setup(bossInstance.GetHealthSystem());
+                    
                     state = State.WaitingForBossBattleStart;
                 }
 
@@ -147,7 +162,8 @@ public class HomeLevel : MonoBehaviour
 
     private void BossInstanceOnBattleStart(object sender, EventArgs e)
     {
-        Debug.Log("Boss appears");
+        progressBar.transform.GetComponent<GameUI>().Hide();
+        bossHealthBar.Show();
         environment.SetSpeed(0f);
         state = State.Boss;
     }

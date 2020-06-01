@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using Random = UnityEngine.Random;
 
 public class HomePlayer : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class HomePlayer : MonoBehaviour
     [SerializeField] private UserInput.Player playerId;
     [SerializeField] private Transform bullet;
     [SerializeField] private Sprite bulletSprite;
-    [SerializeField] private Sprite bulletLaunchSprite;
+    [SerializeField] private HomeBulletFlash shootFlash;
 
     private Transform gunPosition;
     private bool moveLocked;
@@ -74,14 +75,9 @@ public class HomePlayer : MonoBehaviour
     {
         Vector3 position = gunPosition.position;
         Transform projectile = Instantiate(bullet, position, bullet.rotation);
-        projectile.GetComponent<HomeBullet>().Setup(playerId);
-        projectile.GetComponent<SpriteRenderer>().sprite = bulletSprite;
+        projectile.GetComponent<HomeBullet>().Setup(playerId, bulletSprite);
 
-        GameObject launch = new GameObject("LaunchEffect", typeof(SpriteRenderer), typeof(HomeBulletLaunch));
-        SpriteRenderer launchSpriteRenderer = launch.GetComponent<SpriteRenderer>();
-        launchSpriteRenderer.sprite = bulletLaunchSprite;
-        launchSpriteRenderer.sortingOrder = 110;
-        launch.transform.position = position;
+        shootFlash.Start();
         
         if (OnShoot != null)
             OnShoot(this, EventArgs.Empty);

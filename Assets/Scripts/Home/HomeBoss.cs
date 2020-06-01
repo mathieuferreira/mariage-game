@@ -5,6 +5,7 @@ using System.Timers;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+[RequireComponent(typeof(HomeDamageableEnemy))]
 public class HomeBoss : MonoBehaviour
 {
     public event EventHandler battleStart; 
@@ -34,11 +35,26 @@ public class HomeBoss : MonoBehaviour
     private HomePlayer[] targets;
     private HomePlayer currentTarget;
     private float targetPositionX;
+    private HomeDamageableEnemy homeDamageableEnemy;
     
     private void Awake()
     {
         animator = GetComponent<Animator>();
         currentState = State.WaitingToStart;
+        homeDamageableEnemy = GetComponent<HomeDamageableEnemy>();
+        homeDamageableEnemy.SetActive(false);
+    }
+
+    private void Start()
+    {
+        homeDamageableEnemy.GetHealthSystem().OnDied += OnOnDied;
+    }
+
+    private void OnOnDied(object sender, EventArgs e)
+    {
+        animator.SetFloat("Speed", 0f);
+        animator.SetTrigger("Dead");
+        currentState = State.Dead;
     }
 
     // Update is called once per frame
@@ -52,6 +68,7 @@ public class HomeBoss : MonoBehaviour
                 if (transform.position.x < (MaxXPosition + MinXPosition) / 2)
                 {
                     currentState = State.Idle;
+                    homeDamageableEnemy.SetActive(true);
                     battleStart?.Invoke(this, EventArgs.Empty);
                 }
 
@@ -60,6 +77,8 @@ public class HomeBoss : MonoBehaviour
                 HandleMoving();
                 break;
             case State.Attacking:
+                break;
+            case State.Dead:
                 break;
             default:
             case State.Idle :
@@ -89,8 +108,6 @@ public class HomeBoss : MonoBehaviour
 
         transform.position += dir * MoveSpeed * Time.deltaTime;
 
-        Debug.Log(transform.position.y + " - " + targetPosition.y + " = " + Math.Abs(transform.position.y - targetPosition.y));
-        
         if (Math.Abs(transform.position.y - targetPosition.y) < 0.2f)
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, 50, playerMask);
@@ -147,5 +164,10 @@ public class HomeBoss : MonoBehaviour
     public Vector3 GetPosition()
     {
         return transform.position;
+    }
+
+    public HealthSystem GetHealthSystem()
+    {
+        return homeDamageableEnemy.GetHealthSystem();
     }
 }

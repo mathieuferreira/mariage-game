@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &9217890381938527117
+--- !u!1 &7645179071120755569
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2933943743472840999}
-  - component: {fileID: 2875935330490850145}
-  - component: {fileID: 716419036292093889}
-  - component: {fileID: 3854876688506780721}
-  - component: {fileID: 1714453360415625624}
+  - component: {fileID: 2547395022609498496}
+  - component: {fileID: 7099985859645326438}
+  - component: {fileID: 5804790775205673252}
   m_Layer: 0
-  m_Name: BossProjectile
+  m_Name: SimpleExplosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2933943743472840999
+--- !u!4 &2547395022609498496
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9217890381938527117}
+  m_GameObject: {fileID: 7645179071120755569}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &2875935330490850145
+--- !u!212 &7099985859645326438
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9217890381938527117}
+  m_GameObject: {fileID: 7645179071120755569}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -72,66 +70,38 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 11baf1624d573e04b8b07c5ce8dc3fd7, type: 3}
+  m_SortingOrder: 100
+  m_Sprite: {fileID: 21300000, guid: 1eda697a11eee498ba20c88aa744eeb9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 8, y: 4}
+  m_Size: {x: 1.86, y: 1.86}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &716419036292093889
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9217890381938527117}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!70 &3854876688506780721
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9217890381938527117}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 1.1701807, y: 0.070757136}
-  m_Size: {x: 4.8795514, y: 1.7475563}
-  m_Direction: 1
---- !u!114 &1714453360415625624
+--- !u!114 &5804790775205673252
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9217890381938527117}
+  m_GameObject: {fileID: 7645179071120755569}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 742d6fd415f62441da8b88727c657907, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c9816518da2e4d04b63d03ac5c8cdf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 5804790775205673252, guid: be1330cbd6eff44c297f745d2c9e3af0,
-    type: 3}
+  duration: 0.2
+  sprites:
+  - {fileID: 21300000, guid: 1eda697a11eee498ba20c88aa744eeb9, type: 3}
+  - {fileID: 21300000, guid: b9f6a61ba042145dc80f01074aa06301, type: 3}
+  - {fileID: 21300000, guid: 1b97696ed83ad477ab057c20a6b77274, type: 3}
+  - {fileID: 21300000, guid: d964cdd40d66f409dbe5853c8e967f75, type: 3}
+  - {fileID: 21300000, guid: b9397f9f5fc9940f6baf62e8f53cf900, type: 3}
+  - {fileID: 21300000, guid: 9ab9fb294b5174c098a236c224d06ed3, type: 3}
+  - {fileID: 21300000, guid: 10fff017570b443b4aeba3ad7dfd103b, type: 3}
+  - {fileID: 21300000, guid: 1984ce3f3050941a5ad99170af01c55b, type: 3}
+  - {fileID: 21300000, guid: 89154233ac42347f2b28b08c78e9b0c2, type: 3}

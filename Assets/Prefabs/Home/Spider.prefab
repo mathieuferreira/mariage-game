@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 2469354349716445686}
   - component: {fileID: 2469354349716445685}
   m_Layer: 0
-  m_Name: String
+  m_Name: Web
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -504,6 +504,7 @@ GameObject:
   - component: {fileID: 2469354350740389666}
   - component: {fileID: 2469354350740389667}
   - component: {fileID: 8894995648955438986}
+  - component: {fileID: 2957038587887664763}
   m_Layer: 0
   m_Name: Spider
   m_TagString: Enemy
@@ -594,6 +595,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2957038587887664763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2469354350740389676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a039d03f7737f404cbfefe1181322b49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 30
 --- !u!1 &2469354350864519960
 GameObject:
   m_ObjectHideFlags: 0

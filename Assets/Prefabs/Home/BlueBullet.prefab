@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1334497786341079320}
   - component: {fileID: 1717277519153953601}
   - component: {fileID: 2874719401561283725}
-  - component: {fileID: 7210965312889552111}
   m_Layer: 0
   m_Name: BlueBullet
   m_TagString: Untagged
@@ -95,7 +94,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -144,22 +143,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04d7b44abc6044cbebf80111520f3dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &7210965312889552111
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3101238555787064030}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2801aca7549574631bbdc4ff3e96d325, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  explosion: {fileID: 7036495051976471438, guid: a6470a3cd420a448d93070f49da52a9f,
+    type: 3}

@@ -7,12 +7,7 @@ public class HomeBossProjectile : MonoBehaviour
 {
     private const float DisappearXPosition = -40f;
 
-    private Animator animator;
-    
-    private void Awake()
-    {
-        animator = GetComponent<Animator>();
-    }
+    [SerializeField] private Explosion explosion;
 
     private void FixedUpdate()
     {
@@ -22,19 +17,15 @@ public class HomeBossProjectile : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         HomePlayer player = other.gameObject.GetComponent<HomePlayer>();
 
         if (player != null)
         {
             player.Damage();
-            animator.SetTrigger("Explode");
+            Instantiate(explosion, transform.position, Quaternion.identity);
+            Destroy(gameObject);
         }
-    }
-
-    public void DestroySelf()
-    {
-        Destroy(gameObject);
     }
 }

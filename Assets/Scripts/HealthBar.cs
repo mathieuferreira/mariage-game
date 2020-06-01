@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(ProgressBar))]
 public class HealthBar : MonoBehaviour
 {
     private HealthSystem healthSystem;
     private ProgressBar progressBar;
-    
+
     private void Awake()
     {
         progressBar = GetComponent<ProgressBar>();

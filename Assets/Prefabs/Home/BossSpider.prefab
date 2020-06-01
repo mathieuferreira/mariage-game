@@ -1001,6 +1001,7 @@ GameObject:
   - component: {fileID: 6788008541043927996}
   - component: {fileID: 6788008541043927997}
   - component: {fileID: 3168087459865800393}
+  - component: {fileID: 7522514678961374935}
   m_Layer: 0
   m_Name: BossSpider
   m_TagString: Enemy
@@ -1087,6 +1088,19 @@ MonoBehaviour:
     m_Bits: 256
   projectile: {fileID: 1714453360415625624, guid: eaad280ca38cc494ebe6bf5666c11e84,
     type: 3}
+--- !u!114 &7522514678961374935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6788008541043927998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a039d03f7737f404cbfefe1181322b49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 400
 --- !u!1 &6788008541120993725
 GameObject:
   m_ObjectHideFlags: 0

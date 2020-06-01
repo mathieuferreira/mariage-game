@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SpriteRenderer))]
 public class Explosion : MonoBehaviour
 {
     [SerializeField] private float duration;
@@ -34,7 +35,7 @@ public class Explosion : MonoBehaviour
 
     private void SetCurrentFrame(int newCurrentFrame)
     {
-        if (newCurrentFrame <= currentFrame)
+        if (newCurrentFrame <= currentFrame || newCurrentFrame >= sprites.Length)
             return;
         
         currentFrame = newCurrentFrame;
