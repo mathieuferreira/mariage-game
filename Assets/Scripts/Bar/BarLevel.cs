@@ -7,8 +7,8 @@ using Random = UnityEngine.Random;
 
 public class BarLevel : MonoBehaviour
 {
-    //private const float GameTimerMax = 90f;
-    private const float GameTimerMax = 10f;
+    private const float GameTimerMax = 90f;
+    //private const float GameTimerMax = 10f;
     
     private const float TalkTimerMax = 3f;
     private const float BeerTimerMax = 5f;

@@ -20,7 +20,7 @@ public class SchoolLevel : MonoBehaviour
     [SerializeField] private HealthBar bossHealthBar;
     [SerializeField] private Avatar[] avatars;
     [SerializeField] private HeartSystemUI heartSystemUI;
-    [SerializeField] private SchoolProgressBar progressBar;
+    [SerializeField] private ProgressBar progressBar;
 
     private enum Stage
     {
@@ -126,14 +126,14 @@ public class SchoolLevel : MonoBehaviour
         }
 
         heartSystemUI.Show();
-        progressBar.Show();
+        progressBar.GetComponent<GameUI>().Show();
     }
 
     private void StopGameUI()
     {
         bossHealthBar.Hide();
         heartSystemUI.Hide();
-        progressBar.Hide();
+        progressBar.GetComponent<GameUI>().Hide();
 
         for (int i = 0; i < players.Length; i++)
         {
@@ -158,7 +158,7 @@ public class SchoolLevel : MonoBehaviour
         currentStage = Stage.Boss;
         SchoolBoss boss = Instantiate(this.boss, new Vector3(0f, 0f, 0f), Quaternion.identity);
         boss.GetHealthSystem().OnDied += BossOnDied;
-        progressBar.Hide();
+        progressBar.GetComponent<GameUI>().Hide();
         bossHealthBar.Show();
         bossHealthBar.Setup(boss.GetHealthSystem());
     }
@@ -266,7 +266,7 @@ public class SchoolLevel : MonoBehaviour
             }
         }
 
-        progressBar.GetProgressBar().SetFillAmount((float)enemiesKilled / ENEMY_MAX_COUNT);
+        progressBar.SetFillAmount((float)enemiesKilled / ENEMY_MAX_COUNT);
         
         if (enemies.Count < ENEMY_MAX_COUNT)
         {

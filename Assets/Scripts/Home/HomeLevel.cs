@@ -12,8 +12,8 @@ public class HomeLevel : MonoBehaviour
     private const float EnemyXDisappear = -30f;
     private const float SpiderMinTimer = 1f;
     private const float SpiderMaxTimer = 2f;
-    //private const float BossMaxTimer = 90f;
-    private const float BossMaxTimer = 10f;
+    private const float BossMaxTimer = 45f;
+    //private const float BossMaxTimer = 10f;
     private const float Speed = 5f;
     
     [SerializeField] private HomePlayer[] players;
@@ -52,13 +52,13 @@ public class HomeLevel : MonoBehaviour
         spiders = new List<HomeEnemy>();
         environment = GetComponent<HomeEnvironment>();
         bossTimer = BossMaxTimer;
-        state = State.Stage1;
-        heartSystem = new HeartSystem(3);
+        state = State.WaitingToStart;
+        heartSystem = new HeartSystem(5);
         heartSystem.OnDied += OnHeartSystemDied;
         heartSystemUI.Setup(heartSystem);
         
-        //modalLevel = GetComponent<ModalLevel>();
-        //modalLevel.gameStart += StartGame;
+        modalLevel = GetComponent<ModalLevel>();
+        modalLevel.gameStart += StartGame;
 
         for (int i = 0; i < players.Length; i++)
         {
@@ -74,11 +74,12 @@ public class HomeLevel : MonoBehaviour
 
     private void Start()
     {
-        StartGame(null, null);
+        //StartGame(null, null);
     }
     
     private void StartGame(object sender, EventArgs e)
     {
+        state = State.Stage1;
         environment.SetSpeed(Speed);
         SpawnSpider();
         spiderTimer = SpiderMaxTimer;
@@ -103,15 +104,62 @@ public class HomeLevel : MonoBehaviour
         for (int i = 0; i < UIElements.Length; i++)
         {
             UIElements[i].Show();
-            //UIElements[i].gameObject.SetActive(true);
         }
         
         bossHealthBar.Hide();
     }
 
+    private void StopGameUI()
+    {
+        heartSystemUI.Hide();
+        
+        for (int i = 0; i < avatars.Length; i++)
+        {
+            avatars[i].Hide();
+        }
+        
+        for (int i = 0; i < UIElements.Length; i++)
+        {
+            UIElements[i].Hide();
+        }
+        
+        bossHealthBar.Hide();
+        progressBar.transform.GetComponent<GameUI>().Hide();
+    }
+
     private void OnHeartSystemDied(object sender, EventArgs e)
     {
-        Debug.Log("Game Over !");
+        if (state == State.Win)
+            return;
+
+        EndBattle();
+        
+        modalLevel.OpenLooseWindow(() =>
+        {
+            Loader.Load(Loader.Scene.Home);
+        });
+        state = State.Loose;
+    }
+
+    private void EndBattle()
+    {
+        environment.SetSpeed(0);
+        StopGameUI();
+        for (int i = 0; i < players.Length; i++)
+        {
+            players[i].LockMove();
+        }
+        
+        if (webInstance != null)
+            Destroy(webInstance.gameObject);
+
+        if (bossInstance != null)
+            Destroy(bossInstance.gameObject);
+
+        for (int i = 0; i < spiders.Count; i++)
+        {
+            Destroy(spiders[i].gameObject);
+        }
     }
 
     private void OnPlayerDamaged(object sender, EventArgs e)
@@ -145,6 +193,7 @@ public class HomeLevel : MonoBehaviour
                     bossInstance = Instantiate(boss, new Vector3(EnemyXSpawn + webSize / 2, 0f, 0f), Quaternion.Euler(0f, 0f, -90f));
                     bossInstance.Setup(players, Speed);
                     bossInstance.battleStart += BossInstanceOnBattleStart;
+                    bossInstance.onDisappear += BossInstanceOnDisappear;
                     
                     bossHealthBar.Setup(bossInstance.GetHealthSystem());
                     
@@ -157,7 +206,28 @@ public class HomeLevel : MonoBehaviour
                 break;
             case State.Boss:
                 break;
+            case State.Win:
+                break;
+            case State.Loose:
+                break;
+            case State.WaitingToStart:
+                break;
         }
+    }
+
+    private void BossInstanceOnDisappear(object sender, EventArgs e)
+    {
+        if (state != State.Boss)
+            return;
+        
+        StopGameUI();
+        modalLevel.OpenWinWindow(() =>
+        {
+            PlayerPrefs.SetInt("AdventureStage", 4);
+            PlayerPrefs.Save();
+            Loader.Load(Loader.Scene.Adventure);
+        });
+        state = State.Win;
     }
 
     private void BossInstanceOnBattleStart(object sender, EventArgs e)

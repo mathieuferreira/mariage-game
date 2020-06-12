@@ -8,7 +8,8 @@ using Random = UnityEngine.Random;
 [RequireComponent(typeof(HomeDamageableEnemy))]
 public class HomeBoss : MonoBehaviour
 {
-    public event EventHandler battleStart; 
+    public event EventHandler battleStart;
+    public event EventHandler onDisappear;
     
     private const float MaxXPosition = 20f;
     private const float MinXPosition = 10f;
@@ -55,6 +56,7 @@ public class HomeBoss : MonoBehaviour
         animator.SetFloat("Speed", 0f);
         animator.SetTrigger("Dead");
         currentState = State.Dead;
+        Debug.Log("Boss Died");
     }
 
     // Update is called once per frame
@@ -129,7 +131,11 @@ public class HomeBoss : MonoBehaviour
 
     private void StartAttacking()
     {
+        if (currentState == State.Dead)
+            return;
+
         animator.SetFloat("Speed", 0f);
+        Debug.Log("Attacking");
         animator.SetTrigger("Attack");
         currentState = State.Attacking;
     }
@@ -153,6 +159,13 @@ public class HomeBoss : MonoBehaviour
     {
         animator.SetFloat("Speed", 0f);
         currentState = State.Idle;
+    }
+
+    public void Disappear()
+    {
+        Debug.Log("Boss Disappear");
+        onDisappear?.Invoke(this, EventArgs.Empty);
+        Destroy(gameObject);
     }
 
     public void Setup(HomePlayer[] targets, float environmentSpeed)

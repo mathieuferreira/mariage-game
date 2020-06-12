@@ -31,10 +31,6 @@ public class HomeBullet : MonoBehaviour
     {
         playerId = player;
         GetComponent<SpriteRenderer>().sprite = sprite;
-
-        Debug.Log("Setup");
-        Debug.Log(sprite);
-        Debug.Log(GetComponent<SpriteRenderer>().sprite);
     }
 
     public UserInput.Player GetPlayerId()
