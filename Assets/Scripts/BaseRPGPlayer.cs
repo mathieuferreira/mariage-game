@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class BaseRPGPlayer : MonoBehaviour
 {
     protected const float MOVE_SPEED = 4f;
     
-    [SerializeField] private UserInput.Player player;
+    [SerializeField] private PlayerID player;
 
     private Animator animator;
     private bool active;
@@ -26,26 +27,26 @@ public class BaseRPGPlayer : MonoBehaviour
     {
         if (!active)
             return;
-        
-        if (UserInput.isKey(player, UserInput.Key.Up))
+
+        UserInput.Direction direction = UserInput.FindBestDirection(player);
+
+        switch (direction)
         {
-            Move(Vector3.up);
-        } 
-        else if (UserInput.isKey(player, UserInput.Key.Down))
-        {
-            Move(Vector3.down);
-        }
-        else if (UserInput.isKey(player, UserInput.Key.Left))
-        {
-            Move(Vector3.left);
-        }
-        else if (UserInput.isKey(player, UserInput.Key.Right))
-        {
-            Move(Vector3.right);
-        }
-        else
-        {
-            Idle();
+            case UserInput.Direction.Up:
+                Move(Vector3.up);
+                break;
+            case UserInput.Direction.Down:
+                Move(Vector3.down);
+                break;
+            case UserInput.Direction.Left:
+                Move(Vector3.left);
+                break;
+            case UserInput.Direction.Right:
+                Move(Vector3.right);
+                break;
+            default:
+                Idle();
+                break;
         }
     }
 
@@ -62,7 +63,7 @@ public class BaseRPGPlayer : MonoBehaviour
         animator.SetFloat("speed", 0f);
     }
 
-    public UserInput.Player GetPlayerId()
+    public PlayerID GetPlayerId()
     {
         return player;
     }

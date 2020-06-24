@@ -16,7 +16,7 @@ public class HomePlayer : MonoBehaviour
     private const float MinYPosition = HomeLevel.MinYPosition;
     private const float MaxYPosition = HomeLevel.MaxYPosition;
 
-    [SerializeField] private UserInput.Player playerId;
+    [SerializeField] private PlayerID playerId;
     [SerializeField] private Transform bullet;
     [SerializeField] private Sprite bulletSprite;
     [SerializeField] private HomeBulletFlash shootFlash;
@@ -39,22 +39,26 @@ public class HomePlayer : MonoBehaviour
     {
         if (moveLocked)
             return;
-        
-        if (UserInput.isKey(playerId, UserInput.Key.Up))
+
+        UserInput.Direction direction = UserInput.FindBestDirection(playerId);
+
+        switch (direction)
         {
-            Move(Vector3.up);
-        } else if (UserInput.isKey(playerId, UserInput.Key.Down))
-        {
-            Move(Vector3.down);
-        } else if (UserInput.isKey(playerId, UserInput.Key.Right))
-        {
-            Move(Vector3.right);
-        } else if (UserInput.isKey(playerId, UserInput.Key.Left))
-        {
-            Move(Vector3.left);
+            case UserInput.Direction.Up:
+                Move(Vector3.up);
+                break;
+            case UserInput.Direction.Down:
+                Move(Vector3.down);
+                break;
+            case UserInput.Direction.Left:
+                Move(Vector3.left);
+                break;
+            case UserInput.Direction.Right:
+                Move(Vector3.right);
+                break;
         }
         
-        if (UserInput.isKeyDown(playerId, UserInput.Key.Action))
+        if (UserInput.IsActionKeyDown(playerId))
         {
             Shoot();
         }
@@ -83,7 +87,7 @@ public class HomePlayer : MonoBehaviour
             OnShoot(this, EventArgs.Empty);
     }
     
-    public UserInput.Player GetPlayerId()
+    public PlayerID GetPlayerId()
     {
         return playerId;
     }

@@ -15,7 +15,7 @@ public class SchoolShuriken : MonoBehaviour
 
     private Vector3 velocity;
     private bool isDestroyed;
-    private UserInput.Player lastPlayerTouched;
+    private PlayerID lastPlayerTouched;
 
     private void Awake()
     {
@@ -35,13 +35,13 @@ public class SchoolShuriken : MonoBehaviour
         }
     }
 
-    public void StartMoving(UserInput.Player player)
+    public void StartMoving(PlayerID player)
     {
         lastPlayerTouched = player;
         velocity = (transform.position.x > 0 ? Vector3.left : Vector3.right) * INITIAL_SPEED;
     }
 
-    public void StartMoving(UserInput.Player player, Vector3 velocity)
+    public void StartMoving(PlayerID player, Vector3 velocity)
     {
         this.velocity = velocity;
     }
@@ -99,7 +99,7 @@ public class SchoolShuriken : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public UserInput.Player GetLastPlayerTouched()
+    public PlayerID GetLastPlayerTouched()
     {
         return lastPlayerTouched;
     }

@@ -12,7 +12,7 @@ public class PlayerReadyButton : MonoBehaviour
     public event EventHandler OnPlayerReady;
     
     [SerializeField] private string readyText = "JOUEUR PRET !";
-    [SerializeField] private UserInput.Player player;
+    [SerializeField] private PlayerID player;
 
     private bool playerReady;
     private Text text;
@@ -32,7 +32,7 @@ public class PlayerReadyButton : MonoBehaviour
         if (playerReady)
             return;
 
-        if (UserInput.isKeyDown(player, UserInput.Key.Action))
+        if (UserInput.IsActionKeyDown(player))
         {
             BeforePlayerReadyEventArgs eventArgs = new BeforePlayerReadyEventArgs();
             
@@ -90,7 +90,7 @@ public class PlayerReadyButton : MonoBehaviour
         }
     }
 
-    public UserInput.Player GetPlayerId()
+    public PlayerID GetPlayerId()
     {
         return player;
     }

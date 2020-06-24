@@ -11,7 +11,7 @@ public class QuestPosition : MonoBehaviour
     private void OnTriggerStay2D(Collider2D other)
     {
         BaseRPGPlayer player = other.GetComponent<BaseRPGPlayer>();
-        if (player != null && UserInput.isKeyDown(player.GetPlayerId(), UserInput.Key.Action))
+        if (player != null && UserInput.IsActionKeyDown(player.GetPlayerId()))
         {
             CMDebug.TextPopup("Click", player.GetPosition());
             

@@ -27,12 +27,12 @@ public class ScoreManager
         Load();
     }
 
-    public void IncrementScore(UserInput.Player player)
+    public void IncrementScore(PlayerID player)
     {
         IncrementScore(player, 1);
     }
 
-    public void IncrementScore(UserInput.Player player, int amount)
+    public void IncrementScore(PlayerID player, int amount)
     {
         scores[GetPlayerIndex(player)] += amount;
         
@@ -40,7 +40,7 @@ public class ScoreManager
             OnScoreChange(this, EventArgs.Empty);
     }
 
-    public int GetScore(UserInput.Player player)
+    public int GetScore(PlayerID player)
     {
         return scores[GetPlayerIndex(player)];
     }
@@ -50,9 +50,9 @@ public class ScoreManager
         return scores.Sum();
     }
 
-    private int GetPlayerIndex(UserInput.Player player)
+    private int GetPlayerIndex(PlayerID player)
     {
-        return player == UserInput.Player.Player1 ? 0 : 1;
+        return player == PlayerID.Player1 ? 0 : 1;
     }
     
     public void Save()

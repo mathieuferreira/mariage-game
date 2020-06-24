@@ -36,33 +36,33 @@ public class AvatarManager : MonoBehaviour
         _instance = this;
     }
 
-    public Sprite GetAvatar(UserInput.Player player)
+    public Sprite GetAvatar(PlayerID player)
     {
         switch (player)
         {
-            case UserInput.Player.Player1 :
+            case PlayerID.Player1 :
                 return player1Avatars[player1Index];
             default :
                 return player2Avatars[player2Index];
         }
     }
 
-    public Sprite[] GetAvatars(UserInput.Player player)
+    public Sprite[] GetAvatars(PlayerID player)
     {
         switch (player)
         {
-            case UserInput.Player.Player1 :
+            case PlayerID.Player1 :
                 return player1Avatars;
             default :
                 return player2Avatars;
         }
     }
 
-    public void SetIndex(UserInput.Player player, int index)
+    public void SetIndex(PlayerID player, int index)
     {
         switch (player)
         {
-            case UserInput.Player.Player1 :
+            case PlayerID.Player1 :
                 player1Index = index;
                 break;
             default :

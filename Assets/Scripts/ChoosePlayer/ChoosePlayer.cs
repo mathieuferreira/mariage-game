@@ -13,7 +13,7 @@ public class ChoosePlayer : MonoBehaviour
     public event EventHandler OnPictureSelected;
     
     [SerializeField] private Color selectedColor;
-    [SerializeField] private UserInput.Player player;
+    [SerializeField] private PlayerID player;
 
     private bool validated;
     private PlayerReadyButton playerReadyButton;
@@ -46,20 +46,21 @@ public class ChoosePlayer : MonoBehaviour
             HandleColorTransition();
             return;
         }
-        
-        if (UserInput.isKeyDown(player, UserInput.Key.Up) && pictureSelected > 1)
+
+        UserInput.Direction direction = UserInput.FindBestDirectionDown(player);
+        if (direction == UserInput.Direction.Up && pictureSelected > 1)
         {
             SelectPicture(pictureSelected - 2);
         } 
-        else if (UserInput.isKeyDown(player, UserInput.Key.Down) && pictureSelected < 2)
+        else if (direction == UserInput.Direction.Down && pictureSelected < 2)
         {
             SelectPicture(pictureSelected + 2);
         } 
-        else if (UserInput.isKeyDown(player, UserInput.Key.Right) && pictureSelected % 2 != 1)
+        else if (direction == UserInput.Direction.Right && pictureSelected % 2 != 1)
         {
             SelectPicture(pictureSelected  + 1);
         }
-        else if (UserInput.isKeyDown(player, UserInput.Key.Left) && pictureSelected % 2 != 0)
+        else if (direction == UserInput.Direction.Left && pictureSelected % 2 != 0)
         {
             SelectPicture(pictureSelected - 1);
         }

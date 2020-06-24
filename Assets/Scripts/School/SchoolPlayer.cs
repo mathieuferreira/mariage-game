@@ -10,7 +10,7 @@ public class SchoolPlayer : MonoBehaviour
     private static float ACCELERATION = 18f;
     private static float DECCELERATION = 10f;
     
-    [SerializeField] private UserInput.Player player;
+    [SerializeField] private PlayerID player;
     private bool moveLocked;
     private Rigidbody2D rigidBody;
     private GameObject shuriken;
@@ -33,13 +33,20 @@ public class SchoolPlayer : MonoBehaviour
             return;
 
         Deccelerate();
-        
-        if (UserInput.isKey(player, UserInput.Key.Up))
-            MoveUp();
-        else if (UserInput.isKey(player, UserInput.Key.Down))
-            MoveDown();
 
-        if (UserInput.isKeyDown(player, UserInput.Key.Action))
+        UserInput.Direction direction = UserInput.FindBestDirection(player);
+
+        switch (direction)
+        {
+            case UserInput.Direction.Up:
+                MoveUp();
+                break;
+            case UserInput.Direction.Down:
+                MoveDown();
+                break;
+        }
+
+        if (UserInput.IsActionKeyDown(player))
             LaunchShuriken();
     }
 
@@ -93,7 +100,7 @@ public class SchoolPlayer : MonoBehaviour
         shuriken.SetActive(true);
     }
 
-    public UserInput.Player GetPlayerId()
+    public PlayerID GetPlayerId()
     {
         return player;
     }

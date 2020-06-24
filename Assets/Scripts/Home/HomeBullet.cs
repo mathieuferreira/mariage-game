@@ -10,7 +10,7 @@ public class HomeBullet : MonoBehaviour
 
     [SerializeField] private Explosion explosion;
     
-    private UserInput.Player playerId;
+    private PlayerID playerId;
     private Rigidbody2D rigidBody;
 
     private void Awake()
@@ -27,13 +27,13 @@ public class HomeBullet : MonoBehaviour
         }
     }
 
-    public void Setup(UserInput.Player player, Sprite sprite)
+    public void Setup(PlayerID player, Sprite sprite)
     {
         playerId = player;
         GetComponent<SpriteRenderer>().sprite = sprite;
     }
 
-    public UserInput.Player GetPlayerId()
+    public PlayerID GetPlayerId()
     {
         return playerId;
     }

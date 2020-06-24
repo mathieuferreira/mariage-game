@@ -142,7 +142,7 @@ public class BarGuest : MonoBehaviour
     {
         BarPlayer player = other.GetComponent<BarPlayer>();
 
-        if (player != null && UserInput.isKeyDown(player.GetPlayerId(), UserInput.Key.Action))
+        if (player != null && UserInput.IsActionKeyDown(player.GetPlayerId()))
         {
             for (int i = 0; i < needs.Count(); i++)
             {

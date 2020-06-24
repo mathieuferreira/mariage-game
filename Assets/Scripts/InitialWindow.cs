@@ -44,7 +44,7 @@ public class InitialWindow : MonoBehaviour
     {
         PlayerReadyButton playerReadyButton = sender as PlayerReadyButton;
 
-        int playerId = playerReadyButton.GetPlayerId() == UserInput.Player.Player1 ? 0 : 1;
+        int playerId = playerReadyButton.GetPlayerId() == PlayerID.Player1 ? 0 : 1;
         
         buttons[selectedButtons[playerId]].transform.GetComponent<Animator>().SetTrigger("PlayerEnterGame");
         
@@ -99,15 +99,17 @@ public class InitialWindow : MonoBehaviour
         {
             if (players[i].IsPlayerReady())
                 continue;
-            
-            if (UserInput.isKeyDown(i, UserInput.Key.Up))
+
+            UserInput.Direction direction = UserInput.FindBestDirectionDown(players[i].GetPlayerId());
+
+            switch (direction)
             {
-                SelectButton(i, -1);
-            }
-            
-            if (UserInput.isKeyDown(i, UserInput.Key.Down))
-            {
-                SelectButton(i, +1);
+                case UserInput.Direction.Up:
+                    SelectButton(i, -1);
+                    break;
+                case UserInput.Direction.Down:
+                    SelectButton(i, +1);
+                    break;
             }
         }
     }
