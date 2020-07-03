@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FunIndicator : MonoBehaviour
@@ -9,9 +7,9 @@ public class FunIndicator : MonoBehaviour
     
     private const int UNIT_BY_GUEST = 100;
     private const float SPEED = 3f;
-    private const int UNIT_TALK_SATISFIED = 10;
-    private const int UNIT_CAKE_SATISFIED = 50;
-    private const int UNIT_BEER_SATISFIED = 40;
+    private const int UNIT_TALK_SATISFIED = 20;
+    private const int UNIT_CAKE_SATISFIED = 70;
+    private const int UNIT_BEER_SATISFIED = 50;
     
     private BarGuest[] guests;
     private float currentIndex;
@@ -56,7 +54,6 @@ public class FunIndicator : MonoBehaviour
     private void OnNeedsComplete(object sender, BarGuest.NeedCompleteEventArgs eventArgs)
     {
         int delta;
-
         switch (eventArgs.consomable.GetType())
         {
             case BarConsumable.Type.Beer:

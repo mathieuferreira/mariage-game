@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using Packages.Rider.Editor.Util;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 using Random = UnityEngine.Random;
 
 public class SchoolLevel : MonoBehaviour
@@ -171,8 +168,7 @@ public class SchoolLevel : MonoBehaviour
 
         modalLevel.OpenWinWindow(() =>
                 {
-                    PlayerPrefs.SetInt("AdventureStage", 2);
-                    PlayerPrefs.Save();
+                    AdventureLevel.SetStage(AdventureLevel.Stage.Bar);
                     Loader.Load(Loader.Scene.Adventure);
                 }
             );
@@ -199,7 +195,7 @@ public class SchoolLevel : MonoBehaviour
     private void NewShurikenOnOnHit(object sender, EventArgs e)
     {
         SchoolShuriken shuriken = sender as SchoolShuriken;
-        ScoreManager.GetInstance().IncrementScore(shuriken.GetLastPlayerTouched());
+        ScoreManager.IncrementScore(shuriken.GetLastPlayerTouched());
     }
 
     private void OnShurikenDestroyed(object sender, EventArgs args)

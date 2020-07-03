@@ -46,6 +46,7 @@ public class BarLevel : MonoBehaviour
 
         modalLevel.OpenLooseWindow(() =>
             {
+                ScoreManager.RevertSession();
                 Loader.Load(Loader.Scene.Bar);
             }
         );
@@ -61,10 +62,10 @@ public class BarLevel : MonoBehaviour
         if (gameTimer < 0f)
         {
             StopUI();
+            ScoreManager.CloseSession();
             modalLevel.OpenWinWindow(() =>
             {
-                PlayerPrefs.SetInt("AdventureStage", 3);
-                PlayerPrefs.Save();
+                AdventureLevel.SetStage(AdventureLevel.Stage.Home);
                 Loader.Load(Loader.Scene.Adventure);
             });
             return;

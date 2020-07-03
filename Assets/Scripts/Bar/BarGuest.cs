@@ -151,16 +151,18 @@ public class BarGuest : MonoBehaviour
                 if (consumable != null || needs.Get(i).GetType() == BarConsumable.Type.Talk)
                 {
                     animator.SetDirection(player.GetPosition() - transform.position);
-                    needs.TryConsume(needs.Get(i).GetType());
-
-                    if (OnNeedsComplete != null)
+                    BarConsumable need = needs.TryConsume(needs.Get(i).GetType());
+                    
+                    if (need != null && OnNeedsComplete != null)
                         OnNeedsComplete(this, new NeedCompleteEventArgs()
                         {
-                            consomable = consumable
+                            consomable = need
                         });
 
                     if (!CanPlayerSatisfyNeeds(player))
                         player.HideAdviceButton();
+
+                    StartIdleState();
                     
                     break;
                 }

@@ -4,74 +4,54 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class ScoreManager
+public static class ScoreManager
 {
-    private static ScoreManager _instance;
-
-    public static ScoreManager GetInstance()
-    {
-        if (_instance == null)
-            _instance = new ScoreManager();
-        
-        return _instance;
-    }
+    public static event EventHandler OnScoreChange;
     
-    public event EventHandler OnScoreChange;
-    
-    private const string ScoreSaveId = "score";
-    
-    private int[] scores;
+    private static int[] scores = { 0, 0 };
+    private static int[] sessionScores = { 0, 0 };
 
-    private ScoreManager()
-    {
-        Load();
-    }
-
-    public void IncrementScore(PlayerID player)
+    public static void IncrementScore(PlayerID player)
     {
         IncrementScore(player, 1);
     }
 
-    public void IncrementScore(PlayerID player, int amount)
+    public static void IncrementScore(PlayerID player, int amount)
     {
-        scores[GetPlayerIndex(player)] += amount;
+        sessionScores[GetPlayerIndex(player)] += amount;
         
         if (OnScoreChange != null)
-            OnScoreChange(this, EventArgs.Empty);
+            OnScoreChange(null, EventArgs.Empty);
     }
 
-    public int GetScore(PlayerID player)
+    public static int GetScore(PlayerID player)
     {
-        return scores[GetPlayerIndex(player)];
+        int playerIndex = GetPlayerIndex(player);
+        return scores[playerIndex] + sessionScores[playerIndex];
     }
 
-    public int GetScore()
+    public static int GetScore()
     {
-        return scores.Sum();
+        return scores.Sum() + sessionScores.Sum();
     }
 
-    private int GetPlayerIndex(PlayerID player)
+    private static int GetPlayerIndex(PlayerID player)
     {
         return player == PlayerID.Player1 ? 0 : 1;
     }
-    
-    public void Save()
+
+    public static void CloseSession()
     {
-        PlayerPrefs.SetString(ScoreSaveId, JsonUtility.ToJson(scores));
-        PlayerPrefs.Save();
+        for (int i = 0; i < scores.Length; i++)
+        {
+            scores[i] += sessionScores[i];
+        }
+
+        sessionScores = new [] {0, 0};
     }
 
-    public void Restart()
+    public static void RevertSession()
     {
-        scores = new[] {0, 0};
-    }
-
-    public void Load()
-    {
-        scores = new[] {0, 0};
-        string save = PlayerPrefs.GetString(ScoreSaveId, null);
-        
-        if (!string.IsNullOrEmpty(save))
-            scores = JsonUtility.FromJson<int[]>(save);
+        sessionScores = new [] {0, 0};
     }
 }

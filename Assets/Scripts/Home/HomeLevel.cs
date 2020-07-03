@@ -223,8 +223,7 @@ public class HomeLevel : MonoBehaviour
         StopGameUI();
         modalLevel.OpenWinWindow(() =>
         {
-            PlayerPrefs.SetInt("AdventureStage", 4);
-            PlayerPrefs.Save();
+            AdventureLevel.SetStage(AdventureLevel.Stage.Breakout);
             Loader.Load(Loader.Scene.Adventure);
         });
         state = State.Win;

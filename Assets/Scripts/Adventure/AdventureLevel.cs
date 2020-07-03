@@ -10,18 +10,26 @@ public class AdventureLevel : MonoBehaviour
     [SerializeField] private QuestPointer questPointer;
     [SerializeField] private CameraFollow cameraFollow;
 
-    [SerializeField] private Stage stage1;
-    [SerializeField] private Stage stage2;
-    [SerializeField] private Stage stage3;
-    [SerializeField] private Stage stage4;
+    [SerializeField] private StageInformation stage1;
+    [SerializeField] private StageInformation stage2;
+    [SerializeField] private StageInformation stage3;
+    [SerializeField] private StageInformation stage4;
 
-    private Stage currentStage;
+    private static Stage currentStage = Stage.School;
+    private StageInformation currentStageInformation;
     private Loader.Scene nextScene;
     private int playerWithQuestComplete = 0;
 
+    public enum Stage
+    {
+        School,
+        Bar,
+        Home,
+        Breakout
+    }
+
     private void Awake()
     {
-        
     }
 
     private void Start()
@@ -29,31 +37,29 @@ public class AdventureLevel : MonoBehaviour
         InitializeCurrentStage();
     }
 
-    private void FixedUpdate()
+    public static void SetStage(Stage stage)
     {
-        
+        currentStage = stage;
     }
 
     private void InitializeCurrentStage()
     {
-        int stageNumber = PlayerPrefs.GetInt("AdventureStage", 1);
-
-        // TODO : remove this
-        stageNumber = 2;
-        
-        switch (stageNumber)
+        switch (currentStage)
         {
-            case 2:
-                currentStage = stage2;
+            case Stage.Bar:
+                currentStageInformation = stage2;
+                nextScene = Loader.Scene.Bar;
                 break;
-            case 3 :
-                currentStage = stage3;
+            case Stage.Home :
+                currentStageInformation = stage3;
+                nextScene = Loader.Scene.Home;
                 break;
-            case 4 :
-                currentStage = stage4;
+            case Stage.Breakout :
+                currentStageInformation = stage4;
+                nextScene = Loader.Scene.School;
                 break;
             default:
-                currentStage = stage1;
+                currentStageInformation = stage1;
                 nextScene = Loader.Scene.School;
                 break;
         }
@@ -65,8 +71,8 @@ public class AdventureLevel : MonoBehaviour
     private void InitializeQuest()
     {
         playerWithQuestComplete = 0;
-        questPointer.Show(currentStage.GetQuestPosition());
-        currentStage.GetQuestPosition().questComplete += QuestPositionOnQuestComplete;
+        questPointer.Show(currentStageInformation.GetQuestPosition());
+        currentStageInformation.GetQuestPosition().questComplete += QuestPositionOnQuestComplete;
     }
 
     private void QuestPositionOnQuestComplete(object sender, QuestCompleteEvent e)
@@ -84,14 +90,14 @@ public class AdventureLevel : MonoBehaviour
     {
         for (int i = 0; i < players.Length; i++)
         {
-            players[i].SetPosition(currentStage.GetPlayerPosition(i));
+            players[i].SetPosition(currentStageInformation.GetPlayerPosition(i));
         }
 
         cameraFollow.InitPosition();
     }
 
     [Serializable]
-    private class Stage
+    private class StageInformation
     {
         [SerializeField] private QuestPosition questPosition;
         [SerializeField] private Transform[] playersPosition;
