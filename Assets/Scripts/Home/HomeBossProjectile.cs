@@ -1,31 +1,31 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class HomeBossProjectile : MonoBehaviour
+namespace Home
 {
-    private const float DisappearXPosition = -40f;
-
-    [SerializeField] private Explosion explosion;
-
-    private void FixedUpdate()
+    public class HomeBossProjectile : MonoBehaviour
     {
-        if (transform.position.x < DisappearXPosition)
+        private const float DisappearXPosition = -40f;
+
+        [SerializeField] private Explosion explosion;
+
+        private void FixedUpdate()
         {
-            Destroy(gameObject);
+            if (transform.position.x < DisappearXPosition)
+            {
+                Destroy(gameObject);
+            }
         }
-    }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        HomePlayer player = other.gameObject.GetComponent<HomePlayer>();
-
-        if (player != null)
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            player.Damage();
-            Instantiate(explosion, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            HomePlayer player = other.gameObject.GetComponent<HomePlayer>();
+
+            if (player != null)
+            {
+                player.Damage();
+                Instantiate(explosion, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+            }
         }
     }
 }
