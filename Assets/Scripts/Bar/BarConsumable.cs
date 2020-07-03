@@ -1,25 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class BarConsumable
+﻿namespace Bar
 {
-    public enum Type
+    public class BarConsumable
     {
-        Beer,
-        Cake,
-        Talk
-    }
+        public enum Kind
+        {
+            Beer,
+            Cake,
+            Talk
+        }
 
-    private Type type;
+        private readonly Kind kind;
 
-    public BarConsumable(Type type)
-    {
-        this.type = type;
-    }
+        public BarConsumable(Kind kind)
+        {
+            this.kind = kind;
+        }
 
-    public Type GetType()
-    {
-        return type;
+        public Kind GetKind()
+        {
+            return kind;
+        }
     }
 }

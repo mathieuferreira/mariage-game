@@ -1,109 +1,108 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class BarConsumableList
+namespace Bar
 {
-    public event EventHandler change;
+    public class BarConsumableList
+    {
+        public event EventHandler Change;
     
-    private List<BarConsumable> list;
-    private bool allowMultipleType;
-    private int limit;
+        private readonly List<BarConsumable> list;
+        private readonly bool allowMultipleType;
+        private readonly int limit;
 
-    public BarConsumableList(int limit)
-    {
-        list = new List<BarConsumable>();
-        allowMultipleType = true;
-        this.limit = limit;
-    }
+        public BarConsumableList(int limit)
+        {
+            list = new List<BarConsumable>();
+            allowMultipleType = true;
+            this.limit = limit;
+        }
 
-    public BarConsumableList(int limit, bool allowMultipleType)
-    {
-        list = new List<BarConsumable>();
-        this.allowMultipleType = allowMultipleType;
-        this.limit = limit;
+        public BarConsumableList(int limit, bool allowMultipleType)
+        {
+            list = new List<BarConsumable>();
+            this.allowMultipleType = allowMultipleType;
+            this.limit = limit;
         
-    }
+        }
 
-    public bool TryAdd(BarConsumable consumable)
-    {
-        if (IsFull())
+        public bool TryAdd(BarConsumable consumable)
+        {
+            if (IsFull())
+                return false;
+        
+            if (!allowMultipleType && ContainsType(consumable.GetKind()))
+                return false;
+        
+            list.Add(consumable);
+
+            Change?.Invoke(this, EventArgs.Empty);
+
+            return true;
+        }
+
+        public bool IsFull()
+        {
+            return list.Count >= limit;
+        }
+    
+        public bool ContainsType(BarConsumable.Kind kind)
+        {
+            foreach (BarConsumable consumable in list)
+            {
+                if (consumable.GetKind() == kind)
+                {
+                    return true;
+                }
+            }
+
             return false;
-        
-        if (!allowMultipleType && ContainsType(consumable.GetType()))
-            return false;
-        
-        list.Add(consumable);
-        
-        if(change != null)
-            change(this, EventArgs.Empty);
+        }
 
-        return true;
-    }
+        public int CountType(BarConsumable.Kind kind)
+        {
+            int count = 0;
+        
+            foreach (BarConsumable consumable in list)
+            {
+                if (consumable.GetKind() == kind)
+                {
+                    count++;
+                }
+            }
 
-    public bool IsFull()
-    {
-        return list.Count >= limit;
-    }
+            return count;
+        }
     
-    public bool ContainsType(BarConsumable.Type type)
-    {
-        for (int i = 0; i < list.Count; i++)
+        public BarConsumable TryConsume(BarConsumable.Kind kind)
         {
-            if (list[i].GetType() == type)
+            for (int i = 0; i < list.Count; i++)
             {
-                return true;
+                if (list[i].GetKind() == kind)
+                {
+                    BarConsumable consumable = list[i];
+                    list.RemoveAt(i);
+
+                    Change?.Invoke(this, EventArgs.Empty);
+
+                    return consumable;
+                }
             }
+
+            return null;
         }
 
-        return false;
-    }
-
-    public int CountType(BarConsumable.Type type)
-    {
-        int count = 0;
-        
-        for (int i = 0; i < list.Count; i++)
+        public int Count()
         {
-            if (list[i].GetType() == type)
-            {
-                count++;
-            }
+            return list.Count;
         }
 
-        return count;
-    }
-    
-    public BarConsumable TryConsume(BarConsumable.Type type)
-    {
-        for (int i = 0; i < list.Count; i++)
+        public BarConsumable Get(int i)
         {
-            if (list[i].GetType() == type)
-            {
-                BarConsumable consumable = list[i];
-                list.RemoveAt(i);
-                
-                if (change != null)
-                    change(this, EventArgs.Empty);
-                
-                return consumable;
-            }
+            if (i < list.Count)
+                return list[i];
+
+            return null;
         }
-
-        return null;
-    }
-
-    public int Count()
-    {
-        return list.Count;
-    }
-
-    public BarConsumable Get(int i)
-    {
-        if (i < list.Count)
-            return list[i];
-
-        return null;
     }
 }

@@ -1,80 +1,82 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class BarConsumableArea : MonoBehaviour
+namespace Bar
 {
-    [SerializeField] private Transform[] consumablePositions;
-    [SerializeField] private BarConsumable.Type consumableType;
-    [SerializeField] private Transform consumable;
-
-    private List<GameObject> consumableList; 
-
-    private void Awake()
+    public class BarConsumableArea : MonoBehaviour
     {
-        consumableList = new List<GameObject>();
-    }
+        [SerializeField] private Transform[] consumablePositions;
+        [FormerlySerializedAs("consumableType")] [SerializeField] private BarConsumable.Kind consumableKind;
+        [SerializeField] private Transform consumable;
 
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (!HasConsumableAvailable())
-            return;
-        
-        BarPlayer player = other.GetComponent<BarPlayer>();
+        private List<GameObject> consumableList; 
 
-        if (player != null && !player.GetConsumableList().IsFull())
+        private void Awake()
         {
-            player.ShowAdviceButton();
-            
-            if (UserInput.IsActionKeyDown(player.GetPlayerId()))
+            consumableList = new List<GameObject>();
+        }
+
+        private void OnTriggerStay2D(Collider2D other)
+        {
+            if (!HasConsumableAvailable())
+                return;
+        
+            BarPlayer player = other.GetComponent<BarPlayer>();
+
+            if (player != null && !player.GetConsumableList().IsFull())
             {
-                BarConsumable consummable = TryConsume();
-                player.GetConsumableList().TryAdd(consummable);
+                player.ShowAdviceButton();
+            
+                if (UserInput.IsActionKeyDown(player.GetPlayerId()))
+                {
+                    BarConsumable cons = TryConsume();
+                    player.GetConsumableList().TryAdd(cons);
                 
-                if (player.GetConsumableList().IsFull())
-                    player.HideAdviceButton();
+                    if (player.GetConsumableList().IsFull())
+                        player.HideAdviceButton();
+                }
             }
         }
-    }
 
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        BarPlayer player = other.GetComponent<BarPlayer>();
-
-        if (player != null)
+        private void OnTriggerExit2D(Collider2D other)
         {
-            player.HideAdviceButton();
+            BarPlayer player = other.GetComponent<BarPlayer>();
+
+            if (player != null)
+            {
+                player.HideAdviceButton();
+            }
         }
-    }
 
-    private BarConsumable TryConsume()
-    {
-        if (!HasConsumableAvailable())
-            return null;
+        private BarConsumable TryConsume()
+        {
+            if (!HasConsumableAvailable())
+                return null;
 
-        int consumableIndex = consumableList.Count - 1;
-        GameObject consumableToDelete = consumableList[consumableIndex];
-        consumableList.RemoveAt(consumableIndex);
-        Destroy(consumableToDelete);
-        return new BarConsumable(consumableType);
-    }
+            int consumableIndex = consumableList.Count - 1;
+            GameObject consumableToDelete = consumableList[consumableIndex];
+            consumableList.RemoveAt(consumableIndex);
+            Destroy(consumableToDelete);
+            return new BarConsumable(consumableKind);
+        }
 
-    private bool HasConsumableAvailable()
-    {
-        return consumableList.Count > 0;
-    }
+        private bool HasConsumableAvailable()
+        {
+            return consumableList.Count > 0;
+        }
     
-    public bool HasConsumablePlace()
-    {
-        return consumableList.Count < consumablePositions.Length;
-    }
+        public bool HasConsumablePlace()
+        {
+            return consumableList.Count < consumablePositions.Length;
+        }
 
-    public void AddConsumable()
-    {
-        Vector3 position = consumablePositions[consumableList.Count].position;
-        position.z = 0f;
-        Transform newConsumable = Instantiate(consumable, position, Quaternion.identity);
-        consumableList.Add(newConsumable.gameObject);
+        public void AddConsumable()
+        {
+            Vector3 position = consumablePositions[consumableList.Count].position;
+            position.z = 0f;
+            Transform newConsumable = Instantiate(consumable, position, Quaternion.identity);
+            consumableList.Add(newConsumable.gameObject);
+        }
     }
 }

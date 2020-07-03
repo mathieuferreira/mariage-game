@@ -1,23 +1,21 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class BarPlayer : BaseRPGPlayer
+﻿namespace Bar
 {
-    private const int MAX_CONSUMABLE = 3;
-    
-    private BarConsumableList consumableList;
-    
-    protected override void Awake()
+    public class BarPlayer : BaseRPGPlayer
     {
-        base.Awake();
-        LockMove();
-        consumableList = new BarConsumableList(MAX_CONSUMABLE);
-    }
+        private const int MaxConsumable = 3;
+    
+        private BarConsumableList consumableList;
+    
+        protected override void Awake()
+        {
+            base.Awake();
+            LockMove();
+            consumableList = new BarConsumableList(MaxConsumable);
+        }
 
-    public BarConsumableList GetConsumableList()
-    {
-        return consumableList;
+        public BarConsumableList GetConsumableList()
+        {
+            return consumableList;
+        }
     }
 }
