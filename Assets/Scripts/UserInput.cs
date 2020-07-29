@@ -58,13 +58,13 @@ public static class UserInput
     {
         Direction direction = Direction.None;
 
-        float horizontalValue = Input.GetAxis(GetAxisForPlayer(player, Axis.Horizontal));
+        float horizontalValue = Input.GetAxisRaw(GetAxisForPlayer(player, Axis.Horizontal));
         if (Math.Abs(horizontalValue) > .1f)
         {
             direction = horizontalValue < 0f ? Direction.Left : Direction.Right;
         }
         
-        float verticalValue = Input.GetAxis(GetAxisForPlayer(player, Axis.Vertical));
+        float verticalValue = Input.GetAxisRaw(GetAxisForPlayer(player, Axis.Vertical));
         if (Math.Abs(verticalValue) > .1f && Math.Abs(verticalValue) > Math.Abs(horizontalValue))
         {
             direction = verticalValue < 0f ? Direction.Down : Direction.Up;

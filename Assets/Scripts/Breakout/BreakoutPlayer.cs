@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Breakout
 {
@@ -10,12 +11,20 @@ namespace Breakout
         
         private Rigidbody2D rb;
         private bool canMove;
+        private Vector3 moveDirection;
+        private UserInput.Direction lastDirection;
+        private float acceleration;
         
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
-
             canMove = false;
+        }
+        
+        private void Start()
+        {
+            moveDirection = Vector2.zero;
+            lastDirection = UserInput.Direction.None;
         }
 
         private void Update()
@@ -33,15 +42,31 @@ namespace Breakout
             switch (direction)
             {
                 case UserInput.Direction.Left:
-                    rb.velocity = Vector2.left * Speed;
+                    moveDirection = Vector2.left;
                     break;
                 case UserInput.Direction.Right:
-                    rb.velocity = Vector2.right * Speed;
+                    moveDirection = Vector2.right;
                     break;
-                default:
-                    rb.velocity = Vector2.zero;
+                case UserInput.Direction.None:
+                    moveDirection = Vector2.zero;
                     break;
             }
+
+            if (direction != UserInput.Direction.None && direction == lastDirection)
+            {
+                acceleration = Mathf.Clamp(acceleration + Time.deltaTime, 1f, 3f);
+            }
+            else
+            {
+                acceleration = 1;
+            }
+
+            lastDirection = direction;
+        }
+
+        private void FixedUpdate()
+        {
+            rb.velocity = moveDirection * (Speed * acceleration);
         }
 
         public void UnlockMove()

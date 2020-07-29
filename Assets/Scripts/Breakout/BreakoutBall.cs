@@ -8,9 +8,9 @@ namespace Breakout
     {
         public event EventHandler OnDisappear;
 
-        private const float Speed = 12f;
-        private const float LateralBouncyFactor = 4f;
-        private const float PlayerVelocityBouncyFactor = .5f;
+        public static float InitialSpeed = 12f;
+        private const float LateralBouncyFactor = 2f;
+        private const float PlayerVelocityBouncyFactor = .2f;
         
         private Rigidbody2D rb;
         private PlayerID lastPlayerBounce;
@@ -20,9 +20,10 @@ namespace Breakout
             rb = GetComponent<Rigidbody2D>();
         }
 
-        private void Start()
+        public void Setup(PlayerID lastPlayer, Vector3 initialVelocity)
         {
-            rb.velocity = Vector2.down * Speed;
+            lastPlayerBounce = lastPlayer;
+            rb.velocity = initialVelocity;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -49,7 +50,7 @@ namespace Breakout
                 delta.y = 0f;
                 delta.z = 0f;
                 
-                rb.velocity = velocity * 1.05f + delta * LateralBouncyFactor + player.GetVelocity() * PlayerVelocityBouncyFactor;
+                rb.velocity = velocity + delta * LateralBouncyFactor + player.GetVelocity().normalized * PlayerVelocityBouncyFactor;
             }
 
             BreakoutBrick brick = other.transform.GetComponent<BreakoutBrick>();
@@ -59,6 +60,21 @@ namespace Breakout
                 brick.Damage();
                 UtilsClass.ShakeCamera(.05f, .1f);
             }
+        }
+
+        public Vector3 GetVelocity()
+        {
+            return rb.velocity;
+        }
+
+        public Vector3 GetPosition()
+        {
+            return transform.position;
+        }
+
+        public PlayerID GetLastPlayerBounce()
+        {
+            return lastPlayerBounce;
         }
     }
 }

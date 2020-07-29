@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using CodeMonkey.Utils;
 using UnityEngine;
-using UnityEngine.VFX;
+using Random = UnityEngine.Random;
 
 namespace Breakout
 {
@@ -11,7 +12,7 @@ namespace Breakout
         [SerializeField] private BreakoutPlayer[] players;
 
         private ModalLevel modalLevel;
-        private int ballCounter;
+        private List<BreakoutBall> balls;
 
         private void Awake()
         {
@@ -21,12 +22,12 @@ namespace Breakout
 
         private void Start()
         {
-            ballCounter = 0;
+            balls = new List<BreakoutBall>();
         }
 
         private void StartGame(object sender, EventArgs e)
         {
-            SpawnBall(Vector3.zero);
+            SpawnInitialBall();
             StartGameUI();
         
             foreach (BreakoutPlayer player in players)
@@ -35,20 +36,60 @@ namespace Breakout
             }
         }
 
-        private void SpawnBall(Vector3 position)
+        private void SpawnBall(Vector3 position, Vector3 velocity, PlayerID player)
         {
             BreakoutBall newBall = Instantiate(ballPrefab, position, Quaternion.identity);
+            newBall.Setup(player, velocity);
             newBall.OnDisappear += BallOnDisappear;
-            ballCounter++;
+            balls.Add(newBall);
+        }
+
+        private void SpawnInitialBall()
+        {
+            SpawnBall(Vector3.zero, Vector3.down * BreakoutBall.InitialSpeed, PlayerID.Player1);
+        }
+
+        public void MultiplyBalls()
+        {
+            int ballCount = balls.Count;
+
+            if (ballCount > 24)
+                ballCount = 24;
+
+            for (int i = 0; i < ballCount; i++)
+            {
+                BreakoutBall ball = balls[i];
+                int newAngle = Random.Range(45, 135);
+                
+                Vector3 velocity = ball.GetVelocity();
+                Vector3 newVelocity = UtilsClass.GetVectorFromAngle(newAngle);
+
+                if (Math.Abs(Vector3.Angle(velocity, newVelocity)) < 5)
+                {
+                    newVelocity = Quaternion.Euler(0, 0, 5) * newVelocity;
+                }
+
+                float magnitudeMultiplier = Random.Range(.6f, .8f);
+                newVelocity = newVelocity * (velocity.magnitude * magnitudeMultiplier);
+
+                SpawnBall(ball.GetPosition(), newVelocity, ball.GetLastPlayerBounce());
+            }
         }
 
         private void BallOnDisappear(object sender, EventArgs e)
         {
-            ballCounter--;
-
-            if (ballCounter <= 0)
+            for (int i = 0; i < balls.Count; i++)
             {
-                SpawnBall(Vector3.zero);
+                if (balls[i].Equals(sender))
+                {
+                    balls.RemoveAt(i);
+                    i--;
+                }
+            }
+
+            if (balls.Count <= 0)
+            {
+                SpawnInitialBall();
             }
         }
 
