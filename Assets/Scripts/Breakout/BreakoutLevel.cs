@@ -38,6 +38,9 @@ namespace Breakout
 
         private void SpawnBall(Vector3 position, Vector3 velocity, PlayerID player)
         {
+            if (balls.Count > 19)
+                return;
+            
             BreakoutBall newBall = Instantiate(ballPrefab, position, Quaternion.identity);
             newBall.Setup(player, velocity);
             newBall.OnDisappear += BallOnDisappear;
@@ -52,9 +55,6 @@ namespace Breakout
         public void MultiplyBalls()
         {
             int ballCount = balls.Count;
-
-            if (ballCount > 24)
-                ballCount = 24;
 
             for (int i = 0; i < ballCount; i++)
             {

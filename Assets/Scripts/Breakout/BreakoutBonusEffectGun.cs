@@ -29,7 +29,8 @@ namespace Breakout
         {
             if (durationTimer <= 0f)
                 return;
-        
+
+            durationTimer -= Time.deltaTime;
             shootTimer -= Time.deltaTime;
 
             if (shootTimer < 0f)

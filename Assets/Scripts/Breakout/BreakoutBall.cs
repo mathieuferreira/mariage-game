@@ -49,8 +49,16 @@ namespace Breakout
                 Vector3 delta = transform.position - player.GetPosition();
                 delta.y = 0f;
                 delta.z = 0f;
+
+                Vector3 v = velocity + delta * LateralBouncyFactor +
+                            player.GetVelocity().normalized * PlayerVelocityBouncyFactor;
+
+                if (v.sqrMagnitude < InitialSpeed * InitialSpeed)
+                {
+                    v = v * InitialSpeed / v.magnitude;
+                }
                 
-                rb.velocity = velocity + delta * LateralBouncyFactor + player.GetVelocity().normalized * PlayerVelocityBouncyFactor;
+                rb.velocity = v;
             }
 
             BreakoutBrick brick = other.transform.GetComponent<BreakoutBrick>();

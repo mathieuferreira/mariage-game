@@ -39990,11 +39990,11 @@ MonoBehaviour:
   - {fileID: 453481167}
   bonuses:
   - bonus: {fileID: 8416760071829046623, guid: 0e1c8900d1b7b4bff8ee738e828c5ff2, type: 3}
-    appearRate: 1
+    appearRate: 7
   - bonus: {fileID: 3213003773993274140, guid: 74aae7de798894b56aeda2a905c29ebd, type: 3}
-    appearRate: 200
+    appearRate: 15
   - bonus: {fileID: 9091485901398746938, guid: 9b608f3a0078e47229eadc6f06e70274, type: 3}
-    appearRate: 200
+    appearRate: 20
 --- !u!1001 &2082377348
 PrefabInstance:
   m_ObjectHideFlags: 0

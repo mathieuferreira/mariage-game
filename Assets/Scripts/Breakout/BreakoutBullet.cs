@@ -18,7 +18,6 @@ namespace Breakout
         private void Start()
         {
             rb.velocity = Vector3.up * velocity;
-            
         }
 
         public void Setup(PlayerID player)

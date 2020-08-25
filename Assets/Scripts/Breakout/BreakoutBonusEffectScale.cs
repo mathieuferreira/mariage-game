@@ -1,38 +1,65 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Breakout
 {
     [RequireComponent(typeof(BreakoutPlayer))]
     public class BreakoutBonusEffectScale : MonoBehaviour
     {
-        private const float Duration = 10f;
-        private const float Scale = 1.4f;
+        [SerializeField] private const float Duration = 10f;
+        [SerializeField] private const float Scale = .3f;
+        [SerializeField] private const float MaxScale = 3f;
 
-        private float durationTimer;
+        private List<float> durationTimers;
+        private Vector3 initialScale;
 
         // Start is called before the first frame update
-        private void Start()
+        private void Awake()
         {
-            durationTimer = Duration;
-        
-            UpdateScale(Scale);
+            durationTimers = new List<float>();
+            initialScale = transform.localScale;
         }
 
         // Update is called once per frame
         void FixedUpdate()
         {
-            durationTimer -= Time.deltaTime;
-
-            if (durationTimer < 0f)
+            if (durationTimers.Count == 0)
+                return;
+            
+            bool changed = false;
+            for (int i = 0; i < durationTimers.Count; i++)
             {
-                UpdateScale(1f / Scale);
-                Destroy(this);
+                float timer = durationTimers[i];
+                timer -= Time.deltaTime;
+
+                if (timer < 0f)
+                {
+                    durationTimers.RemoveAt(i);
+                    i--;
+                    changed = true;
+                }
+                else
+                {
+                    durationTimers[i] = timer;
+                }
             }
+            
+            if (changed)
+                UpdateScale();
         }
 
-        private void UpdateScale(float factor)
+        private void UpdateScale()
         {
-            transform.localScale = Vector3.Scale(transform.localScale, new Vector3(1f, factor, 1f));
+            transform.localScale = Vector3.Scale(
+                initialScale,
+                new Vector3(Mathf.Clamp(1f + Scale * durationTimers.Count, 1f, MaxScale), 1f, 1f)
+            );
+        }
+
+        public void StartScale()
+        {
+            durationTimers.Add(Duration);
+            UpdateScale();
         }
     }
 }
