@@ -15,15 +15,19 @@ namespace Breakout
         private Rigidbody2D rb;
         private PlayerID lastPlayerBounce;
 
+        private Vector3 initialVelocity;
+        private bool checkVelocity = false;
+
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
         }
 
-        public void Setup(PlayerID lastPlayer, Vector3 initialVelocity)
+        public void Setup(PlayerID lastPlayer, Vector3 initVelocity)
         {
             lastPlayerBounce = lastPlayer;
-            rb.velocity = initialVelocity;
+            initialVelocity = initVelocity;
+            rb.velocity = initVelocity;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -67,6 +71,42 @@ namespace Breakout
             {
                 brick.Damage();
                 UtilsClass.ShakeCamera(.05f, .1f);
+            }
+        }
+
+        private void OnCollisionExit2D(Collision2D other)
+        {
+            checkVelocity = true;
+        }
+
+        private void LateUpdate()
+        {
+            if (checkVelocity)
+            {
+                Vector3 velocity = rb.velocity;
+                if (velocity.sqrMagnitude < InitialSpeed * InitialSpeed)
+                {
+                    float magnitude = velocity.magnitude;
+
+                    if (magnitude == 0)
+                    {
+                        velocity = initialVelocity;
+                    }
+                    else
+                    {
+                        velocity = velocity * InitialSpeed / magnitude;
+                    }
+                }
+                
+                float angle = Vector3.Angle(Vector3.right, velocity);
+
+                if (angle < Mathf.PI * 15 / 180)
+                {
+                    velocity.y = velocity.y / Mathf.Abs(velocity.y) * Mathf.Abs(velocity.x) * Mathf.Tan(Mathf.PI  * 15 / 180);
+                }
+
+                rb.velocity = velocity;
+                checkVelocity = false;
             }
         }
 
