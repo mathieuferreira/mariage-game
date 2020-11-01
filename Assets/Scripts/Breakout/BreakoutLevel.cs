@@ -10,6 +10,7 @@ namespace Breakout
     {
         [SerializeField] private BreakoutBall ballPrefab;
         [SerializeField] private BreakoutPlayer[] players;
+        [SerializeField] private BreakoutRing ring;
 
         private ModalLevel modalLevel;
         private List<BreakoutBall> balls;
@@ -18,6 +19,23 @@ namespace Breakout
         {
             modalLevel = GetComponent<ModalLevel>();
             modalLevel.gameStart += StartGame;
+            ring.onCollision += RingOnCollision;
+        }
+
+        private void RingOnCollision(object sender, EventArgs e)
+        {
+            Debug.Log("Ring collision");
+            
+            StopGameUI();
+            
+            foreach (BreakoutPlayer player in players)
+            {
+                player.LockMove();
+            }
+
+            Time.timeScale = 0f;
+            
+            Win();
         }
 
         private void Start()
@@ -38,7 +56,7 @@ namespace Breakout
 
         private void SpawnBall(Vector3 position, Vector3 velocity, PlayerID player)
         {
-            if (balls.Count > 19)
+            if (balls.Count >= 20)
                 return;
             
             BreakoutBall newBall = Instantiate(ballPrefab, position, Quaternion.identity);
@@ -50,6 +68,11 @@ namespace Breakout
         private void SpawnInitialBall()
         {
             SpawnBall(Vector3.zero, Vector3.down * BreakoutBall.InitialSpeed, PlayerID.Player1);
+        }
+
+        private void Win()
+        {
+            
         }
 
         public void MultiplyBalls()
@@ -94,6 +117,11 @@ namespace Breakout
         }
 
         private void StartGameUI()
+        {
+            
+        }
+
+        private void StopGameUI()
         {
             
         }

@@ -17,6 +17,7 @@ namespace Breakout
 
         private Vector3 initialVelocity;
         private bool checkVelocity = false;
+        private bool freezed = false;
 
         private void Awake()
         {
@@ -81,7 +82,7 @@ namespace Breakout
 
         private void LateUpdate()
         {
-            if (checkVelocity)
+            if (!freezed && checkVelocity)
             {
                 Vector3 velocity = rb.velocity;
                 if (velocity.sqrMagnitude < InitialSpeed * InitialSpeed)

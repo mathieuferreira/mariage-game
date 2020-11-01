@@ -27,6 +27,12 @@ namespace Breakout
             foreach (BonusConfiguration bonusConfiguration in bonuses)
             {
                 float random = Random.Range(0f, 1f);
+
+                if (bonusConfiguration.appearRate < 10)
+                {
+                    Debug.Log(random + " < " + (1f / bonusConfiguration.appearRate));
+                }
+                
                 if (random < 1f / bonusConfiguration.appearRate)
                 {
                     BreakoutBonus bonus = Instantiate(bonusConfiguration.bonus, ((BreakoutBrick)sender).GetPosition(), Quaternion.identity);
