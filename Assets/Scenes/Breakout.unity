@@ -11748,6 +11748,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Brick (115)
       objectReference: {fileID: 0}
+    - target: {fileID: 15381881055049684, guid: fc89168653437413ba2f6a42d46937fa,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc89168653437413ba2f6a42d46937fa, type: 3}
 --- !u!4 &502228391 stripped
@@ -12068,7 +12073,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: -100, z: -10}
+  m_LocalPosition: {x: -0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 371474910}
@@ -12742,6 +12747,7 @@ GameObject:
   m_Component:
   - component: {fileID: 631271141}
   - component: {fileID: 631271142}
+  - component: {fileID: 631271143}
   m_Layer: 0
   m_Name: Clip
   m_TagString: Untagged
@@ -12783,13 +12789,27 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 8bf0cc9521b5a4f8980b081ce83eea24, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &631271143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631271140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 433a204b3d8e4483ea23954ea746e4d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  winRingWindow: {fileID: 1969104304}
+  mainCamera: {fileID: 519420031}
 --- !u!1 &632158907
 GameObject:
   m_ObjectHideFlags: 0
@@ -14782,6 +14802,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Brick (96)
+      objectReference: {fileID: 0}
+    - target: {fileID: 15381881055049684, guid: fc89168653437413ba2f6a42d46937fa,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc89168653437413ba2f6a42d46937fa, type: 3}
@@ -17319,6 +17344,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.a
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8991735198043936220, guid: bbc8ff16667004d12a01202779ebe761,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8991735198600522503, guid: bbc8ff16667004d12a01202779ebe761,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8991735198707177828, guid: bbc8ff16667004d12a01202779ebe761,
         type: 3}
@@ -20441,6 +20476,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Brick (153)
       objectReference: {fileID: 0}
+    - target: {fileID: 15381881055049684, guid: fc89168653437413ba2f6a42d46937fa,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc89168653437413ba2f6a42d46937fa, type: 3}
 --- !u!4 &1273583363 stripped
@@ -21646,6 +21686,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Brick (88)
       objectReference: {fileID: 0}
+    - target: {fileID: 15381881055049684, guid: fc89168653437413ba2f6a42d46937fa,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc89168653437413ba2f6a42d46937fa, type: 3}
 --- !u!4 &1431392601 stripped
@@ -22052,6 +22097,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Brick (124)
+      objectReference: {fileID: 0}
+    - target: {fileID: 15381881055049684, guid: fc89168653437413ba2f6a42d46937fa,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc89168653437413ba2f6a42d46937fa, type: 3}
@@ -23598,6 +23648,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Brick (127)
+      objectReference: {fileID: 0}
+    - target: {fileID: 15381881055049684, guid: fc89168653437413ba2f6a42d46937fa,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc89168653437413ba2f6a42d46937fa, type: 3}
@@ -37574,6 +37629,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Brick (128)
       objectReference: {fileID: 0}
+    - target: {fileID: 15381881055049684, guid: fc89168653437413ba2f6a42d46937fa,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc89168653437413ba2f6a42d46937fa, type: 3}
 --- !u!4 &1912880770 stripped
@@ -38239,6 +38299,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1969104302}
+  - component: {fileID: 1969104304}
   - component: {fileID: 1969104303}
   m_Layer: 0
   m_Name: WinWindow
@@ -38280,13 +38341,25 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 554c362f7551847ed9d9a0c6ea3a72c8, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1969104304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969104301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e48da671cf1d84f7aaabd77418f5ab23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1971613426
 GameObject:
   m_ObjectHideFlags: 0
@@ -39736,6 +39809,7 @@ MonoBehaviour:
   - {fileID: 1149589362}
   - {fileID: 1623037889}
   ring: {fileID: 53563464}
+  finalClip: {fileID: 631271143}
 --- !u!114 &2079958133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40464,6 +40538,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Brick (89)
+      objectReference: {fileID: 0}
+    - target: {fileID: 15381881055049684, guid: fc89168653437413ba2f6a42d46937fa,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc89168653437413ba2f6a42d46937fa, type: 3}
@@ -41272,7 +41351,7 @@ PrefabInstance:
     - target: {fileID: 4223719481344439881, guid: 3303ad428283d41bebba9a29e8e6b95d,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5213791376574780278, guid: 3303ad428283d41bebba9a29e8e6b95d,
         type: 3}

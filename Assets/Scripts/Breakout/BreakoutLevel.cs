@@ -11,12 +11,15 @@ namespace Breakout
         [SerializeField] private BreakoutBall ballPrefab;
         [SerializeField] private BreakoutPlayer[] players;
         [SerializeField] private BreakoutRing ring;
+        [SerializeField] private BreakoutFinalClip finalClip;
 
         private ModalLevel modalLevel;
         private List<BreakoutBall> balls;
+        private BreakoutBonusManager bonusManager;
 
         private void Awake()
         {
+            bonusManager = GetComponent<BreakoutBonusManager>();
             modalLevel = GetComponent<ModalLevel>();
             modalLevel.gameStart += StartGame;
             ring.onCollision += RingOnCollision;
@@ -25,15 +28,14 @@ namespace Breakout
         private void RingOnCollision(object sender, EventArgs e)
         {
             Debug.Log("Ring collision");
-            
             StopGameUI();
+            StopBalls();
+            bonusManager.DestroyAllBonuses();
             
             foreach (BreakoutPlayer player in players)
             {
                 player.LockMove();
             }
-
-            Time.timeScale = 0f;
             
             Win();
         }
@@ -72,7 +74,7 @@ namespace Breakout
 
         private void Win()
         {
-            
+            finalClip.StartAnimation();
         }
 
         public void MultiplyBalls()
@@ -113,6 +115,14 @@ namespace Breakout
             if (balls.Count <= 0)
             {
                 SpawnInitialBall();
+            }
+        }
+
+        private void StopBalls()
+        {
+            foreach (var ball in balls)
+            {
+                ball.Stop();
             }
         }
 

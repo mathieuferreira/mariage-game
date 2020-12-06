@@ -7,12 +7,13 @@ namespace Breakout
     public class BreakoutBonus : MonoBehaviour
     {
         public event EventHandler OnBallMultiply;
-    
+
         [SerializeField] private float maxSpeed = 5f;
         [SerializeField] private float minSpeed = 10f;
         [SerializeField] private Type type;
     
         private float speed;
+        private BreakoutBonusManager manager;
 
         public enum Type
         {
@@ -32,6 +33,11 @@ namespace Breakout
             transform.position += Vector3.down * (speed * Time.deltaTime);
         }
 
+        public void Setup(BreakoutBonusManager bonusManager)
+        {
+            manager = bonusManager;
+        }
+
         private void OnTriggerEnter2D(Collider2D other)
         {
             BreakoutPlayer player = other.GetComponent<BreakoutPlayer>();
@@ -39,12 +45,12 @@ namespace Breakout
             if (player != null)
             {
                 ActivateBonus(player);
-                Destroy(gameObject);
+                SelfDestroy();
             }
         
             if (other.CompareTag("Floor"))
             {
-                Destroy(gameObject);
+                SelfDestroy();
             }
         }
 
@@ -62,6 +68,12 @@ namespace Breakout
                     player.GetComponent<BreakoutBonusEffectScale>().StartScale();
                     break;
             }
+        }
+
+        public void SelfDestroy()
+        {
+            manager.RemoveBonus(this);
+            Destroy(gameObject);
         }
     }
 }

@@ -111,6 +111,12 @@ namespace Breakout
             }
         }
 
+        public void Stop()
+        {
+            freezed = true;
+            rb.velocity = Vector2.zero;
+        }
+
         public Vector3 GetVelocity()
         {
             return rb.velocity;
