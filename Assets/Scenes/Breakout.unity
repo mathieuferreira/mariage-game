@@ -12207,7 +12207,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &536093757
@@ -22650,6 +22650,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1431392600}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1433723417 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 100870149182621839, guid: 5bf67ce99beda4a749b7697c37462336,
+    type: 3}
+  m_PrefabInstance: {fileID: 100870149162540921}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d36d804cb6b73426c8e9161e54e661c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1434189051 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 15381881055049674, guid: fc89168653437413ba2f6a42d46937fa,
@@ -39229,6 +39241,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c983b41df27419d9a2e0cd1841b7b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1950804617 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3820147370782553447, guid: 5bf67ce99beda4a749b7697c37462336,
+    type: 3}
+  m_PrefabInstance: {fileID: 100870149162540921}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d36d804cb6b73426c8e9161e54e661c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1953559737
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40951,6 +40975,10 @@ MonoBehaviour:
   - {fileID: 1623037889}
   ring: {fileID: 53563464}
   finalClip: {fileID: 631271143}
+  heartSystemUI: {fileID: 1067548876}
+  avatars:
+  - {fileID: 1433723417}
+  - {fileID: 1950804617}
 --- !u!114 &2079958133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42142,7 +42170,7 @@ PrefabInstance:
     - target: {fileID: 6408397510689854242, guid: 5bf67ce99beda4a749b7697c37462336,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5bf67ce99beda4a749b7697c37462336, type: 3}
@@ -42264,6 +42292,21 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 982684340951483822, guid: 5dea9162e7cbc40a99bf2e869c77bf93,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 982684340951483822, guid: 5dea9162e7cbc40a99bf2e869c77bf93,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 982684340951483822, guid: 5dea9162e7cbc40a99bf2e869c77bf93,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 983389814689199419, guid: 5dea9162e7cbc40a99bf2e869c77bf93,
         type: 3}
       propertyPath: m_Sprite
@@ -42290,6 +42333,11 @@ PrefabInstance:
       propertyPath: m_Text
       value: "ON EST SUBMERGE...\n\nCe n'est pas grave, on se retrousse les manches
         et on y retourne ? Esperons que \xE7a se passera mieux..."
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279377091996738872, guid: 5dea9162e7cbc40a99bf2e869c77bf93,
+        type: 3}
+      propertyPath: defaultState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4974451569073962059, guid: 5dea9162e7cbc40a99bf2e869c77bf93,
         type: 3}

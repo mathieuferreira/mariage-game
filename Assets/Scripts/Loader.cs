@@ -14,7 +14,8 @@ public static class Loader
         Adventure,
         School,
         Bar,
-        Home
+        Home,
+        Breakout
     }
 
     public static Scene targetScene;

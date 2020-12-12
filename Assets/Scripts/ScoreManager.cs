@@ -19,9 +19,7 @@ public static class ScoreManager
     public static void IncrementScore(PlayerID player, int amount)
     {
         sessionScores[GetPlayerIndex(player)] += amount;
-        
-        if (OnScoreChange != null)
-            OnScoreChange(null, EventArgs.Empty);
+        OnScoreChange?.Invoke(null, EventArgs.Empty);
     }
 
     public static int GetScore(PlayerID player)
@@ -30,7 +28,7 @@ public static class ScoreManager
         return scores[playerIndex] + sessionScores[playerIndex];
     }
 
-    public static int GetScore()
+    public static int GetGlobalScore()
     {
         return scores.Sum() + sessionScores.Sum();
     }
@@ -40,6 +38,18 @@ public static class ScoreManager
         return player == PlayerID.Player1 ? 0 : 1;
     }
 
+    public static void StartSession()
+    {
+        sessionScores = new [] {0, 0};
+        OnScoreChange?.Invoke(null, EventArgs.Empty);
+    }
+    
+    public static void RevertSession()
+    {
+        sessionScores = new [] {0, 0};
+        OnScoreChange?.Invoke(null, EventArgs.Empty);
+    }
+
     public static void CloseSession()
     {
         for (int i = 0; i < scores.Length; i++)
@@ -47,11 +57,6 @@ public static class ScoreManager
             scores[i] += sessionScores[i];
         }
 
-        sessionScores = new [] {0, 0};
-    }
-
-    public static void RevertSession()
-    {
-        sessionScores = new [] {0, 0};
+        StartSession();
     }
 }

@@ -48,9 +48,7 @@ namespace Breakout
             if (player != null)
             {
                 lastPlayerBounce = player.GetPlayerId();
-                
                 Vector3 velocity = rb.velocity;
-
                 Vector3 delta = transform.position - player.GetPosition();
                 delta.y = 0f;
                 delta.z = 0f;
@@ -72,6 +70,7 @@ namespace Breakout
             {
                 brick.Damage();
                 UtilsClass.ShakeCamera(.05f, .1f);
+                ScoreManager.IncrementScore(lastPlayerBounce);
             }
         }
 

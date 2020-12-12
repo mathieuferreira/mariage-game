@@ -12,10 +12,13 @@ namespace Breakout
         [SerializeField] private BreakoutPlayer[] players;
         [SerializeField] private BreakoutRing ring;
         [SerializeField] private BreakoutFinalClip finalClip;
+        [SerializeField] private HeartSystemUI heartSystemUI;
+        [SerializeField] private Avatar[] avatars;
 
         private ModalLevel modalLevel;
         private List<BreakoutBall> balls;
         private BreakoutBonusManager bonusManager;
+        private HeartSystem heartSystem;
 
         private void Awake()
         {
@@ -23,32 +26,22 @@ namespace Breakout
             modalLevel = GetComponent<ModalLevel>();
             modalLevel.gameStart += StartGame;
             ring.onCollision += RingOnCollision;
-        }
-
-        private void RingOnCollision(object sender, EventArgs e)
-        {
-            Debug.Log("Ring collision");
-            StopGameUI();
-            StopBalls();
-            bonusManager.DestroyAllBonuses();
-            
-            foreach (BreakoutPlayer player in players)
-            {
-                player.LockMove();
-            }
-            
-            Win();
+            heartSystem = new HeartSystem(5);
+            heartSystem.OnDied += HeartSystemOnDied;
+            heartSystemUI.Setup(heartSystem);
+            ScoreManager.StartSession();
         }
 
         private void Start()
         {
             balls = new List<BreakoutBall>();
         }
-
+        
+        #region Game mechanisms
+        
         private void StartGame(object sender, EventArgs e)
         {
             SpawnInitialBall();
-            StartGameUI();
         
             foreach (BreakoutPlayer player in players)
             {
@@ -56,6 +49,48 @@ namespace Breakout
             }
         }
 
+        private void Win()
+        {
+            ScoreManager.CloseSession();
+            finalClip.StartAnimation();
+            heartSystemUI.Hide();
+            foreach (Avatar avatar in avatars)
+            {
+                avatar.Hide();
+            }
+        }
+
+        private void HeartSystemOnDied(object sender, EventArgs e)
+        {
+            StopGame();
+            ScoreManager.RevertSession();
+            modalLevel.OpenLooseWindow(() =>
+            {
+                Loader.Load(Loader.Scene.Breakout);
+            });
+        }
+
+        private void RingOnCollision(object sender, EventArgs e)
+        {
+            StopGame();
+            Win();
+        }
+
+        private void StopGame()
+        {
+            StopBalls();
+            bonusManager.DestroyAllBonuses();
+            
+            foreach (BreakoutPlayer player in players)
+            {
+                player.LockMove();
+            }
+        }
+        
+        #endregion
+        
+        #region Ball management
+        
         private void SpawnBall(Vector3 position, Vector3 velocity, PlayerID player)
         {
             if (balls.Count >= 20)
@@ -66,15 +101,10 @@ namespace Breakout
             newBall.OnDisappear += BallOnDisappear;
             balls.Add(newBall);
         }
-
+        
         private void SpawnInitialBall()
         {
             SpawnBall(Vector3.zero, Vector3.down * BreakoutBall.InitialSpeed, PlayerID.Player1);
-        }
-
-        private void Win()
-        {
-            finalClip.StartAnimation();
         }
 
         public void MultiplyBalls()
@@ -115,6 +145,7 @@ namespace Breakout
             if (balls.Count <= 0)
             {
                 SpawnInitialBall();
+                heartSystem.Damage();
             }
         }
 
@@ -125,15 +156,7 @@ namespace Breakout
                 ball.Stop();
             }
         }
-
-        private void StartGameUI()
-        {
-            
-        }
-
-        private void StopGameUI()
-        {
-            
-        }
+        
+        #endregion
     }
 }

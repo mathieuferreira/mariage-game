@@ -14,18 +14,23 @@ public class Modal : MonoBehaviour
     public event EventHandler afterOpen;
     public event EventHandler beforeOpen;
 
-    [SerializeField] private bool activeByDefault = true;
+    [SerializeField] private State defaultState;
     [SerializeField] private CubicBezierCurve openEasing = new CubicBezierCurve(0f, .3f, 1.1f, 1f);
     [SerializeField] private CubicBezierCurve closeEasing = new CubicBezierCurve(0f, -.1f, .3f, 1f);
     [SerializeField] private float openDuration = 1f;
     [SerializeField] private float closeDuration = 1f;
     
+    public enum State
+    {
+        Open,
+        Closing,
+        Closed,
+        Opening
+    }
+    
     private PlayerReadyButton[] playersReady;
-    private bool active;
-
+    private State currentState;
     private RectTransform rectTransform;
-
-    private bool openAnimation;
     private float animationTimer;
 
     private void Awake()
@@ -39,20 +44,21 @@ public class Modal : MonoBehaviour
             playersReady[i].OnPlayerReady += OnOnPlayerReady;
         }
 
-        active = activeByDefault;
-        gameObject.SetActive(active);
+        currentState = defaultState;
         animationTimer = 0f;
-        
         rectTransform = GetComponent<RectTransform>();
-        rectTransform.anchoredPosition = new Vector2(0f, active ? 0f : CLOSE_Y_POSITION);
+        rectTransform.anchoredPosition = new Vector2(0f, defaultState == State.Open ? 0f : CLOSE_Y_POSITION);
     }
 
     private void OnOnPlayerReady(object sender, EventArgs e)
     {
-        if (areAllPlayersReady())
+        for (int i = 0; i < playersReady.Length; i++)
         {
-            Close();
+            if (!playersReady[i].IsPlayerReady())
+                return;
         }
+
+        Close();
     }
 
     private void FixedUpdate()
@@ -62,7 +68,7 @@ public class Modal : MonoBehaviour
 
     private void HandleAnimation()
     {
-        if (animationTimer <= 0f)
+        if (animationTimer <= 0f || (currentState != State.Closing && currentState != State.Opening))
             return;
         
         animationTimer -= Time.fixedDeltaTime;
@@ -70,7 +76,7 @@ public class Modal : MonoBehaviour
         if (animationTimer < 0)
         {
             animationTimer = 0f;
-            if (openAnimation)
+            if (currentState == State.Opening)
             {
                 Opened();
             } 
@@ -78,10 +84,11 @@ public class Modal : MonoBehaviour
             {
                 Closed();                
             }
+            return;
         }
 
         float position;
-        if (openAnimation)
+        if (currentState == State.Opening)
         {
             position = openEasing.Ease(openDuration - animationTimer, CLOSE_Y_POSITION, 0f - CLOSE_Y_POSITION, openDuration);
         }
@@ -93,56 +100,31 @@ public class Modal : MonoBehaviour
         rectTransform.anchoredPosition = new Vector2(0f, position);
     }
 
-    private bool areAllPlayersReady()
-    {
-        for (int i = 0; i < playersReady.Length; i++)
-        {
-            if (!playersReady[i].IsPlayerReady())
-                return false;
-        }
-
-        return true;
-    }
-
     public void Open()
     {
-        if (beforeOpen != null)
-        {
-            beforeOpen(this, EventArgs.Empty);
-        }
+        beforeOpen?.Invoke(this, EventArgs.Empty);
         gameObject.SetActive(true);
-        openAnimation = true;
+        currentState = State.Opening;
         animationTimer = openDuration;
     }
 
     public void Close()
     {
-        active = false;
-        if (beforeClose != null)
-        {
-            beforeClose(this, EventArgs.Empty);
-        }
-        openAnimation = false;
+        beforeClose?.Invoke(this, EventArgs.Empty);
+        currentState = State.Closing;
         animationTimer = closeDuration;
     }
 
     private void Closed()
     {
-        if (afterClose != null)
-        {
-            afterClose(this, EventArgs.Empty);
-        }
-        
+        afterClose?.Invoke(this, EventArgs.Empty);
+        currentState = State.Closed;
         gameObject.SetActive(false);
     }
 
     private void Opened()
     {
-        if (afterOpen != null)
-        {
-            afterOpen(this, EventArgs.Empty);
-        }
-
-        active = true;
+        afterOpen?.Invoke(this, EventArgs.Empty);
+        currentState = State.Open;
     }
 }

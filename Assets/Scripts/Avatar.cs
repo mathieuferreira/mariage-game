@@ -18,10 +18,10 @@ public class Avatar : MonoBehaviour
         scoreText = transform.Find("ScoreWrapper").Find("ScoreText").GetComponent<Text>();
         UpdateScore();
         
-        ScoreManager.OnScoreChange += ScoreManagerOnOnScoreChange;
+        ScoreManager.OnScoreChange += ScoreManagerOnScoreChange;
     }
 
-    private void ScoreManagerOnOnScoreChange(object sender, EventArgs e)
+    private void ScoreManagerOnScoreChange(object sender, EventArgs e)
     {
         UpdateScore();
     }

@@ -24,11 +24,10 @@ public class HeartSystem
             
         hearts--;
         
-        if (OnDamaged != null)
-            OnDamaged(this, EventArgs.Empty);
+        OnDamaged?.Invoke(this, EventArgs.Empty);
         
-        if (hearts == 0 && OnDied != null)
-            OnDied(this, EventArgs.Empty);
+        if (hearts == 0)
+            OnDied?.Invoke(this, EventArgs.Empty);
     }
 
     public int GetMaxHearts()
