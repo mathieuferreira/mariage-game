@@ -26,6 +26,11 @@ public class CountDownLabel : MonoBehaviour
         gameObject.SetActive(true);
     }
 
+    public void PlaySound()
+    {
+        SoundManager.GetInstance().Play("Countdown");
+    }
+
     public void AnimationEnded()
     {
         if (OnAnimationEnd != null)

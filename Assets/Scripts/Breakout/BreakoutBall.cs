@@ -62,6 +62,7 @@ namespace Breakout
                 }
                 
                 rb.velocity = v;
+                SoundManager.GetInstance().Play("PlayerImpact");
             }
 
             BreakoutBrick brick = other.transform.GetComponent<BreakoutBrick>();
@@ -71,6 +72,7 @@ namespace Breakout
                 brick.Damage();
                 UtilsClass.ShakeCamera(.05f, .1f);
                 ScoreManager.IncrementScore(lastPlayerBounce);
+                SoundManager.GetInstance().Play("BrickHit");
             }
         }
 

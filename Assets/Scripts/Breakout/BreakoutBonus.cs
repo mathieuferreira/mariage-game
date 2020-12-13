@@ -25,6 +25,7 @@ namespace Breakout
         private void Start()
         {
             speed = Random.Range(minSpeed, maxSpeed);
+            SoundManager.GetInstance().Play("BonusAppear");
         }
 
         // Update is called once per frame
@@ -44,6 +45,7 @@ namespace Breakout
 
             if (player != null)
             {
+                SoundManager.GetInstance().Play("BonusPickup");
                 ActivateBonus(player);
                 SelfDestroy();
             }
