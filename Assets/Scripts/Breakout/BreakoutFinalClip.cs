@@ -5,9 +5,9 @@ namespace Breakout
 {
     public class BreakoutFinalClip : MonoBehaviour
     {
-        [SerializeField] private BreakoutWinRingClip winRingWindow;
-        [SerializeField] private Camera mainCamera;
-        [SerializeField] private BreakoutEndWindow endWindow;
+        [SerializeField] private BreakoutWinRingClip winRingWindow = default;
+        [SerializeField] private Camera mainCamera = default;
+        [SerializeField] private BreakoutEndWindow endWindow = default;
         
         private Animator animator;
         private static readonly int StartClip = Animator.StringToHash("Start");

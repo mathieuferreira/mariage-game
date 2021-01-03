@@ -6,7 +6,7 @@ namespace Bar
 {
     public class BarConsumableCounter : MonoBehaviour
     {
-        [SerializeField] private BarPlayer player;
+        [SerializeField] private BarPlayer player = default;
 
         private Text beerText;
         private Text cakeText;

@@ -12,8 +12,8 @@ public class ChoosePlayer : MonoBehaviour
     
     public event EventHandler OnPictureSelected;
     
-    [SerializeField] private Color selectedColor;
-    [SerializeField] private PlayerID player;
+    [SerializeField] private Color selectedColor = default;
+    [SerializeField] private PlayerID player = default;
 
     private bool validated;
     private PlayerReadyButton playerReadyButton;

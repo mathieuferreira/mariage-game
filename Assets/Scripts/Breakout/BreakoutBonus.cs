@@ -10,7 +10,7 @@ namespace Breakout
 
         [SerializeField] private float maxSpeed = 5f;
         [SerializeField] private float minSpeed = 10f;
-        [SerializeField] private Type type;
+        [SerializeField] private Type type = default;
     
         private float speed;
         private BreakoutBonusManager manager;

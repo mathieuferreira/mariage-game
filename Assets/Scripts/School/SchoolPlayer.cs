@@ -10,7 +10,7 @@ public class SchoolPlayer : MonoBehaviour
     private static float ACCELERATION = 18f;
     private static float DECCELERATION = 10f;
     
-    [SerializeField] private PlayerID player;
+    [SerializeField] private PlayerID player = default;
     private bool moveLocked;
     private Rigidbody2D rigidBody;
     private GameObject shuriken;

@@ -16,9 +16,9 @@ namespace Home
         private const float ProjectileSpeed = 20f;
         private const float ProjectileAngle = 20f;
     
-        [SerializeField] private Transform shootPosition;
-        [SerializeField] private LayerMask playerMask;
-        [SerializeField] private HomeBossProjectile projectile;
+        [SerializeField] private Transform shootPosition = default;
+        [SerializeField] private LayerMask playerMask = default;
+        [SerializeField] private HomeBossProjectile projectile = default;
 
         private enum State
         {

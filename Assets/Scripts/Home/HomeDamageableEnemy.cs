@@ -8,7 +8,7 @@ namespace Home
         private const float MaxColorTimer = .2f;
         private static readonly Color DamageColor = GameColor.RED;
     
-        [SerializeField] private int maxHealth;
+        [SerializeField] private int maxHealth = default;
     
         private HealthSystem healthSystem;
         private float colorTimer;

@@ -5,8 +5,8 @@ namespace Breakout
 {
     public class BreakoutEndWindow : MonoBehaviour
     {
-        [SerializeField] private PlayerReadyButton[] playerReadyButtons;
-        [SerializeField] private GameObject overlay;
+        [SerializeField] private PlayerReadyButton[] playerReadyButtons = default;
+        [SerializeField] private GameObject overlay = default;
         
         private Animator animator;
         private static readonly int Start = Animator.StringToHash("Start");

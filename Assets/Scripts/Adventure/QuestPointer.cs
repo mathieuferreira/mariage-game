@@ -9,9 +9,9 @@ public class QuestPointer : MonoBehaviour
 {
     private static float BORDER_SIZE = 60f;
     
-    [SerializeField] private Camera uiCamera;
-    [SerializeField] private Sprite arrowSprite;
-    [SerializeField] private Sprite crossSprite;
+    [SerializeField] private Camera uiCamera = default;
+    [SerializeField] private Sprite arrowSprite = default;
+    [SerializeField] private Sprite crossSprite = default;
 
     private Vector3 targetPosition;
     private RectTransform pointerRectTransform;

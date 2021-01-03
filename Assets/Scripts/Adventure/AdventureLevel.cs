@@ -6,14 +6,14 @@ using UnityEngine;
 
 public class AdventureLevel : MonoBehaviour
 {
-    [SerializeField] private BaseRPGPlayer[] players;
-    [SerializeField] private QuestPointer questPointer;
-    [SerializeField] private CameraFollow cameraFollow;
+    [SerializeField] private BaseRPGPlayer[] players = default;
+    [SerializeField] private QuestPointer questPointer = default;
+    [SerializeField] private CameraFollow cameraFollow = default;
 
-    [SerializeField] private StageInformation stage1;
-    [SerializeField] private StageInformation stage2;
-    [SerializeField] private StageInformation stage3;
-    [SerializeField] private StageInformation stage4;
+    [SerializeField] private StageInformation stage1 = default;
+    [SerializeField] private StageInformation stage2 = default;
+    [SerializeField] private StageInformation stage3 = default;
+    [SerializeField] private StageInformation stage4 = default;
 
     private static Stage currentStage = Stage.School;
     private StageInformation currentStageInformation;
@@ -99,8 +99,8 @@ public class AdventureLevel : MonoBehaviour
     [Serializable]
     private class StageInformation
     {
-        [SerializeField] private QuestPosition questPosition;
-        [SerializeField] private Transform[] playersPosition;
+        [SerializeField] private QuestPosition questPosition = default;
+        [SerializeField] private Transform[] playersPosition = default;
 
         public QuestPosition GetQuestPosition()
         {

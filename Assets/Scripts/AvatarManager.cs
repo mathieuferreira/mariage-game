@@ -13,8 +13,8 @@ public class AvatarManager : MonoBehaviour
     
     private const string AvatarSaveId = "avatar";
     
-    [SerializeField] private Sprite[] player1Avatars;
-    [SerializeField] private Sprite[] player2Avatars;
+    [SerializeField] private Sprite[] player1Avatars = default;
+    [SerializeField] private Sprite[] player2Avatars = default;
 
     private int player1Index = 0;
     private int player2Index = 0;

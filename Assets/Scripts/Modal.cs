@@ -14,7 +14,7 @@ public class Modal : MonoBehaviour
     public event EventHandler afterOpen;
     public event EventHandler beforeOpen;
 
-    [SerializeField] private State defaultState;
+    [SerializeField] private State defaultState = default;
     [SerializeField] private CubicBezierCurve openEasing = new CubicBezierCurve(0f, .3f, 1.1f, 1f);
     [SerializeField] private CubicBezierCurve closeEasing = new CubicBezierCurve(0f, -.1f, .3f, 1f);
     [SerializeField] private float openDuration = 1f;

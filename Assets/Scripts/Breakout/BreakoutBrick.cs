@@ -8,11 +8,11 @@ namespace Breakout
     {
         public event EventHandler OnBreak;
         
-        [SerializeField] private Transform explosionEffect;
-        [SerializeField] private Color color;
-        [SerializeField] private GameObject armor;
-        [SerializeField] private GameObject armorDamaged;
-        [SerializeField] private State initialState;
+        [SerializeField] private Transform explosionEffect = default;
+        [SerializeField] private Color color = default;
+        [SerializeField] private GameObject armor = default;
+        [SerializeField] private GameObject armorDamaged = default;
+        [SerializeField] private State initialState = default;
 
         private State currentState;
 

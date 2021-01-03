@@ -17,15 +17,15 @@ namespace Home
         //private const float BossMaxTimer = 10f;
         private const float Speed = 5f;
     
-        [SerializeField] private HomePlayer[] players;
-        [SerializeField] private Transform spider;
-        [SerializeField] private HeartSystemUI heartSystemUI;
-        [SerializeField] private Avatar[] avatars;
-        [SerializeField] private HomeBoss boss;
-        [SerializeField] private Transform web;
-        [SerializeField] private GameUI[] UIElements;
-        [SerializeField] private ProgressBar progressBar;
-        [SerializeField] private HealthBar bossHealthBar;
+        [SerializeField] private HomePlayer[] players = default;
+        [SerializeField] private Transform spider = default;
+        [SerializeField] private HeartSystemUI heartSystemUI = default;
+        [SerializeField] private Avatar[] avatars = default;
+        [SerializeField] private HomeBoss boss = default;
+        [SerializeField] private Transform web = default;
+        [SerializeField] private GameUI[] UIElements = default;
+        [SerializeField] private ProgressBar progressBar = default;
+        [SerializeField] private HealthBar bossHealthBar = default;
 
         private enum State
         {
@@ -71,6 +71,8 @@ namespace Home
             {
                 avatar.Hide();
             }
+            
+            ScoreManager.StartSession();
         }
     
         private void StartGame(object sender, EventArgs e)
@@ -128,6 +130,7 @@ namespace Home
             if (state == State.Win)
                 return;
 
+            ScoreManager.RevertSession();
             EndBattle();
         
             modalLevel.OpenLooseWindow(() =>
@@ -216,6 +219,7 @@ namespace Home
             if (state != State.Boss)
                 return;
         
+            ScoreManager.CloseSession();
             StopGameUI();
             modalLevel.OpenWinWindow(() =>
             {

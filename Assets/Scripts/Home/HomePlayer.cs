@@ -14,10 +14,10 @@ namespace Home
         private const float MinYPosition = HomeLevel.MinYPosition;
         private const float MaxYPosition = HomeLevel.MaxYPosition;
 
-        [SerializeField] private PlayerID playerId;
-        [SerializeField] private Transform bullet;
-        [SerializeField] private Sprite bulletSprite;
-        [SerializeField] private HomeBulletFlash shootFlash;
+        [SerializeField] private PlayerID playerId = default;
+        [SerializeField] private Transform bullet = default;
+        [SerializeField] private Sprite bulletSprite = default;
+        [SerializeField] private HomeBulletFlash shootFlash = default;
 
         private Transform gunPosition;
         private bool moveLocked;

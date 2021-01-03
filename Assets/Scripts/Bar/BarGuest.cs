@@ -152,12 +152,15 @@ namespace Bar
                     {
                         animator.SetDirection(player.GetPosition() - transform.position);
                         BarConsumable need = needs.TryConsume(needs.Get(i).GetKind());
-                    
+
                         if (need != null)
+                        {
+                            ScoreManager.IncrementScore(player.GetPlayerId());
                             OnNeedsComplete?.Invoke(this, new NeedCompleteEventArgs()
-                            {
-                                Consumable = need
-                            });
+                                {
+                                    Consumable = need
+                                });
+                        }
 
                         if (!CanPlayerSatisfyNeeds(player))
                             player.HideAdviceButton();

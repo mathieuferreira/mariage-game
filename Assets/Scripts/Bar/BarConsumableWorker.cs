@@ -7,13 +7,13 @@ namespace Bar
         private const float Speed = 2f;
         private const float StorageTime = .5f;
     
-        [SerializeField] private BarConsumableArea storage;
-        [SerializeField] private Transform storagePosition;
-        [SerializeField] private Transform factoryPosition;
-        [SerializeField] private float factoryTime;
-        [SerializeField] private Vector2 factoryDirection;
-        [SerializeField] private Vector2 storageDirection;
-        [SerializeField] private GameObject cookingTransform;
+        [SerializeField] private BarConsumableArea storage = default;
+        [SerializeField] private Transform storagePosition = default;
+        [SerializeField] private Transform factoryPosition = default;
+        [SerializeField] private float factoryTime = default;
+        [SerializeField] private Vector2 factoryDirection = default;
+        [SerializeField] private Vector2 storageDirection = default;
+        [SerializeField] private GameObject cookingTransform = default;
     
         private enum State
         {

@@ -11,16 +11,16 @@ namespace School
         private static int ENEMY_MAX_COUNT = 10;
         private static float BOSS_APPEAR_TIMEOUT = 100f;
     
-        [SerializeField] private SchoolPlayer[] players;
-        [SerializeField] private SchoolShuriken shuriken;
-        [SerializeField] private SchoolEnemy[] enemyPrefabs;
-        [SerializeField] private SchoolBonus bonus;
-        [SerializeField] private SchoolBoss boss;
-        [SerializeField] private HealthBar bossHealthBar;
-        [SerializeField] private Avatar[] avatars;
-        [SerializeField] private HeartSystemUI heartSystemUI;
-        [SerializeField] private ProgressBar progressBar;
-        [SerializeField] private ParticleSystem bloodParticleSystem;
+        [SerializeField] private SchoolPlayer[] players = default;
+        [SerializeField] private SchoolShuriken shuriken = default;
+        [SerializeField] private SchoolEnemy[] enemyPrefabs = default;
+        [SerializeField] private SchoolBonus bonus = default;
+        [SerializeField] private SchoolBoss boss = default;
+        [SerializeField] private HealthBar bossHealthBar = default;
+        [SerializeField] private Avatar[] avatars = default;
+        [SerializeField] private HeartSystemUI heartSystemUI = default;
+        [SerializeField] private ProgressBar progressBar = default;
+        [SerializeField] private ParticleSystem bloodParticleSystem = default;
 
         private enum Stage
         {
@@ -63,6 +63,8 @@ namespace School
             heartSystem.OnDied += HeartSystemOnOnDied;
         
             heartSystemUI.Setup(heartSystem);
+            
+            ScoreManager.StartSession();
         }
 
         private void HeartSystemOnOnDied(object sender, EventArgs e)
@@ -70,6 +72,8 @@ namespace School
             currentStage = Stage.Defeat;
         
             StopGameUI();
+            
+            ScoreManager.RevertSession();
 
             modalLevel.OpenLooseWindow(() =>
                 {
@@ -168,6 +172,7 @@ namespace School
             currentStage = Stage.Victory;
         
             StopGameUI();
+            ScoreManager.CloseSession();
 
             modalLevel.OpenWinWindow(() =>
                 {

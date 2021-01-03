@@ -6,9 +6,9 @@ namespace Bar
 {
     public class BarConsumableArea : MonoBehaviour
     {
-        [SerializeField] private Transform[] consumablePositions;
-        [FormerlySerializedAs("consumableType")] [SerializeField] private BarConsumable.Kind consumableKind;
-        [SerializeField] private Transform consumable;
+        [SerializeField] private Transform[] consumablePositions = default;
+        [FormerlySerializedAs("consumableType")] [SerializeField] private BarConsumable.Kind consumableKind = default;
+        [SerializeField] private Transform consumable = default;
 
         private List<GameObject> consumableList; 
 

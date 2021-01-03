@@ -7,10 +7,10 @@ public class InitialWindow : MonoBehaviour
 {
     private static float ERROR_MAX_TIME = 6f;
     
-    [SerializeField] private Transform[] buttons;
-    [SerializeField] private Transform[] ticks;
-    [SerializeField] private GameObject errorText;
-    [SerializeField] private PlayerReadyButton[] players;
+    [SerializeField] private Transform[] buttons = default;
+    [SerializeField] private Transform[] ticks = default;
+    [SerializeField] private GameObject errorText = default;
+    [SerializeField] private PlayerReadyButton[] players = default;
     
     private int[] selectedButtons;
     private bool isBlinkShown;

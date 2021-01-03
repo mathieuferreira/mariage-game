@@ -9,11 +9,11 @@ namespace School
     {
         private const float FadeOutMaxTimer = .3f;
         
-        [SerializeField] private float minTimer;
-        [SerializeField] private float maxTimer;
-        [SerializeField] private Color color;
-        [SerializeField] private float intensity;
-        [SerializeField] private AnimationCurve curve;
+        [SerializeField] private float minTimer = default;
+        [SerializeField] private float maxTimer = default;
+        [SerializeField] private Color color = default;
+        [SerializeField] private float intensity = default;
+        [SerializeField] private AnimationCurve curve = default;
         
         private Light2D globalLight;
         private Color originalColor;

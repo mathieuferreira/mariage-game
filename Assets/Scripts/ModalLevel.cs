@@ -7,9 +7,9 @@ public class ModalLevel : MonoBehaviour
 {
     public event EventHandler gameStart;
     
-    [SerializeField] private Modal explanationWindow;
-    [SerializeField] private Modal winWindow;
-    [SerializeField] private Modal looseWindow;
+    [SerializeField] private Modal explanationWindow = default;
+    [SerializeField] private Modal winWindow = default;
+    [SerializeField] private Modal looseWindow = default;
 
     private void Awake()
     {

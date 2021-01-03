@@ -5,9 +5,9 @@ namespace Bar
 {
     public class BubbleSystem : MonoBehaviour
     {
-        [SerializeField] private Sprite beerSprite;
-        [SerializeField] private Sprite cakeSprite;
-        [SerializeField] private Sprite talkSprite;
+        [SerializeField] private Sprite beerSprite = default;
+        [SerializeField] private Sprite cakeSprite = default;
+        [SerializeField] private Sprite talkSprite = default;
     
         private Transform bubble1;
         private Transform bubble2;

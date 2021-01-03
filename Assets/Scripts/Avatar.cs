@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Avatar : MonoBehaviour
 {
-    [SerializeField] private PlayerID player;
+    [SerializeField] private PlayerID player = default;
 
     private Text scoreText;
     

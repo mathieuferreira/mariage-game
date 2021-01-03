@@ -7,7 +7,7 @@ namespace Breakout
     {
         private const float Speed = 15f;
         
-        [SerializeField] private PlayerID playerId;
+        [SerializeField] private PlayerID playerId = default;
         
         private Rigidbody2D rb;
         private bool canMove;

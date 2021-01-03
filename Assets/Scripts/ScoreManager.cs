@@ -59,4 +59,10 @@ public static class ScoreManager
 
         StartSession();
     }
+
+    public static void Initialize()
+    {
+        scores = new [] {0, 0};
+        StartSession();
+    }
 }

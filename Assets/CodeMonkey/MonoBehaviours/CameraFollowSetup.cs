@@ -20,9 +20,9 @@ namespace CodeMonkey.MonoBehaviours {
      * */
     public class CameraFollowSetup : MonoBehaviour {
 
-        [SerializeField] private CameraFollow cameraFollow;
-        [SerializeField] private Transform followTransform;
-        [SerializeField] private float zoom;
+        [SerializeField] private CameraFollow cameraFollow = default;
+        [SerializeField] private Transform followTransform = default;
+        [SerializeField] private float zoom = default;
 
         private void Start() {
             if (followTransform == null) {

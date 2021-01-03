@@ -9,8 +9,8 @@ namespace Breakout
     [RequireComponent(typeof(BreakoutLevel))]
     public class BreakoutBonusManager : MonoBehaviour
     {
-        [SerializeField] private List<BreakoutBrick> bricks;
-        [SerializeField] private BonusConfiguration[] bonuses;
+        [SerializeField] private List<BreakoutBrick> bricks = default;
+        [SerializeField] private BonusConfiguration[] bonuses = default;
     
         private BreakoutLevel level;
         private List<BreakoutBonus> activeBonuses;

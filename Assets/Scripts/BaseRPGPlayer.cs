@@ -7,7 +7,7 @@ public class BaseRPGPlayer : MonoBehaviour
 {
     protected const float MOVE_SPEED = 4f;
     
-    [SerializeField] private PlayerID player;
+    [SerializeField] private PlayerID player = default;
 
     private Animator animator;
     private bool active;

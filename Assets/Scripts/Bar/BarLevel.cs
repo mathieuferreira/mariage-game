@@ -14,13 +14,13 @@ namespace Bar
         private const float BeerTimerMax = 5f;
         private const float CakeTimerMax = 8f;
     
-        [SerializeField] private BarPlayer[] players;
-        [SerializeField] private BarGuest[] guests;
-        [SerializeField] private BarConsumableWorker[] workers;
-        [SerializeField] private BarConsumableCounter[] counters;
-        [SerializeField] private Avatar[] avatars;
-        [SerializeField] private FunIndicator funIndicator;
-        [SerializeField] private Text timerText;
+        [SerializeField] private BarPlayer[] players = default;
+        [SerializeField] private BarGuest[] guests = default;
+        [SerializeField] private BarConsumableWorker[] workers = default;
+        [SerializeField] private BarConsumableCounter[] counters = default;
+        [SerializeField] private Avatar[] avatars = default;
+        [SerializeField] private FunIndicator funIndicator = default;
+        [SerializeField] private Text timerText = default;
     
         private ModalLevel modalLevel;
         private float talkTimer;
@@ -38,6 +38,7 @@ namespace Bar
             started = false;
             gameTimer = GameTimerMax;
             timerText.gameObject.SetActive(false);
+            ScoreManager.StartSession();
         }
 
         private void FunIndicatorOnOnFunExpired(object sender, EventArgs e)

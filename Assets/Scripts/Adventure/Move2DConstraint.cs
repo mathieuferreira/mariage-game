@@ -7,9 +7,9 @@ using UnityEngine;
 [Serializable]
 public class Move2DConstraint
 {
-    [SerializeField] private Transform constrainPivot;
-    [SerializeField] private float maxXDistance;
-    [SerializeField] private float maxYDistance;
+    [SerializeField] private Transform constrainPivot = default;
+    [SerializeField] private float maxXDistance = default;
+    [SerializeField] private float maxYDistance = default;
 
     public bool IsPositionAllowed(Vector3 candidatePosition)
     {

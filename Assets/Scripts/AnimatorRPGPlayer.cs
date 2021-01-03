@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class AnimatorRPGPlayer : MonoBehaviour
 {
-    [SerializeField] private Sprite[] idleUpSprites;
-    [SerializeField] private Sprite[] idleDownSprites;
-    [SerializeField] private Sprite[] idleRightSprites;
-    [SerializeField] private Sprite[] idleLeftSprites;
-    [SerializeField] private Sprite[] walkUpSprites;
-    [SerializeField] private Sprite[] walkDownSprites;
-    [SerializeField] private Sprite[] walkLeftSprites;
-    [SerializeField] private Sprite[] walkRightSprites;
-    [SerializeField] private int frameSample;
+    [SerializeField] private Sprite[] idleUpSprites = default;
+    [SerializeField] private Sprite[] idleDownSprites = default;
+    [SerializeField] private Sprite[] idleRightSprites = default;
+    [SerializeField] private Sprite[] idleLeftSprites = default;
+    [SerializeField] private Sprite[] walkUpSprites = default;
+    [SerializeField] private Sprite[] walkDownSprites = default;
+    [SerializeField] private Sprite[] walkLeftSprites = default;
+    [SerializeField] private Sprite[] walkRightSprites = default;
+    [SerializeField] private int frameSample = default;
 
     private enum Direction
     {

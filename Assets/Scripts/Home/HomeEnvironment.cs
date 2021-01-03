@@ -9,13 +9,13 @@ namespace Home
         private const float DisappearXPosition = -60f;
         private const float SpawnXPosition = 60f;
     
-        [SerializeField] private Transform floorTransform;
-        [SerializeField] private Transform ceilingTransform;
-        [SerializeField] private Transform wallTransform;
-        [SerializeField] private Transform cloud1Transform;
-        [SerializeField] private Transform cloud2Transform;
-        [SerializeField] private Transform ground1Transform;
-        [SerializeField] private Transform ground2Transform;
+        [SerializeField] private Transform floorTransform = default;
+        [SerializeField] private Transform ceilingTransform = default;
+        [SerializeField] private Transform wallTransform = default;
+        [SerializeField] private Transform cloud1Transform = default;
+        [SerializeField] private Transform cloud2Transform = default;
+        [SerializeField] private Transform ground1Transform = default;
+        [SerializeField] private Transform ground2Transform = default;
 
         private enum Type
         {

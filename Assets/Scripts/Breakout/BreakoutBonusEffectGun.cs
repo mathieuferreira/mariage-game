@@ -8,7 +8,7 @@ namespace Breakout
         private const float Duration = 8f;
         private const float MaxShootTimer = .3f;
 
-        [SerializeField] private BreakoutBullet bulletPrefab;
+        [SerializeField] private BreakoutBullet bulletPrefab = default;
 
         private float durationTimer;
         private float shootTimer;

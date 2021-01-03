@@ -9,7 +9,7 @@ public class HeartSystemUI : MonoBehaviour
     private const float heartHeight = 36f;
     private const float heartGap = 15f;
 
-    [SerializeField] private Transform pfHeartUI;
+    [SerializeField] private Transform pfHeartUI = default;
 
     private HeartSystem heartSystem;
     private HeartUI[] heartUIs;

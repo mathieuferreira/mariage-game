@@ -9,8 +9,8 @@ public class ProgressBar : MonoBehaviour
     public event EventHandler OnAnimationComplete;
     
     [SerializeField] private float speed = 1f;
-    [SerializeField] private Sprite barSprite;
-    [SerializeField] private Sprite borderSprite;
+    [SerializeField] private Sprite barSprite = default;
+    [SerializeField] private Sprite borderSprite = default;
     [SerializeField] private Vector2 size = new Vector2(320, 32);
     [SerializeField] private Vector2 borderSize = new Vector2(4, 4);
     [SerializeField] private bool visibleWhenEmpty = true;

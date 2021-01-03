@@ -6,7 +6,7 @@ public class SoundManager : MonoBehaviour
 {
     private const float DestroyTimerMax = 2f;
     
-    [SerializeField] private Sound[] sounds;
+    [SerializeField] private Sound[] sounds = default;
 
     private static SoundManager _instance;
 
@@ -75,7 +75,7 @@ public class SoundManager : MonoBehaviour
 
         if (sound == null)
         {
-            Debug.LogWarning("Sound " + name + " not found!");
+            Debug.LogWarning("Sound " + soundName + " not found!");
             return;
         }
         

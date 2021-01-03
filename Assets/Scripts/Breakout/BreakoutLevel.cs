@@ -8,12 +8,12 @@ namespace Breakout
 {
     public class BreakoutLevel : MonoBehaviour
     {
-        [SerializeField] private BreakoutBall ballPrefab;
-        [SerializeField] private BreakoutPlayer[] players;
-        [SerializeField] private BreakoutRing ring;
-        [SerializeField] private BreakoutFinalClip finalClip;
-        [SerializeField] private HeartSystemUI heartSystemUI;
-        [SerializeField] private Avatar[] avatars;
+        [SerializeField] private BreakoutBall ballPrefab = default;
+        [SerializeField] private BreakoutPlayer[] players = default;
+        [SerializeField] private BreakoutRing ring = default;
+        [SerializeField] private BreakoutFinalClip finalClip = default;
+        [SerializeField] private HeartSystemUI heartSystemUI = default;
+        [SerializeField] private Avatar[] avatars = default;
 
         private ModalLevel modalLevel;
         private List<BreakoutBall> balls;

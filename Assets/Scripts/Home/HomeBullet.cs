@@ -7,7 +7,7 @@ namespace Home
         private const float Speed = 20f;
         private const float DisappearXPosition = 40f;
 
-        [SerializeField] private Explosion explosion;
+        [SerializeField] private Explosion explosion = default;
     
         private PlayerID playerId;
         private Rigidbody2D rigidBody;
@@ -41,6 +41,7 @@ namespace Home
         {
             if (other.gameObject.CompareTag("Enemy"))
             {
+                ScoreManager.IncrementScore(playerId);
                 Instantiate(explosion, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }

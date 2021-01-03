@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class AdventurePlayer : BaseRPGPlayer
 {
-    [SerializeField] private Move2DConstraint moveConstraint;
+    [SerializeField] private Move2DConstraint moveConstraint = default;
 
     protected override void Move(Vector3 direction)
     {

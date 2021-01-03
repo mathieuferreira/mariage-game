@@ -12,7 +12,7 @@ public class PlayerReadyButton : MonoBehaviour
     public event EventHandler OnPlayerReady;
     
     [SerializeField] private string readyText = "JOUEUR PRET !";
-    [SerializeField] private PlayerID player;
+    [SerializeField] private PlayerID player = default;
 
     private bool playerReady;
     private Text text;

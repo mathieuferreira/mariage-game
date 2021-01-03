@@ -6,10 +6,10 @@ using UnityEngine;
 [Serializable]
 public class CubicBezierCurve
 {
-    [SerializeField] private float p0;
-    [SerializeField] private float p1;
-    [SerializeField] private float p2;
-    [SerializeField] private float p3;
+    [SerializeField] private float p0 = default;
+    [SerializeField] private float p1 = default;
+    [SerializeField] private float p2 = default;
+    [SerializeField] private float p3 = default;
     
     public CubicBezierCurve()
     {

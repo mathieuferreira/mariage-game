@@ -6,7 +6,7 @@ namespace Home
     {
         private const float DisappearXPosition = -40f;
 
-        [SerializeField] private Explosion explosion;
+        [SerializeField] private Explosion explosion = default;
 
         private void FixedUpdate()
         {

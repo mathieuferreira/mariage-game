@@ -6,8 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class Explosion : MonoBehaviour
 {
-    [SerializeField] private float duration;
-    [SerializeField] private Sprite[] sprites;
+    [SerializeField] private float duration = default;
+    [SerializeField] private Sprite[] sprites = default;
 
     private SpriteRenderer spriteRenderer;
     private float timer;
