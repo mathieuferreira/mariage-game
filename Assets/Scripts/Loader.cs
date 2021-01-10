@@ -18,16 +18,16 @@ public static class Loader
         Breakout
     }
 
-    public static Scene targetScene;
+    private static Scene _targetScene;
     
     public static void Load(Scene scene)
     {
         SceneManager.LoadScene(Scene.Loading.ToString());
-        targetScene = scene;
+        _targetScene = scene;
     }
 
     public static void LoadTargetScene()
     {
-        SceneManager.LoadScene(targetScene.ToString());
+        SceneManager.LoadScene(_targetScene.ToString());
     }
 }

@@ -1,42 +1,42 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using CodeMonkey.Utils;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class ChoosePlayerWindow : MonoBehaviour
+namespace ChoosePlayer
 {
-    private ChoosePlayer[] players;
-
-    private void Awake()
+    public class ChoosePlayerWindow : MonoBehaviour
     {
-        players = new ChoosePlayer[2];
-        for (int i = 0; i < 2; i++)
-        {
-            players[i] = transform.Find("ChoosePlayer" + (i + 1)).GetComponent<ChoosePlayer>();
-            players[i].OnPictureSelected += OnOnPictureSelected;
-        }
-    }
+        [SerializeField] private PlayerPictureSelector[] players;
 
-    private void OnOnPictureSelected(object sender, EventArgs e)
-    {
-        for (int i = 0; i < players.Length; i++)
+        private void Awake()
         {
-            if (!players[i].IsValidated())
+            foreach (PlayerPictureSelector player in players)
             {
-                return;
+                player.OnPictureSelected += OnOnPictureSelected;
             }
         }
-        
-        AvatarManager.GetInstance().Save();
-        
-        FunctionTimer.Create(() =>
+
+        private void OnOnPictureSelected(object sender, EventArgs e)
         {
-            ScoreManager.Initialize();
-            PlayerPrefs.SetInt("AdventureStage", 1);
-            PlayerPrefs.Save();
-            Loader.Load(Loader.Scene.Adventure);
-        }, .5f);
+            SoundManager.GetInstance().Play("SelectOK");
+            
+            foreach (PlayerPictureSelector player in players)
+            {
+                if (!player.IsValidated())
+                {
+                    return;
+                }
+            }
+        
+            AvatarManager.GetInstance().Save();
+        
+            FunctionTimer.Create(() =>
+            {
+                ScoreManager.Initialize();
+                PlayerPrefs.SetInt("AdventureStage", 1);
+                PlayerPrefs.Save();
+                Loader.Load(Loader.Scene.Adventure);
+            }, .5f);
+        }
     }
 }

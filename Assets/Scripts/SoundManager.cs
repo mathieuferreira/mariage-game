@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    private const float DestroyTimerMax = 2f;
+    private const float DestroyTimerMax = 1f;
     
     [SerializeField] private Sound[] sounds = default;
 

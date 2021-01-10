@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AvatarManager : MonoBehaviour
 {
@@ -29,8 +27,8 @@ public class AvatarManager : MonoBehaviour
         if (!string.IsNullOrEmpty(save))
         {
             AvatarSave avatarSave = JsonUtility.FromJson<AvatarSave>(save);
-            player1Index = avatarSave.player1Index;
-            player2Index = avatarSave.player2Index;
+            player1Index = avatarSave.Player1Index;
+            player2Index = avatarSave.Player2Index;
         }
         
         _instance = this;
@@ -75,8 +73,8 @@ public class AvatarManager : MonoBehaviour
     {
         AvatarSave save = new AvatarSave()
         {
-            player1Index = player1Index,
-            player2Index = player2Index
+            Player1Index = player1Index,
+            Player2Index = player2Index
         };
         PlayerPrefs.SetString(AvatarSaveId, JsonUtility.ToJson(save));
         PlayerPrefs.Save();
@@ -84,7 +82,7 @@ public class AvatarManager : MonoBehaviour
 
     private class AvatarSave
     {
-        public int player1Index = 0;
-        public int player2Index = 0;
+        public int Player1Index = 0;
+        public int Player2Index = 0;
     }
 }

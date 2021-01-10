@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using CodeMonkey.Utils;
@@ -12,7 +10,6 @@ public class PlayerButton : MonoBehaviour
     
     private Image background;
     private Text playerText;
-    private bool isSelected;
     private Animator anim;
 
     public Sprite selectedSprite;
@@ -20,7 +17,6 @@ public class PlayerButton : MonoBehaviour
 
     private void Awake()
     {
-        isSelected = false;
         background = transform.Find("Background").GetComponent<Image>();
         playerText = transform.Find("Text").GetComponent<Text>();
         playerText.color = UtilsClass.GetColorFromString(UNSELECTED_COLOR);
@@ -29,14 +25,12 @@ public class PlayerButton : MonoBehaviour
 
     public void Select()
     {
-        isSelected = true;
         background.sprite = selectedSprite;
         playerText.color = UtilsClass.GetColorFromString(SELECTED_COLOR);
     }
 
     public void Unselect()
     {
-        isSelected = false;
         background.sprite = unselectedSprite;
         playerText.color = UtilsClass.GetColorFromString(UNSELECTED_COLOR);
     }

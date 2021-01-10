@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Timers;
-using UnityEditor.U2D;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -36,8 +32,7 @@ public class PlayerReadyButton : MonoBehaviour
         {
             BeforePlayerReadyEventArgs eventArgs = new BeforePlayerReadyEventArgs();
             
-            if (BeforePlayerReady != null)
-                BeforePlayerReady(this, eventArgs);
+            BeforePlayerReady?.Invoke(this, eventArgs);
             
             if (!eventArgs.IsCancelled())
                 SetPlayerReady();
@@ -61,8 +56,7 @@ public class PlayerReadyButton : MonoBehaviour
         animator.SetTrigger("PlayerEnterGame");
         playerReady = true;
         
-        if (OnPlayerReady != null)
-            OnPlayerReady(this, EventArgs.Empty);
+        OnPlayerReady?.Invoke(this, EventArgs.Empty);
     }
 
     public bool IsPlayerReady()

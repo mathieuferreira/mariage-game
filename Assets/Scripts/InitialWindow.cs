@@ -13,13 +13,11 @@ public class InitialWindow : MonoBehaviour
     [SerializeField] private PlayerReadyButton[] players = default;
     
     private int[] selectedButtons;
-    private bool isBlinkShown;
     private float errorTimer;
     
     private void Awake()
     {
         selectedButtons = new [] {0, 0};
-        isBlinkShown = true;
         errorTimer = 0f;
 
         for (int i = 0; i < players.Length; i++)
@@ -31,7 +29,7 @@ public class InitialWindow : MonoBehaviour
 
     private void OnOnPlayerReady(object sender, EventArgs e)
     {
-        if (areAllPlayersJoinedTheGame())
+        if (AreAllPlayersJoinedTheGame())
         {
             FunctionTimer.Create(() =>
             {
@@ -52,10 +50,12 @@ public class InitialWindow : MonoBehaviour
 
         if (error == null)
         {
+            SoundManager.GetInstance().Play("SelectOK");
             HideError();
         }
         else
         {
+            SoundManager.GetInstance().Play("SelectKO");
             ShowError(error);
             e.Cancel();
         }
@@ -114,7 +114,7 @@ public class InitialWindow : MonoBehaviour
         }
     }
 
-    private bool areAllPlayersJoinedTheGame()
+    private bool AreAllPlayersJoinedTheGame()
     {
         for (int i = 0; i < players.Length; i++)
         {
@@ -141,12 +141,13 @@ public class InitialWindow : MonoBehaviour
     private void SelectButton(int player, int delta)
     {
         int button = selectedButtons[player] + delta;
-        
+
         if (button < 0)
             button = 0;
-
-        if (button > 3)
+        else if (button > 3)
             button = 3;
+        else
+            SoundManager.GetInstance().Play("Change");
         
         selectedButtons[player] = button;
 
