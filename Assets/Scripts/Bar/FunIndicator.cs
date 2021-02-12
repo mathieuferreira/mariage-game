@@ -8,7 +8,7 @@ namespace Bar
         public event EventHandler OnFunExpired;
     
         private const int UnitByGuest = 100;
-        private const float Speed = 3f;
+        private const float Speed = 2f;
         private const int UnitTalkSatisfied = 15;
         private const int UnitCakeSatisfied = 50;
         private const int UnitBeerSatisfied = 40;

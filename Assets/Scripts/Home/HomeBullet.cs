@@ -42,6 +42,7 @@ namespace Home
             if (other.gameObject.CompareTag("Enemy"))
             {
                 ScoreManager.IncrementScore(playerId);
+                SoundManager.GetInstance().Play("Explosion");
                 Instantiate(explosion, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }

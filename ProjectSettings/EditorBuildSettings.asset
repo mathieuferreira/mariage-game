@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Home.unity
     guid: 4d1236cbb0997416296d85ed37cab997
+  - enabled: 1
+    path: Assets/Scenes/Breakout.unity
+    guid: c69ed32d98243451cab7cc1f8826e5e6
   m_configObjects: {}

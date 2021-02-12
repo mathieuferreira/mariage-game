@@ -80,6 +80,7 @@ namespace Home
             projectile.GetComponent<HomeBullet>().Setup(playerId, bulletSprite);
 
             shootFlash.Start();
+            SoundManager.GetInstance().Play("Laser");
 
             OnShoot?.Invoke(this, EventArgs.Empty);
         }
