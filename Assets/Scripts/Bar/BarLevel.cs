@@ -18,9 +18,9 @@ namespace Bar
         [SerializeField] private BarGuest[] guests = default;
         [SerializeField] private BarConsumableWorker[] workers = default;
         [SerializeField] private BarConsumableCounter[] counters = default;
-        [SerializeField] private Avatar[] avatars = default;
-        [SerializeField] private FunIndicator funIndicator = default;
         [SerializeField] private Text timerText = default;
+        [SerializeField] private GameUI[] gameUis = default;
+        [SerializeField] private FunIndicator funIndicator = default;
     
         private ModalLevel modalLevel;
         private float talkTimer;
@@ -45,6 +45,7 @@ namespace Bar
         {
             StopUI();
 
+            SoundManager.GetInstance().Play("Loose");
             modalLevel.OpenLooseWindow(() =>
                 {
                     ScoreManager.RevertSession();
@@ -64,6 +65,7 @@ namespace Bar
             {
                 StopUI();
                 ScoreManager.CloseSession();
+                SoundManager.GetInstance().Play("Win");
                 modalLevel.OpenWinWindow(() =>
                 {
                     AdventureLevel.SetStage(AdventureLevel.Stage.Home);
@@ -109,22 +111,16 @@ namespace Bar
                 worker.StartWork();
             }
         
-            foreach (BarConsumableCounter counter in counters)
-            {
-                counter.Show();
-            }
-        
             foreach (BarGuest guest in guests)
             {
                 guest.Activate();
             }
         
-            foreach (Avatar avatar in avatars)
+            foreach (GameUI ui in gameUis)
             {
-                avatar.Show();
+                ui.Show();
             }
-        
-            funIndicator.SetActive(true);
+            
             timerText.gameObject.SetActive(true);
             started = true;
             talkTimer = TalkTimerMax;
@@ -144,22 +140,16 @@ namespace Bar
                 worker.StopWork();
             }
         
-            foreach (BarConsumableCounter counter in counters)
-            {
-                counter.Hide();
-            }
-        
             foreach (BarGuest guest in guests)
             {
                 guest.Deactivate();
             }
-        
-            foreach (Avatar avatar in avatars)
+            
+            foreach (GameUI ui in gameUis)
             {
-                avatar.Hide();
+                ui.Hide();
             }
         
-            funIndicator.SetActive(false);
             timerText.gameObject.SetActive(false);
             started = false;
         }

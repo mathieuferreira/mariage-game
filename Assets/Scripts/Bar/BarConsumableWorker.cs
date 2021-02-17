@@ -14,6 +14,7 @@ namespace Bar
         [SerializeField] private Vector2 factoryDirection = default;
         [SerializeField] private Vector2 storageDirection = default;
         [SerializeField] private GameObject cookingTransform = default;
+        [SerializeField] private string cookingSound = default;
     
         private enum State
         {
@@ -74,9 +75,11 @@ namespace Bar
                     animator.SetFloat(AnimationHorizontal, factoryDirection.x);
                     animator.SetFloat(AnimationSpeed, 0f);
                     cookingTransform.SetActive(true);
+                    SoundManager.GetInstance().Play(cookingSound);
                     currentState = State.Producing;
                     break;
                 case State.Producing:
+                    SoundManager.GetInstance().StopPlaying(cookingSound);
                     cookingTransform.SetActive(false);
                     currentState = State.MoveToStorage;
                     break;

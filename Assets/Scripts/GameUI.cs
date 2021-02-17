@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameUI : MonoBehaviour
 {
-    public event EventHandler onDisplayChanged;
+    public event EventHandler<DisplayChangedEventArgs> onDisplayChanged;
     
     [SerializeField] private bool shownOnStart = false;
 
@@ -19,11 +17,11 @@ public class GameUI : MonoBehaviour
     private void SetActive(bool isActive)
     {
         gameObject.SetActive(isActive);
-
+        
         if (shown != isActive)
         {
             shown = isActive;
-            onDisplayChanged?.Invoke(this, EventArgs.Empty);
+            onDisplayChanged?.Invoke(this, new DisplayChangedEventArgs(isActive));
         }
     }
 
@@ -40,5 +38,19 @@ public class GameUI : MonoBehaviour
     public bool IsShown()
     {
         return shown;
+    }
+
+    public class DisplayChangedEventArgs : EventArgs
+    {
+        private readonly bool isActive;
+        public DisplayChangedEventArgs(bool active)
+        {
+            isActive = active;
+        }
+
+        public bool IsActive()
+        {
+            return isActive;
+        }
     }
 }

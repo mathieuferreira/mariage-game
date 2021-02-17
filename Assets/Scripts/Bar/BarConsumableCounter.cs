@@ -24,15 +24,5 @@ namespace Bar
             beerText.text = "x" + consumableList.CountType(BarConsumable.Kind.Beer);
             cakeText.text = "x" + consumableList.CountType(BarConsumable.Kind.Cake);
         }
-
-        public void Show()
-        {
-            gameObject.SetActive(true);
-        }
-
-        public void Hide()
-        {
-            gameObject.SetActive(false);
-        }
     }
 }

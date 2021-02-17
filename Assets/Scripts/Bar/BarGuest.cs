@@ -155,6 +155,7 @@ namespace Bar
 
                         if (need != null)
                         {
+                            SoundManager.GetInstance().Play("Give");
                             ScoreManager.IncrementScore(player.GetPlayerId());
                             OnNeedsComplete?.Invoke(this, new NeedCompleteEventArgs()
                                 {

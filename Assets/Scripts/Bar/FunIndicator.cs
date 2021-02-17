@@ -8,7 +8,7 @@ namespace Bar
         public event EventHandler OnFunExpired;
     
         private const int UnitByGuest = 100;
-        private const float Speed = 2f;
+        private const float Speed = 2.5f;
         private const int UnitTalkSatisfied = 15;
         private const int UnitCakeSatisfied = 50;
         private const int UnitBeerSatisfied = 40;
@@ -21,10 +21,14 @@ namespace Bar
 
         private void Awake()
         {
-            currentIndex = 0;
-            SetActive(false);
             indicator = transform.Find("Indicator");
             size = transform.Find("Bar").GetComponent<RectTransform>().sizeDelta.x;
+            GetComponent<GameUI>().onDisplayChanged += OnActivationChange;
+        }
+
+        private void OnActivationChange(object sender, GameUI.DisplayChangedEventArgs e)
+        {
+            active = e.IsActive();
         }
 
         private void FixedUpdate()
@@ -87,12 +91,6 @@ namespace Bar
             }
         
             return needs;
-        }
-
-        public void SetActive(bool act)
-        {
-            gameObject.SetActive(act);
-            active = act;
         }
     }
 }

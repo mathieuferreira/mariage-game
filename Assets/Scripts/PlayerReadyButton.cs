@@ -34,6 +34,8 @@ public class PlayerReadyButton : MonoBehaviour
             
             BeforePlayerReady?.Invoke(this, eventArgs);
             
+            SoundManager.GetInstance().Play("Confirmation");
+            
             if (!eventArgs.IsCancelled())
                 SetPlayerReady();
         }

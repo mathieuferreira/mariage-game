@@ -60,6 +60,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -83,6 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3775633966691352670}
   - component: {fileID: 3775633966691352669}
+  - component: {fileID: 4065531091844686992}
   m_Layer: 0
   m_Name: PlayerAvatar
   m_TagString: Untagged
@@ -125,6 +128,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: 0
+--- !u!114 &4065531091844686992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3775633966691352671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e58fcdcf7e92a423daf0cbb48af20ee5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shownOnStart: 0
 --- !u!1 &3775633966984866232
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,6 +201,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0.8666667, b: 0.34901962, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -263,6 +281,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.28235295, g: 0.32941177, b: 0.3764706, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -336,6 +356,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.28235295, g: 0.32941177, b: 0.3764706, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []

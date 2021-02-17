@@ -32,6 +32,7 @@ namespace Bar
                 {
                     BarConsumable cons = TryConsume();
                     player.GetConsumableList().TryAdd(cons);
+                    SoundManager.GetInstance().Play("Take");
                 
                     if (player.GetConsumableList().IsFull())
                         player.HideAdviceButton();
