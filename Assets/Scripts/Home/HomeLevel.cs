@@ -15,10 +15,10 @@ namespace Home
         private const float SpiderMaxTimer = 2f;
         private const float BossMaxTimer = 45f;
         //private const float BossMaxTimer = 10f;
-        private const float Speed = 5f;
+        private const float Speed = 6f;
     
         [SerializeField] private HomePlayer[] players = default;
-        [SerializeField] private Transform spider = default;
+        [SerializeField] private Transform[] spiderCandidates = default;
         [SerializeField] private HeartSystemUI heartSystemUI = default;
         [SerializeField] private Avatar[] avatars = default;
         [SerializeField] private HomeBoss boss = default;
@@ -264,6 +264,7 @@ namespace Home
         private void SpawnSpider()
         {
             float spiderPosition = Random.Range(MinYPosition, MaxYPosition);
+            Transform spider = spiderCandidates[Random.Range(0, spiderCandidates.Length)];
             Transform spiderTransform = Instantiate(spider, new Vector3(EnemyXSpawn, spiderPosition, 0f), Quaternion.identity);
             HomeEnemy newSpider = spiderTransform.GetComponent<HomeEnemy>();
             newSpider.Setup(Vector2.left * Speed, MinYPosition, MaxYPosition);

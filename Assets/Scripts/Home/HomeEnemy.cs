@@ -45,6 +45,7 @@ namespace Home
         {
             Disappear();
             state = State.Dead;
+            SoundManager.GetInstance().Play("SpiderDie");
         }
 
         public void Setup(Vector3 initialVelocity, float minPosition, float maxPosition)

@@ -12,6 +12,7 @@ public class HealthBar : MonoBehaviour
     private void Awake()
     {
         progressBar = GetComponent<ProgressBar>();
+        Debug.Log(progressBar);
     }
 
     public void Setup(HealthSystem system)
@@ -22,6 +23,7 @@ public class HealthBar : MonoBehaviour
 
     private void HealthSystemOnOnHealthChange(object sender, HealthChangeEvent e)
     {
+        Debug.Log(progressBar);
         progressBar.SetFillAmount(healthSystem.GetHealthNormalized());
     }
 

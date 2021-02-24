@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 namespace Home
 {
@@ -8,6 +9,7 @@ namespace Home
         private const float DisappearXPosition = 40f;
 
         [SerializeField] private Explosion explosion = default;
+        [SerializeField] private Light2D bulletLight = default;
     
         private PlayerID playerId;
         private Rigidbody2D rigidBody;
@@ -26,10 +28,11 @@ namespace Home
             }
         }
 
-        public void Setup(PlayerID player, Sprite sprite)
+        public void Setup(PlayerID player, Sprite sprite, Color lightColor)
         {
             playerId = player;
             GetComponent<SpriteRenderer>().sprite = sprite;
+            bulletLight.color = lightColor;
         }
 
         public PlayerID GetPlayerId()

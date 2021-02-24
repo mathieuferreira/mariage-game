@@ -156,6 +156,8 @@ namespace Home
             Quaternion quaternionProjectileDown = Quaternion.Euler(0, 0, 180f + ProjectileAngle);
             HomeBossProjectile projectileDown = Instantiate(projectile, shootPos, quaternionProjectileDown);
             projectileDown.gameObject.GetComponent<Rigidbody2D>().velocity = quaternionProjectileDown * Vector3.right * ProjectileSpeed;
+
+            SoundManager.GetInstance().Play("BossShoot");
         }
 
         public void StartIdle()

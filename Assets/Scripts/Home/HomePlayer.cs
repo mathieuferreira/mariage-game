@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 namespace Home
 {
@@ -18,14 +19,17 @@ namespace Home
         [SerializeField] private Transform bullet = default;
         [SerializeField] private Sprite bulletSprite = default;
         [SerializeField] private HomeBulletFlash shootFlash = default;
+        [SerializeField] private Light2D playerLight;
 
         private Transform gunPosition;
         private bool moveLocked;
+        private Color lightColor;
     
         private void Awake()
         {
             gunPosition = transform.Find("GunPosition");
             moveLocked = true;
+            lightColor = playerLight.color;
         }
 
         private void Update()
@@ -77,7 +81,7 @@ namespace Home
         {
             Vector3 position = gunPosition.position;
             Transform projectile = Instantiate(bullet, position, bullet.rotation);
-            projectile.GetComponent<HomeBullet>().Setup(playerId, bulletSprite);
+            projectile.GetComponent<HomeBullet>().Setup(playerId, bulletSprite, lightColor);
 
             shootFlash.Start();
             SoundManager.GetInstance().Play("Laser");
@@ -92,6 +96,7 @@ namespace Home
 
         public void Damage()
         {
+            SoundManager.GetInstance().Play("PlayerHurt");
             OnDamaged?.Invoke(this, EventArgs.Empty);
         }
 
