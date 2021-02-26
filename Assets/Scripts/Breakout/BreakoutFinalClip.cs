@@ -37,7 +37,24 @@ namespace Breakout
 
         private void OnAnimationComplete()
         {
+            SoundManager.GetInstance().StopPlaying("Engine");
+            SoundManager.GetInstance().Play("GameOver");
             endWindow.Enable();
+        }
+
+        private void StartEngineSound()
+        {
+            SoundManager.GetInstance().Play("Engine");
+        }
+
+        private void StartDoorSound()
+        {
+            SoundManager.GetInstance().Play("Door");
+        }
+
+        private void StartMinimizeSound()
+        {
+            SoundManager.GetInstance().Play("Minimize");
         }
     }
 }

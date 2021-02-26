@@ -74,10 +74,7 @@ namespace Breakout
                 ScoreManager.IncrementScore(lastPlayerBounce);
                 SoundManager.GetInstance().Play("BrickHit");
             }
-        }
 
-        private void OnCollisionExit2D(Collision2D other)
-        {
             checkVelocity = true;
         }
 

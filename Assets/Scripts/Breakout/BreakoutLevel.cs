@@ -156,6 +156,11 @@ namespace Breakout
                 ball.Stop();
             }
         }
+
+        public int GetBallCount()
+        {
+            return balls.Count;
+        }
         
         #endregion
     }

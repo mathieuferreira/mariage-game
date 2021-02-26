@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
@@ -13,35 +11,39 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private BaseRPGPlayer player2 = default;
 
     private Camera mainCamera;
+    private float ratio;
 
     private void Awake()
     {
         mainCamera = GetComponent<Camera>();
+        ratio = Screen.width * 1f / Screen.height;
     }
 
     // Update is called once per frame
     void Update()
     {
         Vector3 cameraFollowPosition = FindFollowedPosition();
-        Vector3 travel = cameraFollowPosition - transform.position;
+        Vector3 currentPosition = transform.position;
+        Vector3 travel = cameraFollowPosition - currentPosition;
+        float orthographicSize = mainCamera.orthographicSize;
         
-        float deltaOrthoSize = FindOrthographicSize() - mainCamera.orthographicSize;
-        float orthoSize = Math.Max(mainCamera.orthographicSize + deltaOrthoSize * CAMERA_ZOOM_SPEED * Time.deltaTime, CAMERA_ZOOM_MIN);
+        float deltaOrthoSize = FindOrthographicSize() - orthographicSize;
+        float orthoSize = Math.Max(orthographicSize + deltaOrthoSize * CAMERA_ZOOM_SPEED * Time.deltaTime, CAMERA_ZOOM_MIN);
         
         mainCamera.orthographicSize = orthoSize;
-        transform.position += travel * Math.Min(CAMERA_MOVE_SPEED * Time.deltaTime, 1f);
+        transform.position = currentPosition + travel * Math.Min(CAMERA_MOVE_SPEED * Time.deltaTime, 1f);
     }
 
     private float FindOrthographicSize()
     {
-        Vector3 distanceBeetweenPlayers = player2.GetPosition() - player1.GetPosition();
-        float minSizeX = Math.Abs(distanceBeetweenPlayers.x);
-        float minSizeY = Math.Abs(distanceBeetweenPlayers.y);
+        Vector3 distanceBetweenPlayers = player2.GetPosition() - player1.GetPosition();
+        float minSizeX = Math.Abs(distanceBetweenPlayers.x);
+        float minSizeY = Math.Abs(distanceBetweenPlayers.y);
 
         float targetOrthoSize;
-        if (minSizeX / minSizeY > mainCamera.aspect)
+        if (minSizeX / minSizeY > ratio)
         {
-            targetOrthoSize = minSizeX / mainCamera.aspect;
+            targetOrthoSize = minSizeX / ratio;
         }
         else
         {

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -27,24 +26,31 @@ namespace Breakout
 
         private void BrickOnBreak(object sender, EventArgs e)
         {
+            Vector3 position = ((BreakoutBrick) sender).GetPosition();
+            
+            if (level.GetBallCount() <= 1)
+            {
+                CreateBonus(bonuses[0].bonus, position);
+                return;
+            }
+            
             foreach (BonusConfiguration bonusConfiguration in bonuses)
             {
                 float random = Random.Range(0f, 1f);
-
-                if (bonusConfiguration.appearRate < 10)
-                {
-                    Debug.Log(random + " < " + (1f / bonusConfiguration.appearRate));
-                }
-                
                 if (random < 1f / bonusConfiguration.appearRate)
                 {
-                    BreakoutBonus bonus = Instantiate(bonusConfiguration.bonus, ((BreakoutBrick)sender).GetPosition(), Quaternion.identity);
-                    bonus.Setup(this);
-                    bonus.OnBallMultiply += BonusOnBallMultiply;
-                    activeBonuses.Add(bonus);
+                    CreateBonus(bonusConfiguration.bonus, position);
                     return;
                 }
             }
+        }
+
+        private void CreateBonus(BreakoutBonus bonusType, Vector3 position)
+        {
+            BreakoutBonus bonus = Instantiate(bonusType, position, Quaternion.identity);
+            bonus.Setup(this);
+            bonus.OnBallMultiply += BonusOnBallMultiply;
+            activeBonuses.Add(bonus);
         }
 
         public void RemoveBonus(BreakoutBonus bonus)

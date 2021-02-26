@@ -37,5 +37,11 @@ namespace Breakout
         {
             gameObject.SetActive(false);
         }
+
+        private void StartEpicWinSound()
+        {
+            SoundManager.GetInstance().StopPlaying("Theme");
+            SoundManager.GetInstance().Play("EpicWin");
+        }
     }
 }
