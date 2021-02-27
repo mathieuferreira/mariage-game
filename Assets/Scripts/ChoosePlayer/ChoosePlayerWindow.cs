@@ -28,8 +28,6 @@ namespace ChoosePlayer
                 }
             }
         
-            AvatarManager.GetInstance().Save();
-        
             FunctionTimer.Create(() =>
             {
                 ScoreManager.Initialize();

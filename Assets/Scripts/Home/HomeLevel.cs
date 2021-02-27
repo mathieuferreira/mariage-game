@@ -20,7 +20,6 @@ namespace Home
         [SerializeField] private HomePlayer[] players = default;
         [SerializeField] private Transform[] spiderCandidates = default;
         [SerializeField] private HeartSystemUI heartSystemUI = default;
-        [SerializeField] private Avatar[] avatars = default;
         [SerializeField] private HomeBoss boss = default;
         [SerializeField] private Transform web = default;
         [SerializeField] private GameUI[] UIElements = default;
@@ -66,11 +65,6 @@ namespace Home
                 player.LockMove();
                 player.OnDamaged += OnPlayerDamaged;
             }
-        
-            foreach (Avatar avatar in avatars)
-            {
-                avatar.Hide();
-            }
             
             ScoreManager.StartSession();
         }
@@ -94,11 +88,6 @@ namespace Home
         {
             heartSystemUI.Show();
         
-            foreach (Avatar avatar in avatars)
-            {
-                avatar.Show();
-            }
-        
             foreach (GameUI element in UIElements)
             {
                 element.Show();
@@ -110,11 +99,6 @@ namespace Home
         private void StopGameUI()
         {
             heartSystemUI.Hide();
-        
-            foreach (Avatar avatar in avatars)
-            {
-                avatar.Hide();
-            }
         
             foreach (GameUI element in UIElements)
             {

@@ -57,6 +57,7 @@ namespace School
                 Vector3 playerPosition = rigidbody2D.position;
                 Vector3 playerVelocity = rigidbody2D.velocity;
                 velocity = new Vector3( - velocity.x * 1.1f, (transform.position.y - playerPosition.y) * 2f + playerVelocity.y * .75f , 0f);
+                SoundManager.GetInstance().Play("ImpactPlayer");
             }
             else if(other.gameObject.CompareTag("Border"))
             {
@@ -70,6 +71,7 @@ namespace School
 
             if (enemy != null && enemy.GetHealthSystem().IsAlive())
             {
+                SoundManager.GetInstance().Play("ImpactZombi");
                 enemy.GetHealthSystem().Damage(100);
 
                 Vector3 otherPosition = other.transform.position;

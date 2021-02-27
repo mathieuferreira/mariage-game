@@ -128,6 +128,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: 0
+  scoreText: {fileID: 3775633966984866238}
+  avatar: {fileID: 3775633966538812721}
 --- !u!114 &4065531091844686992
 MonoBehaviour:
   m_ObjectHideFlags: 0

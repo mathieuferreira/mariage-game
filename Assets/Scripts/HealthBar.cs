@@ -23,7 +23,6 @@ public class HealthBar : MonoBehaviour
 
     private void HealthSystemOnOnHealthChange(object sender, HealthChangeEvent e)
     {
-        Debug.Log(progressBar);
         progressBar.SetFillAmount(healthSystem.GetHealthNormalized());
     }
 

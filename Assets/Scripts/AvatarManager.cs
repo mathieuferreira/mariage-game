@@ -2,6 +2,8 @@
 
 public class AvatarManager : MonoBehaviour
 {
+    private static int player1Index = 0;
+    private static int player2Index = 0;
     private static AvatarManager _instance;
 
     public static AvatarManager GetInstance()
@@ -9,28 +11,11 @@ public class AvatarManager : MonoBehaviour
         return _instance;
     }
     
-    private const string AvatarSaveId = "avatar";
-    
     [SerializeField] private Sprite[] player1Avatars = default;
     [SerializeField] private Sprite[] player2Avatars = default;
 
-    private int player1Index = 0;
-    private int player2Index = 0;
-
     private void Awake()
     {
-        player1Index = 0;
-        player2Index = 0;
-
-        string save = PlayerPrefs.GetString(AvatarSaveId, null);
-
-        if (!string.IsNullOrEmpty(save))
-        {
-            AvatarSave avatarSave = JsonUtility.FromJson<AvatarSave>(save);
-            player1Index = avatarSave.Player1Index;
-            player2Index = avatarSave.Player2Index;
-        }
-        
         _instance = this;
     }
 
@@ -67,22 +52,5 @@ public class AvatarManager : MonoBehaviour
                 player2Index = index;
                 break;
         }
-    }
-    
-    public void Save()
-    {
-        AvatarSave save = new AvatarSave()
-        {
-            Player1Index = player1Index,
-            Player2Index = player2Index
-        };
-        PlayerPrefs.SetString(AvatarSaveId, JsonUtility.ToJson(save));
-        PlayerPrefs.Save();
-    }
-
-    private class AvatarSave
-    {
-        public int Player1Index = 0;
-        public int Player2Index = 0;
     }
 }

@@ -45,7 +45,6 @@ namespace Bar
         {
             StopUI();
 
-            SoundManager.GetInstance().Play("Loose");
             modalLevel.OpenLooseWindow(() =>
                 {
                     ScoreManager.RevertSession();
@@ -65,7 +64,6 @@ namespace Bar
             {
                 StopUI();
                 ScoreManager.CloseSession();
-                SoundManager.GetInstance().Play("Win");
                 modalLevel.OpenWinWindow(() =>
                 {
                     AdventureLevel.SetStage(AdventureLevel.Stage.Home);

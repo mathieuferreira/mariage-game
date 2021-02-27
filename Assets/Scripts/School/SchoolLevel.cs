@@ -74,6 +74,10 @@ namespace School
             StopGameUI();
             
             ScoreManager.RevertSession();
+            
+            SoundManager.GetInstance().StopPlaying("Rain");
+            SoundManager.GetInstance().StopPlaying("Zombi1");
+            SoundManager.GetInstance().StopPlaying("Zombi2");
 
             modalLevel.OpenLooseWindow(() =>
                 {
@@ -115,6 +119,7 @@ namespace School
             bossSpawnTimer = BOSS_APPEAR_TIMEOUT;
             currentStage = Stage.Stage1;
             StartGameUI();
+            SoundManager.GetInstance().Play("Rain");
         }
 
         private void StartGameUI()
@@ -165,12 +170,16 @@ namespace School
             progressBar.GetComponent<GameUI>().Hide();
             bossHealthBar.Show();
             bossHealthBar.Setup(boss.GetHealthSystem());
+            SoundManager.GetInstance().Play("Zombi2");
         }
 
         private void BossOnDied(object sender, EventArgs e)
         {
             currentStage = Stage.Victory;
         
+            SoundManager.GetInstance().StopPlaying("Rain");
+            SoundManager.GetInstance().StopPlaying("Zombi2");
+            SoundManager.GetInstance().StopPlaying("Zombi1");
             StopGameUI();
             ScoreManager.CloseSession();
 
@@ -220,7 +229,9 @@ namespace School
             }
         
             if (!remainsShurikens)
+            {
                 InitShuriken();
+            }
         }
     
         private void InitShuriken()
@@ -254,6 +265,15 @@ namespace School
             newEnemy.OnHitPlayer += NewEnemyOnOnHitPlayer;
             enemySpawnTimer = ENEMY_SPAWN_MAX_TIME;
             enemies.Add(newEnemy);
+            
+            if (CountEnemyAlive() == 1)
+            {
+                SoundManager.GetInstance().Play("Zombi1");
+            } 
+            else if (CountEnemyAlive() == 2)
+            {
+                SoundManager.GetInstance().Play("Zombi2");
+            }
         }
 
         private void NewEnemyOnOnHitPlayer(object sender, EventArgs e)
@@ -299,12 +319,34 @@ namespace School
 
             return false;
         }
+        
+        private int CountEnemyAlive()
+        {
+            int count = 0;
+            
+            for (int i = 0; i < enemies.Count; i++)
+            {
+                if (enemies[i].GetHealthSystem().IsAlive())
+                    count++;
+            }
+
+            return count;
+        }
 
         private void NewEnemyOnOnDisappear(object sender, EventArgs e)
         {
             if (Random.Range(0, 2) == 0)
             {
                 SpawnBonus(((SchoolEnemy)sender).GetCurrentPosition());
+            }
+
+            if (CountEnemyAlive() < 2)
+            {
+                SoundManager.GetInstance().StopPlaying("Zombi2");
+            }
+            else if (CountEnemyAlive() < 1)
+            {
+                SoundManager.GetInstance().StopPlaying("Zombi1");
             }
         }
 

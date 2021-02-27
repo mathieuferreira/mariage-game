@@ -14,6 +14,7 @@ public class PlayerReadyButton : MonoBehaviour
     private Text text;
     private GameObject button;
     private Animator animator;
+    private bool locked = false;
 
     private void Awake()
     {
@@ -25,7 +26,7 @@ public class PlayerReadyButton : MonoBehaviour
 
     private void Update()
     {
-        if (playerReady)
+        if (playerReady || locked)
             return;
 
         if (UserInput.IsActionKeyDown(player))
@@ -89,5 +90,15 @@ public class PlayerReadyButton : MonoBehaviour
     public PlayerID GetPlayerId()
     {
         return player;
+    }
+
+    public void Lock()
+    {
+        this.locked = true;
+    }
+
+    public void Unlock()
+    {
+        this.locked = false;
     }
 }

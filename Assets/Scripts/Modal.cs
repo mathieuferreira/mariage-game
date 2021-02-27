@@ -19,6 +19,7 @@ public class Modal : MonoBehaviour
     [SerializeField] private CubicBezierCurve closeEasing = new CubicBezierCurve(0f, -.1f, .3f, 1f);
     [SerializeField] private float openDuration = 1f;
     [SerializeField] private float closeDuration = 1f;
+    [SerializeField] private float preventClickDuration = 1.5f;
     
     public enum State
     {
@@ -32,6 +33,7 @@ public class Modal : MonoBehaviour
     private State currentState;
     private RectTransform rectTransform;
     private float animationTimer;
+    private float preventClickTimer;
 
     private void Awake()
     {
@@ -64,6 +66,21 @@ public class Modal : MonoBehaviour
     private void FixedUpdate()
     {
         HandleAnimation();
+
+        if (preventClickTimer > 0f)
+        {
+            preventClickTimer -= Time.fixedDeltaTime;
+
+            if (preventClickTimer <= 0f)
+            {
+                for (int i = 0; i < playersReady.Length; i++)
+                {
+                    playersReady[i].Unlock();
+                }
+                
+                preventClickTimer = 0f;
+            }
+        }
     }
 
     private void HandleAnimation()
@@ -104,6 +121,12 @@ public class Modal : MonoBehaviour
     {
         beforeOpen?.Invoke(this, EventArgs.Empty);
         gameObject.SetActive(true);
+        
+        for (int i = 0; i < playersReady.Length; i++)
+        {
+            playersReady[i].Lock();
+        }
+        
         currentState = State.Opening;
         animationTimer = openDuration;
     }
@@ -111,6 +134,12 @@ public class Modal : MonoBehaviour
     public void Close()
     {
         beforeClose?.Invoke(this, EventArgs.Empty);
+        
+        for (int i = 0; i < playersReady.Length; i++)
+        {
+            playersReady[i].Lock();
+        }
+        
         currentState = State.Closing;
         animationTimer = closeDuration;
     }
@@ -126,5 +155,6 @@ public class Modal : MonoBehaviour
     {
         afterOpen?.Invoke(this, EventArgs.Empty);
         currentState = State.Open;
+        preventClickTimer = preventClickDuration;
     }
 }

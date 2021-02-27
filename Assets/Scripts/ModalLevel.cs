@@ -27,6 +27,7 @@ public class ModalLevel : MonoBehaviour
 
     public void OpenWinWindow(Action afterAction)
     {
+        SoundManager.GetInstance().Play("Win");
         winWindow.beforeClose += (o, args) =>
         {
             afterAction();
@@ -36,6 +37,7 @@ public class ModalLevel : MonoBehaviour
 
     public void OpenLooseWindow(Action afterAction)
     {
+        SoundManager.GetInstance().Play("Loose");
         looseWindow.beforeClose += (o, args) =>
         {
             afterAction();

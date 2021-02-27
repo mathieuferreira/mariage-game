@@ -23,6 +23,7 @@ public class HeartSystem
             return;
             
         hearts--;
+        SoundManager.GetInstance().Play("HeartLost");
         
         OnDamaged?.Invoke(this, EventArgs.Empty);
         

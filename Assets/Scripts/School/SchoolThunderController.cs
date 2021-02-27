@@ -38,6 +38,12 @@ namespace School
             fadeOutTimer -= Time.deltaTime;
             fadeOutTimer = Mathf.Max(fadeOutTimer, 0f);
             ManageLightIntensity();
+
+            if (fadeOutTimer <= 0f)
+            {
+                SoundManager.GetInstance().Play("Thunder");
+                Debug.Log("Play Thunder");
+            }
         }
 
         private void FixedUpdate()
