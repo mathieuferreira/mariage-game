@@ -23,6 +23,7 @@ namespace Adventure
         private float timer;
         private BoxCollider2D boxCollider;
         private Vector3[] bounds;
+        private bool locked;
 
         private void Awake()
         {
@@ -52,6 +53,9 @@ namespace Adventure
         
         private void FixedUpdate()
         {
+            if (locked)
+                return;
+            
             switch (currentState)
             {
                 case State.Walking:
@@ -136,6 +140,23 @@ namespace Adventure
         private void OnCollisionEnter2D(Collision2D other)
         {
             StartIdleState();
+        }
+
+        public void SetDirection(Vector3 direction)
+        {
+            walkingDirection = direction;
+            animator.SetSpeedAndDirection(Speed, walkingDirection);
+        }
+
+        public void LockMove()
+        {
+            locked = true;
+            StartIdleState();
+        }
+
+        public void UnlockMove()
+        {
+            locked = false;
         }
     }
 }

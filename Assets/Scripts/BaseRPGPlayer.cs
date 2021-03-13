@@ -9,6 +9,7 @@ public class BaseRPGPlayer : MonoBehaviour
     private Animator animator;
     private bool active;
     private GameObject adviceButton;
+    private UserInput.Direction nextDirection = UserInput.Direction.None;
 
     protected virtual void Awake()
     {
@@ -20,14 +21,20 @@ public class BaseRPGPlayer : MonoBehaviour
         adviceButton = transform.Find("AdviceButton").gameObject;
     }
 
+    protected void Update()
+    {
+        if (!active)
+            return;
+        
+        nextDirection = UserInput.FindBestDirection(player);
+    }
+
     protected void FixedUpdate()
     {
         if (!active)
             return;
 
-        UserInput.Direction direction = UserInput.FindBestDirection(player);
-
-        switch (direction)
+        switch (nextDirection)
         {
             case UserInput.Direction.Up:
                 Move(Vector3.up);

@@ -1,10 +1,12 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
 
 public static class UserInput
 {
+    private static readonly List<IUserInputInterceptor> Interceptors = new List<IUserInputInterceptor>();
+    
     public enum Direction
     {
         Up,
@@ -27,7 +29,16 @@ public static class UserInput
         for (int i = 0; i < codes.Length; i++)
         {
             if (Input.GetKeyDown(codes[i]))
-                return true;
+            {
+                UserActionInputEvent userInputEvent = new UserActionInputEvent(player);
+                
+                foreach (var interceptor in Interceptors)
+                {
+                    interceptor.OnUserActionInput(userInputEvent);
+                }
+
+                return !userInputEvent.IsPrevented();
+            }
         }
         
         return false;
@@ -70,18 +81,35 @@ public static class UserInput
             direction = verticalValue < 0f ? Direction.Down : Direction.Up;
         }
 
-        return direction;
+        UserDirectionInputEvent userInputEvent = new UserDirectionInputEvent(player, direction);
+                
+        foreach (var interceptor in Interceptors)
+        {
+            interceptor.OnUserDirectionInput(userInputEvent);
+        }
+
+        return userInputEvent.GetDirection();
     }
 
-    private static Dictionary<PlayerID, Direction> _lastDirections = new Dictionary<PlayerID, Direction>();
+    private static readonly Dictionary<PlayerID, Direction> LastDirections = new Dictionary<PlayerID, Direction>();
     public static Direction FindBestDirectionDown(PlayerID player)
     {
         Direction bestDirection = FindBestDirection(player);
 
-        if (_lastDirections.TryGetValue(player, out Direction lastDirection) && bestDirection == lastDirection)
+        if (LastDirections.TryGetValue(player, out Direction lastDirection) && bestDirection == lastDirection)
             return Direction.None;
 
-        _lastDirections[player] = bestDirection;
+        LastDirections[player] = bestDirection;
         return bestDirection;
+    }
+
+    public static void AddInterceptor(IUserInputInterceptor interceptor)
+    {
+        Interceptors.Add(interceptor);
+    }
+
+    public static void RemoveInterceptor(IUserInputInterceptor interceptor)
+    {
+        Interceptors.Remove(interceptor);
     }
 }

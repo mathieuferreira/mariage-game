@@ -66,12 +66,17 @@ public class QuestPointer : MonoBehaviour
     public void Show(Vector3 targetPosition)
     {
         this.targetPosition = targetPosition;
-        gameObject.SetActive(true);
+        Show();
     }
 
     public void Show(QuestPosition quest)
     {
         targetPosition = quest.GetPosition();
+        Show();
+    }
+
+    public void Show()
+    {
         gameObject.SetActive(true);
     }
 

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Adventure;
 using UnityEngine;
 
 public class AdventureLevel : MonoBehaviour
@@ -30,6 +31,19 @@ public class AdventureLevel : MonoBehaviour
 
     private void Awake()
     {
+        DialogueManager dialogueManager = GetComponent<DialogueManager>();
+        dialogueManager.OnDialogueStart += OnDialogueStart;
+        dialogueManager.OnDialogueEnd += OnDialogueEnd;
+    }
+
+    private void OnDialogueEnd(object sender, EventArgs e)
+    {
+        questPointer.Show();
+    }
+
+    private void OnDialogueStart(object sender, EventArgs e)
+    {
+        questPointer.Hide();
     }
 
     private void Start()
