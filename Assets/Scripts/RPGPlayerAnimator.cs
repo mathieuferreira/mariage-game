@@ -12,6 +12,7 @@ public class RPGPlayerAnimator : MonoBehaviour
     
     [SerializeField] private Material material = default;
     [SerializeField] private int frameSample = default;
+    [SerializeField] private Direction initialDirection = Direction.Down;
 
     private enum Direction
     {
@@ -30,12 +31,17 @@ public class RPGPlayerAnimator : MonoBehaviour
     private MeshFilter meshFilter;
     private Mesh mesh;
     private Dictionary<Direction, List<Vector2[]>> uvCoordinates;
-    private Direction currentDirection = Direction.Down;
+    private Direction currentDirection;
     private State currentState = State.Idle;
     private int currentFrame = 0;
     private Vector2 direction;
     private float speed = 0f;
     private int frameCount = 0;
+
+    private void Awake()
+    {
+        currentDirection = initialDirection;
+    }
 
     private void Start()
     {

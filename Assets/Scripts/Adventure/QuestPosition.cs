@@ -2,49 +2,54 @@
 using CodeMonkey;
 using UnityEngine;
 
-public class QuestPosition : MonoBehaviour
+namespace Adventure
 {
-    public event EventHandler<QuestCompleteEvent> questComplete;
-
-    private float timer;
-    
-    private void OnTriggerStay2D(Collider2D other)
+    public class QuestPosition : MonoBehaviour
     {
-        BaseRPGPlayer player = other.GetComponent<BaseRPGPlayer>();
-        if (player != null && UserInput.IsActionKeyDown(player.GetPlayerId()))
+        public event EventHandler<QuestCompleteEvent> OnQuestComplete;
+
+        private float timer;
+    
+        private void OnTriggerStay2D(Collider2D other)
         {
-            CMDebug.TextPopup("Click", player.GetPosition());
-            
-            if (questComplete != null)
-                questComplete(this, new QuestCompleteEvent() { player = player });
+            BaseRPGPlayer player = other.GetComponent<BaseRPGPlayer>();
+            if (player != null && UserInput.IsActionKeyDown(player.GetPlayerId()))
+            {
+                OnQuestComplete?.Invoke(this, new QuestCompleteEvent() { Player = player });
+            }
+        }
+    
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            BaseRPGPlayer player = other.GetComponent<BaseRPGPlayer>();
+            if (player != null)
+            {
+                player.ShowAdviceButton();
+            }
+        }
+    
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            BaseRPGPlayer player = other.GetComponent<BaseRPGPlayer>();
+            if (player != null)
+            {
+                player.HideAdviceButton();
+            }
+        }
+
+        public Vector3 GetPosition()
+        {
+            return transform.position;
+        }
+
+        public void Activate()
+        {
+            gameObject.SetActive(true);
         }
     }
-    
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        BaseRPGPlayer player = other.GetComponent<BaseRPGPlayer>();
-        if (player != null)
-        {
-            player.ShowAdviceButton();
-        }
-    }
-    
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        BaseRPGPlayer player = other.GetComponent<BaseRPGPlayer>();
-        if (player != null)
-        {
-            player.HideAdviceButton();
-        }
-    }
 
-    public Vector3 GetPosition()
+    public class QuestCompleteEvent : EventArgs
     {
-        return transform.position;
+        public BaseRPGPlayer Player;
     }
-}
-
-public class QuestCompleteEvent : EventArgs
-{
-    public BaseRPGPlayer player;
 }

@@ -44,7 +44,7 @@ namespace Adventure
             {
                 string content = "";
 
-                if (name != null)
+                if (!string.IsNullOrEmpty(name))
                     content += name + " : ";
 
                 foreach (Dialogue dialogue in dialogues)

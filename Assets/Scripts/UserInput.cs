@@ -57,6 +57,34 @@ public static class UserInput
         }
     }
 
+    public static bool IsStartKey(PlayerID player)
+    {
+        KeyCode[] codes = GetStartKeyCodesForPlayer(player);
+
+        for (int i = 0; i < codes.Length; i++)
+        {
+            if (Input.GetKey(codes[i]))
+            {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+
+    private static KeyCode[] GetStartKeyCodesForPlayer(PlayerID player)
+    {
+        switch (player)
+        {
+            case PlayerID.Player1:
+                return new[] { KeyCode.R, KeyCode.Joystick1Button9 };
+            case PlayerID.Player2:
+                return new[] { KeyCode.M, KeyCode.Joystick2Button9 };
+            default:
+                return new KeyCode[0];
+        }
+    }
+
     private static string GetAxisForPlayer(PlayerID player, Axis axis)
     {
         if (axis == Axis.Horizontal)

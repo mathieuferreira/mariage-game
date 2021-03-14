@@ -1,43 +1,7 @@
 fileFormatVersion: 2
-guid: 07908f743145045889d30f62a0fe35bc
+guid: 1cb29f4523c284dd08cd1feb4885f629
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -7111695874673613885
-    second: guest1-improved_0
-  - first:
-      213: -2732041880923401230
-    second: guest1-improved_1
-  - first:
-      213: -7077392244486290037
-    second: guest1-improved_2
-  - first:
-      213: 5588923151370992518
-    second: guest1-improved_3
-  - first:
-      213: -5233871647064553343
-    second: guest1-improved_4
-  - first:
-      213: -8175111217124887793
-    second: guest1-improved_5
-  - first:
-      213: -2676521841018379433
-    second: guest1-improved_6
-  - first:
-      213: -2651051418484528713
-    second: guest1-improved_7
-  - first:
-      213: -8703677690519318556
-    second: guest1-improved_8
-  - first:
-      213: 8046346644350319797
-    second: guest1-improved_9
-  - first:
-      213: 3207299142429844300
-    second: guest1-improved_10
-  - first:
-      213: -3758613293971295157
-    second: guest1-improved_11
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -59,6 +23,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -67,7 +32,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: -1
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -76,12 +41,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -93,6 +58,7 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 0
   platformSettings:
   - serializedVersion: 3
@@ -107,273 +73,9 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Standalone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: guest1-improved_0
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 103
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3c3e777084e2e4d90800000000000000
-      internalID: -7111695874673613885
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: guest1-improved_1
-      rect:
-        serializedVersion: 2
-        x: 35
-        y: 103
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2f312106266d51ad0800000000000000
-      internalID: -2732041880923401230
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: guest1-improved_2
-      rect:
-        serializedVersion: 2
-        x: 69
-        y: 103
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b854a43504d08cd90800000000000000
-      internalID: -7077392244486290037
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: guest1-improved_3
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 69
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 68bbc6aaef7df8d40800000000000000
-      internalID: 5588923151370992518
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: guest1-improved_4
-      rect:
-        serializedVersion: 2
-        x: 35
-        y: 69
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1888abc977d8d57b0800000000000000
-      internalID: -5233871647064553343
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: guest1-improved_5
-      rect:
-        serializedVersion: 2
-        x: 69
-        y: 69
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f03b5ff59ab2c8e80800000000000000
-      internalID: -8175111217124887793
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: guest1-improved_6
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 35
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 753668001951bdad0800000000000000
-      internalID: -2676521841018379433
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: guest1-improved_7
-      rect:
-        serializedVersion: 2
-        x: 35
-        y: 35
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7b92fefd7c2953bd0800000000000000
-      internalID: -2651051418484528713
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: guest1-improved_8
-      rect:
-        serializedVersion: 2
-        x: 69
-        y: 35
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4ef8a192143563780800000000000000
-      internalID: -8703677690519318556
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: guest1-improved_9
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 1
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5bc382444ad5aaf60800000000000000
-      internalID: 8046346644350319797
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: guest1-improved_10
-      rect:
-        serializedVersion: 2
-        x: 35
-        y: 1
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c4322f8b39d928c20800000000000000
-      internalID: 3207299142429844300
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: guest1-improved_11
-      rect:
-        serializedVersion: 2
-        x: 69
-        y: 1
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b44b7c48f19b6dbc0800000000000000
-      internalID: -3758613293971295157
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []

@@ -40933,6 +40933,7 @@ GameObject:
   - component: {fileID: 2079958132}
   - component: {fileID: 2079958131}
   - component: {fileID: 2079958133}
+  - component: {fileID: 2079958134}
   m_Layer: 0
   m_Name: BreakoutLevel
   m_TagString: Untagged
@@ -41206,6 +41207,19 @@ MonoBehaviour:
     appearRate: 7
   - bonus: {fileID: 3213003773993274140, guid: 74aae7de798894b56aeda2a905c29ebd, type: 3}
     appearRate: 15
+--- !u!114 &2079958134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2079958129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3a1b5df9d5c44058183dee425be526d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxAfkTimer: 600
 --- !u!114 &2081514593 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 15381881055049674, guid: fc89168653437413ba2f6a42d46937fa,
@@ -42342,8 +42356,14 @@ PrefabInstance:
     - target: {fileID: 1557394858890454692, guid: 5dea9162e7cbc40a99bf2e869c77bf93,
         type: 3}
       propertyPath: m_Text
-      value: "ON EST SUBMERGE...\n\nCe n'est pas grave, on se retrousse les manches
-        et on y retourne ? Esperons que \xE7a se passera mieux..."
+      value: 'IL RESTE INTROUVABLE...
+
+
+        Mais que faire ?
+
+
+        Cherchez
+        de nouveau mais cette fois ci, ouvrez les deux yeux !'
       objectReference: {fileID: 0}
     - target: {fileID: 2279377091996738872, guid: 5dea9162e7cbc40a99bf2e869c77bf93,
         type: 3}
@@ -42397,11 +42417,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -138
       objectReference: {fileID: 0}
+    - target: {fileID: 4223719480594256054, guid: 3303ad428283d41bebba9a29e8e6b95d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 78
+      objectReference: {fileID: 0}
     - target: {fileID: 4223719480594256057, guid: 3303ad428283d41bebba9a29e8e6b95d,
         type: 3}
       propertyPath: m_Text
-      value: "Allo Houston, nous avons un probl\xE8me !\n\nDes monstres velus \xE0
-        8 pattes ont envahi la nouvelle maison !\nExterminez les tous !"
+      value: "Tout \xE9tait pr\xEAt... Mais on a perdu le bijou pour la demande !\n\nAllez
+        le r\xE9cup\xE9rer !"
       objectReference: {fileID: 0}
     - target: {fileID: 4223719480767185180, guid: 3303ad428283d41bebba9a29e8e6b95d,
         type: 3}
@@ -42434,10 +42459,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: b88ee28582abb4f5487e73f97d1e200a,
         type: 3}
+    - target: {fileID: 4223719480873420846, guid: 3303ad428283d41bebba9a29e8e6b95d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 212
+      objectReference: {fileID: 0}
     - target: {fileID: 4223719480873420849, guid: 3303ad428283d41bebba9a29e8e6b95d,
         type: 3}
       propertyPath: m_Text
-      value: MENAGE DE L'EXTREME
+      value: "LE STRESS DE LA \nDEMANDE"
       objectReference: {fileID: 0}
     - target: {fileID: 4223719481344439880, guid: 3303ad428283d41bebba9a29e8e6b95d,
         type: 3}
