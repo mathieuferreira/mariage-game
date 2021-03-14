@@ -20,14 +20,14 @@ namespace Bar
         private State currentState;
         private bool active;
         private float timer;
-        private AnimatorRPGPlayer animator;
+        private RPGPlayerAnimator animator;
         private BarConsumableList needs;
         private BubbleSystem bubbleSystem;
         private BoxCollider2D boxCollider;
 
         private void Awake()
         {
-            animator = transform.Find("Player").GetComponent<AnimatorRPGPlayer>();
+            animator = transform.GetComponent<RPGPlayerAnimator>();
             active = false;
             currentState = State.Idle;
             InitializeRandomTimer();

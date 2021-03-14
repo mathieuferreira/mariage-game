@@ -26,16 +26,13 @@ namespace Bar
         }
 
         private State currentState;
-        private Animator animator;
+        private RPGPlayerAnimator animator;
         private float timer;
         private bool active;
-        private static readonly int AnimationVertical = Animator.StringToHash("Vertical");
-        private static readonly int AnimationHorizontal = Animator.StringToHash("Horizontal");
-        private static readonly int AnimationSpeed = Animator.StringToHash("Speed");
 
         private void Awake()
         {
-            animator = GetComponent<Animator>();
+            animator = GetComponent<RPGPlayerAnimator>();
             currentState = State.Idle;
             active = false;
         }
@@ -71,9 +68,7 @@ namespace Bar
             {
                 case State.MoveToFactory:
                     timer = factoryTime;
-                    animator.SetFloat(AnimationVertical, factoryDirection.y);
-                    animator.SetFloat(AnimationHorizontal, factoryDirection.x);
-                    animator.SetFloat(AnimationSpeed, 0f);
+                    animator.SetSpeedAndDirection(0f, factoryDirection);
                     cookingTransform.SetActive(true);
                     SoundManager.GetInstance().Play(cookingSound);
                     currentState = State.Producing;
@@ -84,9 +79,7 @@ namespace Bar
                     currentState = State.MoveToStorage;
                     break;
                 case State.MoveToStorage:
-                    animator.SetFloat(AnimationVertical, storageDirection.y);
-                    animator.SetFloat(AnimationHorizontal, storageDirection.x);
-                    animator.SetFloat(AnimationSpeed, 0f);
+                    animator.SetSpeedAndDirection(0f, storageDirection);
                     timer = StorageTime;
                     currentState = State.Storing;
                     break;
@@ -122,9 +115,7 @@ namespace Bar
 
             transform.position += movement;
 
-            animator.SetFloat(AnimationVertical, movement.y);
-            animator.SetFloat(AnimationHorizontal, movement.x);
-            animator.SetFloat(AnimationSpeed, Speed);
+            animator.SetSpeedAndDirection(Speed, movement);
 
             if (lastMove)
             {

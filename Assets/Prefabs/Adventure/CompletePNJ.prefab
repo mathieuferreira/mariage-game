@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4080054128355366354}
   - component: {fileID: 4080054128355366357}
   m_Layer: 0
-  m_Name: PNJ1
+  m_Name: CompletePNJ
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: c8432b09551794c68842261fb678acfa, type: 3}
   m_NavMeshLayer: 0
@@ -158,7 +158,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4080054128565021560}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: -0.5, z: 0}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4080054128355366377}
@@ -227,3 +227,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: f5d89f32b000146c78720772051c7f55, type: 2}
   frameSample: 8
+  initialDirection: 1

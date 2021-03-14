@@ -5,13 +5,13 @@ using UnityEngine;
 [RequireComponent(typeof(MeshRenderer), typeof(MeshFilter))]
 public class RPGPlayerAnimator : MonoBehaviour
 {
-    private const int MaterialWidth = 102;
-    private const int MaterialHeight = 136;
+    private const int MaterialWidth = 96;
+    private const int MaterialHeight = 128;
     private const int LineHeight = 32;
     private const int ColumnWidth = 32;
     
     [SerializeField] private Material material = default;
-    [SerializeField] private int frameSample = default;
+    [SerializeField] private int frameSample = 8;
     [SerializeField] private Direction initialDirection = Direction.Down;
 
     private enum Direction
@@ -48,10 +48,10 @@ public class RPGPlayerAnimator : MonoBehaviour
         InitializeUVCoordinates();
         
         Vector3[] vertices = new Vector3[4];
-        vertices[0] = new Vector3(0, 0);
-        vertices[1] = new Vector3(0, 1);
-        vertices[2] = new Vector3(1, 1);
-        vertices[3] = new Vector3(1, 0);
+        vertices[0] = new Vector3(-0.5f, 0);
+        vertices[1] = new Vector3(-.5f, 1);
+        vertices[2] = new Vector3(.5f, 1);
+        vertices[3] = new Vector3(.5f, 0);
 
         int[] triangles = new int[6];
         triangles[0] = 0;
@@ -104,10 +104,10 @@ public class RPGPlayerAnimator : MonoBehaviour
     {
         return new []
         {
-            new Vector2((columnIndex * (ColumnWidth + 2f) + 1f) / MaterialWidth, (lineIndex * (LineHeight + 2f) + 1f) / MaterialHeight),
-            new Vector2((columnIndex * (ColumnWidth + 2f) + 1f) / MaterialWidth, ((lineIndex + 1) * (LineHeight + 2f) - 1f) / MaterialHeight),
-            new Vector2(((columnIndex + 1) * (ColumnWidth + 2f) - 1f) / MaterialWidth, ((lineIndex + 1) * (LineHeight + 2f) - 1f) / MaterialHeight),
-            new Vector2(((columnIndex + 1) * (ColumnWidth + 2f) - 1f) / MaterialWidth, (lineIndex * (LineHeight + 2f) + 1f) / MaterialHeight)
+            new Vector2((float)columnIndex * ColumnWidth / MaterialWidth, (float)lineIndex * LineHeight / MaterialHeight),
+            new Vector2((float)columnIndex * ColumnWidth / MaterialWidth, (lineIndex + 1f) * LineHeight / MaterialHeight),
+            new Vector2((columnIndex + 1f) * ColumnWidth / MaterialWidth, (lineIndex + 1f) * LineHeight / MaterialHeight),
+            new Vector2((columnIndex + 1f) * ColumnWidth / MaterialWidth, (float)lineIndex * LineHeight / MaterialHeight)
         };
     }
 
