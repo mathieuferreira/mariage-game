@@ -1,6 +1,6 @@
-using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using EditorExtension;
 
 namespace Adventure
 {
@@ -10,7 +10,8 @@ namespace Adventure
         private const float Speed = 1f;
         
         [SerializeField] private RPGPlayerAnimator animator;
-        [SerializeField] private GameObject[] walkingBounds;
+        public Vector2 topRightCorner;
+        public Vector2 lowerLeftCorner;
     
         private enum State
         {
@@ -21,7 +22,7 @@ namespace Adventure
         private Vector3 walkingDirection;
         private State currentState;
         private float timer;
-        private BoxCollider2D boxCollider;
+        //private BoxCollider2D boxCollider;
         private Vector3[] bounds;
         private bool locked;
 
@@ -29,21 +30,23 @@ namespace Adventure
         {
             currentState = State.Idle;
             InitializeRandomTimer();
-            boxCollider = GetComponent<BoxCollider2D>();
-            bounds = new Vector3[2]
+            //boxCollider = GetComponent<BoxCollider2D>();
+            Vector2 currentPosition = transform.position;
+            bounds = new []
             {
-                new Vector3(999999999, -999999999),
-                new Vector3(999999999, -999999999)
+                new Vector3(currentPosition.x, currentPosition.x),
+                new Vector3(currentPosition.y, currentPosition.y)
             };
-
-            for (int i = 0; i < walkingBounds.Length; i++)
-            {
-                Vector3 boundPosition = walkingBounds[i].transform.position;
-                bounds[0].x = Mathf.Min(bounds[0].x, boundPosition.x);
-                bounds[0].y = Mathf.Max(bounds[0].y, boundPosition.x);
-                bounds[1].x = Mathf.Min(bounds[1].x, boundPosition.y);
-                bounds[1].y = Mathf.Max(bounds[1].y, boundPosition.y);
-            }
+            
+            bounds[0].x = Mathf.Min(bounds[0].x, topRightCorner.x);
+            bounds[0].y = Mathf.Max(bounds[0].y, topRightCorner.x);
+            bounds[1].x = Mathf.Min(bounds[1].x, topRightCorner.y);
+            bounds[1].y = Mathf.Max(bounds[1].y, topRightCorner.y);
+            
+            bounds[0].x = Mathf.Min(bounds[0].x, lowerLeftCorner.x);
+            bounds[0].y = Mathf.Max(bounds[0].y, lowerLeftCorner.x);
+            bounds[1].x = Mathf.Min(bounds[1].x, lowerLeftCorner.y);
+            bounds[1].y = Mathf.Max(bounds[1].y, lowerLeftCorner.y);
         }
         
         private void InitializeRandomTimer()
@@ -102,13 +105,10 @@ namespace Adventure
             Vector3 candidatePosition = transform.position + walkingDirection * distance;
             
             if (
-                walkingBounds.Length > 0 && 
-                (
-                    candidatePosition.x < bounds[0].x
-                    || candidatePosition.x > bounds[0].y
-                    || candidatePosition.y < bounds[1].x
-                    || candidatePosition.y > bounds[1].y
-                )
+                candidatePosition.x < bounds[0].x
+                || candidatePosition.x > bounds[0].y
+                || candidatePosition.y < bounds[1].x
+                || candidatePosition.y > bounds[1].y
             )
             {
                 candidatePosition.x = Mathf.Max(bounds[0].x, Mathf.Min(bounds[0].y, candidatePosition.x));
