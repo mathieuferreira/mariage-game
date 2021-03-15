@@ -1,5 +1,5 @@
 ﻿using System;
-using CodeMonkey.Utils;
+using Adventure;
 using UnityEngine;
 
 namespace ChoosePlayer
@@ -27,14 +27,10 @@ namespace ChoosePlayer
                     return;
                 }
             }
-        
-            FunctionTimer.Create(() =>
-            {
-                ScoreManager.Initialize();
-                PlayerPrefs.SetInt("AdventureStage", 1);
-                PlayerPrefs.Save();
-                Loader.Load(Loader.Scene.Adventure);
-            }, .5f);
+            
+            ScoreManager.Initialize();
+            AdventureLevel.SetStage(AdventureLevel.Stage.School);
+            Loader.Load(Loader.Scene.Adventure);
         }
     }
 }

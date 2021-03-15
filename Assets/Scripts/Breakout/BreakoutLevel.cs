@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using CodeMonkey.Utils;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -117,7 +116,7 @@ namespace Breakout
                 int newAngle = Random.Range(45, 135);
                 
                 Vector3 velocity = ball.GetVelocity();
-                Vector3 newVelocity = UtilsClass.GetVectorFromAngle(newAngle);
+                Vector3 newVelocity = Utils.GetVectorFromAngle(newAngle);
 
                 if (Math.Abs(Vector3.Angle(velocity, newVelocity)) < 5)
                 {

@@ -1,5 +1,4 @@
 ﻿using System;
-using CodeMonkey.Utils;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +13,8 @@ public class InitialWindow : MonoBehaviour
     
     private int[] selectedButtons;
     private float errorTimer;
-    
+    private static readonly int PlayerEnterGame = Animator.StringToHash("PlayerEnterGame");
+
     private void Awake()
     {
         selectedButtons = new [] {0, 0};
@@ -31,10 +31,7 @@ public class InitialWindow : MonoBehaviour
     {
         if (AreAllPlayersJoinedTheGame())
         {
-            FunctionTimer.Create(() =>
-            {
-                Loader.Load(Loader.Scene.ChoosePlayer);
-            }, .5f);
+            Loader.Load(Loader.Scene.ChoosePlayer);
         }
     }
 
@@ -44,7 +41,7 @@ public class InitialWindow : MonoBehaviour
 
         int playerId = playerReadyButton.GetPlayerId() == PlayerID.Player1 ? 0 : 1;
         
-        buttons[selectedButtons[playerId]].transform.GetComponent<Animator>().SetTrigger("PlayerEnterGame");
+        buttons[selectedButtons[playerId]].transform.GetComponent<Animator>().SetTrigger(PlayerEnterGame);
         
         String error = GetErrorText(playerId);
 

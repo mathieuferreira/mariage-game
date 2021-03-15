@@ -9,7 +9,7 @@ namespace School
         public event EventHandler<HitEventArgs> OnHit;
     
         private static float ROTATION_SPEED = 2f;
-        private static float INITIAL_SPEED = 4f;
+        private static float INITIAL_SPEED = 5f;
         private static float DESTROY_MIN_X = -14f;
         private static float DESTROY_MAX_X = 14f;
 

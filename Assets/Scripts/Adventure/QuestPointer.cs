@@ -1,93 +1,94 @@
-﻿using Adventure;
-using UnityEngine;
-using CodeMonkey.Utils;
+﻿using UnityEngine;
 
-public class QuestPointer : MonoBehaviour
+namespace Adventure
 {
-    private static float BORDER_SIZE = 60f;
+    public class QuestPointer : MonoBehaviour
+    {
+        private static float BORDER_SIZE = 60f;
     
-    [SerializeField] private Camera uiCamera = default;
-    [SerializeField] private Sprite arrowSprite = default;
-    [SerializeField] private Sprite crossSprite = default;
+        [SerializeField] private Camera uiCamera = default;
+        [SerializeField] private Sprite arrowSprite = default;
+        [SerializeField] private Sprite crossSprite = default;
 
-    private Vector3 targetPosition;
-    private RectTransform pointerRectTransform;
-    private SpriteRenderer pointerSpriteRenderer;
+        private Vector3 targetPosition;
+        private RectTransform pointerRectTransform;
+        private SpriteRenderer pointerSpriteRenderer;
 
-    private void Awake()
-    {
-        pointerRectTransform = transform.Find("Pointer").GetComponent<RectTransform>();
-        pointerSpriteRenderer = transform.Find("Pointer").GetComponent<SpriteRenderer>();
-        gameObject.SetActive(false);
-    }
-
-    private void FixedUpdate()
-    {
-        Vector3 targetPositionScreenPoint = Camera.main.WorldToScreenPoint(targetPosition);
-        bool isOffScreen = targetPositionScreenPoint.x <= BORDER_SIZE || targetPositionScreenPoint.x >= Screen.width - BORDER_SIZE ||
-                           targetPositionScreenPoint.y <= BORDER_SIZE || targetPositionScreenPoint.y >= Screen.height - BORDER_SIZE;
-
-        if (isOffScreen)
+        private void Awake()
         {
-            pointerSpriteRenderer.sprite = arrowSprite;
-            
-            RotatePointer();
-            
-            Vector3 cappedTargetScreenPosition = targetPositionScreenPoint;
-            if (cappedTargetScreenPosition.x <= BORDER_SIZE) cappedTargetScreenPosition.x = BORDER_SIZE;
-            if (cappedTargetScreenPosition.x >= Screen.width - BORDER_SIZE) cappedTargetScreenPosition.x = Screen.width - BORDER_SIZE;
-            if (cappedTargetScreenPosition.y <= BORDER_SIZE) cappedTargetScreenPosition.y = BORDER_SIZE;
-            if (cappedTargetScreenPosition.y >= Screen.height - BORDER_SIZE) cappedTargetScreenPosition.y = Screen.height - BORDER_SIZE;
-
-            SetPointerPosition(cappedTargetScreenPosition);
+            pointerRectTransform = transform.Find("Pointer").GetComponent<RectTransform>();
+            pointerSpriteRenderer = transform.Find("Pointer").GetComponent<SpriteRenderer>();
+            gameObject.SetActive(false);
         }
-        else
+
+        private void FixedUpdate()
         {
-            pointerSpriteRenderer.sprite = crossSprite;
-            pointerRectTransform.localEulerAngles = new Vector3(0f, 0f, 0f);
-            SetPointerPosition(targetPositionScreenPoint);
+            Vector3 targetPositionScreenPoint = Camera.main.WorldToScreenPoint(targetPosition);
+            bool isOffScreen = targetPositionScreenPoint.x <= BORDER_SIZE || targetPositionScreenPoint.x >= Screen.width - BORDER_SIZE ||
+                               targetPositionScreenPoint.y <= BORDER_SIZE || targetPositionScreenPoint.y >= Screen.height - BORDER_SIZE;
+
+            if (isOffScreen)
+            {
+                pointerSpriteRenderer.sprite = arrowSprite;
+            
+                RotatePointer();
+            
+                Vector3 cappedTargetScreenPosition = targetPositionScreenPoint;
+                if (cappedTargetScreenPosition.x <= BORDER_SIZE) cappedTargetScreenPosition.x = BORDER_SIZE;
+                if (cappedTargetScreenPosition.x >= Screen.width - BORDER_SIZE) cappedTargetScreenPosition.x = Screen.width - BORDER_SIZE;
+                if (cappedTargetScreenPosition.y <= BORDER_SIZE) cappedTargetScreenPosition.y = BORDER_SIZE;
+                if (cappedTargetScreenPosition.y >= Screen.height - BORDER_SIZE) cappedTargetScreenPosition.y = Screen.height - BORDER_SIZE;
+
+                SetPointerPosition(cappedTargetScreenPosition);
+            }
+            else
+            {
+                pointerSpriteRenderer.sprite = crossSprite;
+                pointerRectTransform.localEulerAngles = new Vector3(0f, 0f, 0f);
+                SetPointerPosition(targetPositionScreenPoint);
+            }
         }
-    }
 
-    private void RotatePointer()
-    {
-        Vector3 fromPosition = Camera.main.transform.position;
-        fromPosition.z = 0f;
-        Vector3 direction = (targetPosition - fromPosition).normalized;
-        pointerRectTransform.localEulerAngles = new Vector3(0f, 0f, UtilsClass.GetAngleFromVector(direction));
-    }
+        private void RotatePointer()
+        {
+            Vector3 fromPosition = Camera.main.transform.position;
+            fromPosition.z = 0f;
+            Vector3 direction = (targetPosition - fromPosition).normalized;
+            pointerRectTransform.localEulerAngles = new Vector3(0f, 0f, Utils.GetAngleFromVector(direction));
+        }
 
-    private void SetPointerPosition(Vector3 position)
-    {
-        Vector3 pointerWorldPosition = uiCamera.ScreenToWorldPoint(position);
-        pointerRectTransform.position = pointerWorldPosition;
-        pointerRectTransform.localPosition = new Vector3(pointerRectTransform.localPosition.x, pointerRectTransform.localPosition.y, 0f);
-    }
+        private void SetPointerPosition(Vector3 position)
+        {
+            Vector3 pointerWorldPosition = uiCamera.ScreenToWorldPoint(position);
+            pointerRectTransform.position = pointerWorldPosition;
+            pointerRectTransform.localPosition = new Vector3(pointerRectTransform.localPosition.x, pointerRectTransform.localPosition.y, 0f);
+        }
 
-    public void Show(Vector3 targetPosition)
-    {
-        this.targetPosition = targetPosition;
-        Show();
-    }
+        public void Show(Vector3 targetPosition)
+        {
+            this.targetPosition = targetPosition;
+            Show();
+        }
 
-    public void Show(QuestPosition quest)
-    {
-        targetPosition = quest.GetPosition();
-        Show();
-    }
+        public void Show(QuestPosition quest)
+        {
+            targetPosition = quest.GetPosition();
+            Show();
+        }
 
-    public void Show()
-    {
-        gameObject.SetActive(true);
-    }
+        public void Show()
+        {
+            gameObject.SetActive(true);
+        }
 
-    public void Hide()
-    {
-        gameObject.SetActive(false);
-    }
+        public void Hide()
+        {
+            gameObject.SetActive(false);
+        }
 
-    public Vector3 GetTarget()
-    {
-        return targetPosition;
+        public Vector3 GetTarget()
+        {
+            return targetPosition;
+        }
     }
 }

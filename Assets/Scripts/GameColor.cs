@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using CodeMonkey.Utils;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public static class GameColor
@@ -55,7 +53,7 @@ public static class GameColor
         
         foreach (KeyValuePair<string, string> entry in test)
         {
-            Color color = UtilsClass.GetColorFromString(entry.Value);
+            Color color = Utils.GetColorFromString(entry.Value);
             result += "public static Color " + entry.Key + " = new Color(" + color.r + ", " + color.g + ", " + color.b + "); // #" + entry.Value + "\n";
         }
     }

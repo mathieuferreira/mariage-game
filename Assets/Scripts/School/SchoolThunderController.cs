@@ -1,6 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
+using CodeMonkey.Utils;
 using Random = UnityEngine.Random;
 
 namespace School
@@ -54,6 +54,7 @@ namespace School
                 fadeOutTimer = FadeOutMaxTimer;
                 ManageLightIntensity();
                 InitializeTimer();
+                UtilsClass.ShakeCamera(.05f, .1f);
             }
         }
 

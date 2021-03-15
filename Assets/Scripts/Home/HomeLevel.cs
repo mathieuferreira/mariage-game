@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using CodeMonkey.Utils;
 using Adventure;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -148,6 +149,7 @@ namespace Home
 
         private void OnPlayerDamaged(object sender, EventArgs e)
         {
+            UtilsClass.ShakeCamera(.05f, .1f);
             heartSystem.Damage();
         }
 
