@@ -58,7 +58,6 @@ namespace Home
             animator.SetFloat(AnimationSpeed, 0f);
             animator.SetTrigger(AnimationDead);
             currentState = State.Dead;
-            Debug.Log("Boss Died");
         }
 
         // Update is called once per frame
@@ -168,7 +167,6 @@ namespace Home
 
         public void Disappear()
         {
-            Debug.Log("Boss Disappear");
             OnDisappear?.Invoke(this, EventArgs.Empty);
             Destroy(gameObject);
         }

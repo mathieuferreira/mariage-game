@@ -1,10 +1,11 @@
 ﻿using System;
+using Adventure;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Bar
 {
-    public class BarGuest : MonoBehaviour
+    public class BarGuest : InteractableArea<BarPlayer>
     {
         public event EventHandler<NeedCompleteEventArgs> OnNeedsComplete;
     
@@ -118,58 +119,39 @@ namespace Bar
             StartIdleState();
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        protected override bool IsPlayerAccepted(BarPlayer player)
         {
-            BarPlayer player = other.GetComponent<BarPlayer>();
-
-            if (player != null && CanPlayerSatisfyNeeds(player))
-            {
-                player.ShowAdviceButton();
-            }
+            if (!CanPlayerSatisfyNeeds(player))
+                return false;
+            
+            return base.IsPlayerAccepted(player);
         }
 
-        private void OnTriggerExit2D(Collider2D other)
+        protected override void DoAreaAction(BarPlayer player)
         {
-            BarPlayer player = other.GetComponent<BarPlayer>();
-
-            if (player != null)
+            for (int i = 0; i < needs.Count(); i++)
             {
-                player.HideAdviceButton();
-            }
-        }
-
-        private void OnTriggerStay2D(Collider2D other)
-        {
-            BarPlayer player = other.GetComponent<BarPlayer>();
-
-            if (player != null && UserInput.IsActionKeyDown(player.GetPlayerId()))
-            {
-                for (int i = 0; i < needs.Count(); i++)
+                if (needs.Get(i).GetKind() == BarConsumable.Kind.Talk || player.GetConsumableList().TryConsume(needs.Get(i).GetKind()) != null)
                 {
-                    BarConsumable consumable = player.GetConsumableList().TryConsume(needs.Get(i).GetKind());
+                    animator.SetDirection(player.GetPosition() - transform.position);
+                    BarConsumable need = needs.TryConsume(needs.Get(i).GetKind());
 
-                    if (consumable != null || needs.Get(i).GetKind() == BarConsumable.Kind.Talk)
+                    if (need != null)
                     {
-                        animator.SetDirection(player.GetPosition() - transform.position);
-                        BarConsumable need = needs.TryConsume(needs.Get(i).GetKind());
-
-                        if (need != null)
+                        SoundManager.GetInstance().Play("Give");
+                        ScoreManager.IncrementScore(player.GetPlayerId());
+                        OnNeedsComplete?.Invoke(this, new NeedCompleteEventArgs()
                         {
-                            SoundManager.GetInstance().Play("Give");
-                            ScoreManager.IncrementScore(player.GetPlayerId());
-                            OnNeedsComplete?.Invoke(this, new NeedCompleteEventArgs()
-                                {
-                                    Consumable = need
-                                });
-                        }
-
-                        if (!CanPlayerSatisfyNeeds(player))
-                            player.HideAdviceButton();
-
-                        StartIdleState();
-                    
-                        break;
+                            Consumable = need
+                        });
                     }
+
+                    if (!CanPlayerSatisfyNeeds(player))
+                        player.HideAdviceButton();
+
+                    StartIdleState();
+                    
+                    return;
                 }
             }
         }

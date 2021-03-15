@@ -12,7 +12,6 @@ public class HealthBar : MonoBehaviour
     private void Awake()
     {
         progressBar = GetComponent<ProgressBar>();
-        Debug.Log(progressBar);
     }
 
     public void Setup(HealthSystem system)

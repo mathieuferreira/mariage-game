@@ -42,7 +42,6 @@ namespace School
             if (fadeOutTimer <= 0f)
             {
                 SoundManager.GetInstance().Play("Thunder");
-                Debug.Log("Play Thunder");
             }
         }
 

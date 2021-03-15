@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using Adventure;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace Bar
 {
-    public class BarConsumableArea : MonoBehaviour
+    public class BarConsumableArea : InteractableArea<BarPlayer>
     {
         [SerializeField] private Transform[] consumablePositions = default;
         [FormerlySerializedAs("consumableType")] [SerializeField] private BarConsumable.Kind consumableKind = default;
@@ -16,38 +17,23 @@ namespace Bar
         {
             consumableList = new List<GameObject>();
         }
-
-        private void OnTriggerStay2D(Collider2D other)
-        {
-            if (!HasConsumableAvailable())
-                return;
         
-            BarPlayer player = other.GetComponent<BarPlayer>();
+        protected override bool IsPlayerAccepted(BarPlayer player)
+        {
+            if (!HasConsumableAvailable() || player.GetConsumableList().IsFull())
+                return false;
 
-            if (player != null && !player.GetConsumableList().IsFull())
-            {
-                player.ShowAdviceButton();
-            
-                if (UserInput.IsActionKeyDown(player.GetPlayerId()))
-                {
-                    BarConsumable cons = TryConsume();
-                    player.GetConsumableList().TryAdd(cons);
-                    SoundManager.GetInstance().Play("Take");
-                
-                    if (player.GetConsumableList().IsFull())
-                        player.HideAdviceButton();
-                }
-            }
+            return base.IsPlayerAccepted(player);
         }
 
-        private void OnTriggerExit2D(Collider2D other)
+        protected override void DoAreaAction(BarPlayer player)
         {
-            BarPlayer player = other.GetComponent<BarPlayer>();
-
-            if (player != null)
-            {
+            BarConsumable cons = TryConsume();
+            player.GetConsumableList().TryAdd(cons);
+            SoundManager.GetInstance().Play("Take");
+                
+            if (player.GetConsumableList().IsFull() || !HasConsumableAvailable())
                 player.HideAdviceButton();
-            }
         }
 
         private BarConsumable TryConsume()
@@ -78,6 +64,14 @@ namespace Bar
             position.z = 0f;
             Transform newConsumable = Instantiate(consumable, position, Quaternion.identity);
             consumableList.Add(newConsumable.gameObject);
+
+            foreach (BarPlayer player in GetPlayersInArea())
+            {
+                if (!player.GetConsumableList().IsFull())
+                {
+                    player.ShowAdviceButton();
+                }
+            }
         }
     }
 }

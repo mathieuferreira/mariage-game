@@ -11,15 +11,19 @@ namespace EditorExtension
     public class MovableGuestEditor : Editor {
 
         public void OnSceneGUI () {
+            serializedObject.Update();
+            SerializedProperty topRightCornerProp = serializedObject.FindProperty("topRightCorner");
+            SerializedProperty lowerLeftCornerProp = serializedObject.FindProperty("lowerLeftCorner");
             MovableGuest movableGuest = (MovableGuest) target;
             
             EditorGUI.BeginChangeCheck();
-            Vector3 topRightCorner = Handles.PositionHandle(movableGuest.topRightCorner, Quaternion.identity);
-            Vector3 lowerLeftCorner = Handles.PositionHandle(movableGuest.lowerLeftCorner, Quaternion.identity);
+            Vector3 topRightCorner = Handles.PositionHandle(topRightCornerProp.vector2Value, Quaternion.identity);
+            Vector3 lowerLeftCorner = Handles.PositionHandle(lowerLeftCornerProp.vector2Value, Quaternion.identity);
             if (EditorGUI.EndChangeCheck())
             {
-                movableGuest.topRightCorner = topRightCorner;
-                movableGuest.lowerLeftCorner = lowerLeftCorner;
+                topRightCornerProp.vector2Value = topRightCorner;
+                lowerLeftCornerProp.vector2Value = lowerLeftCorner;
+                serializedObject.ApplyModifiedProperties();
             }
 
             Vector3 currentPosition = movableGuest.transform.position;

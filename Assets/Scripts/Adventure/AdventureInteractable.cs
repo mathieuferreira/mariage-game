@@ -4,9 +4,9 @@ using UnityEngine;
 namespace Adventure
 {
     [RequireComponent(typeof(CircleCollider2D))]
-    public class AdventureInteractable : MonoBehaviour
+    public class AdventureInteractable : InteractableArea<AdventurePlayer>
     {
-        [SerializeField] private string name;
+        [SerializeField] private string displayedName;
         [SerializeField] private Dialogue[] dialogues;
         
         private MovableGuest movableGuest;
@@ -16,55 +16,30 @@ namespace Adventure
             movableGuest = GetComponent<MovableGuest>();
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        protected override void DoAreaAction(AdventurePlayer player)
         {
-            AdventurePlayer player = other.GetComponent<AdventurePlayer>();
+            string content = "";
 
-            if (player != null)
+            if (!string.IsNullOrEmpty(displayedName))
+                content += displayedName + " : ";
+
+            foreach (Dialogue dialogue in dialogues)
             {
-                player.ShowAdviceButton();
-            }
-        }
-
-        private void OnTriggerExit2D(Collider2D other)
-        {
-            AdventurePlayer player = other.GetComponent<AdventurePlayer>();
-
-            if (player != null)
-            {
-                player.HideAdviceButton();
-            }
-        }
-
-        private void OnTriggerStay2D(Collider2D other)
-        {
-            AdventurePlayer player = other.GetComponent<AdventurePlayer>();
-
-            if (player != null && UserInput.IsActionKeyDown(player.GetPlayerId()))
-            {
-                string content = "";
-
-                if (!string.IsNullOrEmpty(name))
-                    content += name + " : ";
-
-                foreach (Dialogue dialogue in dialogues)
-                {
-                    if (!dialogue.IsApplicableForPlayer(player.GetPlayerId())) 
-                        continue;
+                if (!dialogue.IsApplicableForPlayer(player.GetPlayerId())) 
+                    continue;
                     
-                    content += dialogue.GetContent();
-                    break;
-                }
-                
-                if (movableGuest != null)
-                {
-                    movableGuest.SetDirection(player.GetPosition() - transform.position);
-                    movableGuest.LockMove();
-                    DialogueManager.GetInstance().OnDialogueEnd += OnDialogueEnd;
-                }
-                
-                DialogueManager.GetInstance().StartDialogue(content, player.GetPlayerId());
+                content += dialogue.GetContent();
+                break;
             }
+                
+            if (movableGuest != null)
+            {
+                movableGuest.SetDirection(player.GetPosition() - transform.position);
+                movableGuest.LockMove();
+                DialogueManager.GetInstance().OnDialogueEnd += OnDialogueEnd;
+            }
+                
+            DialogueManager.GetInstance().StartDialogue(content, player.GetPlayerId());
         }
 
         private void OnDialogueEnd(object sender, EventArgs e)

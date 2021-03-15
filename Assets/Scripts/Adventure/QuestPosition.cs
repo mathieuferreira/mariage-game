@@ -1,40 +1,17 @@
 ﻿using System;
-using CodeMonkey;
 using UnityEngine;
 
 namespace Adventure
 {
-    public class QuestPosition : MonoBehaviour
+    public class QuestPosition : InteractableArea<AdventurePlayer>
     {
         public event EventHandler<QuestCompleteEvent> OnQuestComplete;
 
         private float timer;
-    
-        private void OnTriggerStay2D(Collider2D other)
+
+        protected override void DoAreaAction(AdventurePlayer player)
         {
-            BaseRPGPlayer player = other.GetComponent<BaseRPGPlayer>();
-            if (player != null && UserInput.IsActionKeyDown(player.GetPlayerId()))
-            {
-                OnQuestComplete?.Invoke(this, new QuestCompleteEvent() { Player = player });
-            }
-        }
-    
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            BaseRPGPlayer player = other.GetComponent<BaseRPGPlayer>();
-            if (player != null)
-            {
-                player.ShowAdviceButton();
-            }
-        }
-    
-        private void OnTriggerExit2D(Collider2D other)
-        {
-            BaseRPGPlayer player = other.GetComponent<BaseRPGPlayer>();
-            if (player != null)
-            {
-                player.HideAdviceButton();
-            }
+            OnQuestComplete?.Invoke(this, new QuestCompleteEvent() { Player = player });
         }
 
         public Vector3 GetPosition()

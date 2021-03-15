@@ -1,5 +1,4 @@
 ﻿using System;
-using JetBrains.Annotations;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour
@@ -72,27 +71,13 @@ public class SoundManager : MonoBehaviour
     public void Play(string soundName)
     {
         Sound sound = Array.Find(sounds, s => s.name == soundName);
-
-        if (sound == null)
-        {
-            Debug.LogWarning("Sound " + soundName + " not found!");
-            return;
-        }
-        
-        sound.source.Play();
+        sound?.source.Play();
     }
 
     public void StopPlaying(string soundName)
     {
         Sound sound = Array.Find(sounds, s => s.name == soundName);
-
-        if (sound == null)
-        {
-            Debug.LogWarning("Sound " + soundName + " not found!");
-            return;
-        }
-        
-        sound.source.Stop();
+        sound?.source.Stop();
     }
 
     public void SetVolume(string soundName, float level)
@@ -101,7 +86,6 @@ public class SoundManager : MonoBehaviour
 
         if (sound == null)
         {
-            Debug.LogWarning("Sound " + soundName + " not found!");
             return;
         }
         

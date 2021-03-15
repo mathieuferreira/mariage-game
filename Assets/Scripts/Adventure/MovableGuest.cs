@@ -10,8 +10,8 @@ namespace Adventure
         private const float Speed = 1f;
         
         [SerializeField] private RPGPlayerAnimator animator;
-        [SerializeField] public Vector2 topRightCorner;
-        [SerializeField] public Vector2 lowerLeftCorner;
+        [SerializeField] private Vector2 topRightCorner;
+        [SerializeField] private Vector2 lowerLeftCorner;
     
         private enum State
         {

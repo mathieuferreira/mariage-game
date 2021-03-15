@@ -58,7 +58,5 @@ public static class GameColor
             Color color = UtilsClass.GetColorFromString(entry.Value);
             result += "public static Color " + entry.Key + " = new Color(" + color.r + ", " + color.g + ", " + color.b + "); // #" + entry.Value + "\n";
         }
-
-        Debug.Log(result);
     }
 }
