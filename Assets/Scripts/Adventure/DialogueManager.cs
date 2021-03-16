@@ -85,6 +85,7 @@ namespace Adventure
                 if (charIndex >= textToWrite.Length)
                 {
                     SoundManager.GetInstance().StopPlaying("Talking");
+                    box.ShowPlayerButton(playerID);
                     nextStatus = Status.WaitingForValidation;
                     return;
                 }
@@ -105,6 +106,7 @@ namespace Adventure
             {
                 box.SetText(textToWrite);
                 SoundManager.GetInstance().StopPlaying("Talking");
+                box.ShowPlayerButton(playerID);
                 nextStatus = Status.WaitingForValidation;
                 return;
             }

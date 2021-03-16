@@ -50,7 +50,7 @@ public class CameraFollow : MonoBehaviour
             targetOrthoSize = minSizeY;
         }
 
-        targetOrthoSize += 5f;
+        targetOrthoSize += 10f;
 
         return targetOrthoSize / 2f;
     }
