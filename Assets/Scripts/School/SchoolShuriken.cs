@@ -41,9 +41,10 @@ namespace School
             velocity = (transform.position.x > 0 ? Vector3.left : Vector3.right) * INITIAL_SPEED;
         }
 
-        public void StartMoving(PlayerID player, Vector3 velocity)
+        public void StartMoving(PlayerID player, Vector3 startVelocity)
         {
-            this.velocity = velocity;
+            lastPlayerTouched = player;
+            velocity = startVelocity;
         }
 
         private void OnCollisionEnter2D(Collision2D other)
@@ -53,11 +54,12 @@ namespace School
             if (player != null)
             {
                 lastPlayerTouched = player.GetPlayerId();
-                Rigidbody2D rigidbody2D = other.transform.GetComponent<Rigidbody2D>();
-                Vector3 playerPosition = rigidbody2D.position;
-                Vector3 playerVelocity = rigidbody2D.velocity;
+                Rigidbody2D playerRigidbody2D = other.transform.GetComponent<Rigidbody2D>();
+                Vector3 playerPosition = playerRigidbody2D.position;
+                Vector3 playerVelocity = playerRigidbody2D.velocity;
                 velocity = new Vector3( - velocity.x * 1.1f, (transform.position.y - playerPosition.y) * 2f + playerVelocity.y * .75f , 0f);
                 SoundManager.GetInstance().Play("ImpactPlayer");
+                player.PlayBounceAnimation(other.contacts[0].point);
             }
             else if(other.gameObject.CompareTag("Border"))
             {
@@ -105,8 +107,7 @@ namespace School
         public void DestroySelf()
         {
             isDestroyed = true;
-            if (OnDestroyed != null)
-                OnDestroyed(this, EventArgs.Empty);
+            OnDestroyed?.Invoke(this, EventArgs.Empty);
             Destroy(gameObject);
         }
 
@@ -117,7 +118,7 @@ namespace School
 
         public class HitEventArgs : EventArgs
         {
-            private Vector3 hitPosition;
+            private readonly Vector3 hitPosition;
             public HitEventArgs(Vector3 position)
             {
                 hitPosition = position;

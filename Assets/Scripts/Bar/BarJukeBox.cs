@@ -90,7 +90,7 @@ namespace Bar
     public class JukeBoxMusic
     {
         [SerializeField] private String label;
-        [SerializeField] private Color color;
+        [SerializeField] private Color color = default;
         [SerializeField] private float duration;
 
         public String GetLabel()

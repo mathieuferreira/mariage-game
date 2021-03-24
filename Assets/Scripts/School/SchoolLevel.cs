@@ -111,6 +111,11 @@ namespace School
                     StartBossStage();
                 }
             }
+
+            for (int i = 0; i < avatars.Length; i++)
+            {
+                avatars[i].SetAlpha(players[i].GetPosition().y > -2 ? 1f : .3f);
+            }
         }
 
         private void StartGame(object sender, EventArgs e)
@@ -161,16 +166,21 @@ namespace School
                 if (!shurikens[i].IsDestroyed())
                     shurikens[i].DestroySelf();
             }
+
+            for (int i = 0; i < avatars.Length; i++)
+            {
+                avatars[i].Hide();
+            }
         }
 
         private void StartBossStage()
         {
             currentStage = Stage.Boss;
-            SchoolBoss boss = Instantiate(this.boss, new Vector3(0f, 0f, 0f), Quaternion.identity);
-            boss.GetHealthSystem().OnDied += BossOnDied;
+            SchoolBoss newBoss = Instantiate(boss, new Vector3(0f, 0f, 0f), Quaternion.identity);
+            newBoss.GetHealthSystem().OnDied += BossOnDied;
             progressBar.GetComponent<GameUI>().Hide();
             bossHealthBar.Show();
-            bossHealthBar.Setup(boss.GetHealthSystem());
+            bossHealthBar.Setup(newBoss.GetHealthSystem());
             SoundManager.GetInstance().Play("Zombi2");
         }
 
@@ -197,7 +207,7 @@ namespace School
         private void OnOnShurikenLaunch(object sender, ShurikenLaunchEventArgs e)
         {
             SchoolPlayer player = sender as SchoolPlayer;
-            SchoolShuriken newShuriken = CreateShuriken(e.getPosition());
+            SchoolShuriken newShuriken = CreateShuriken(e.GetPosition());
             newShuriken.StartMoving(player.GetPlayerId());
         }
 
@@ -215,7 +225,7 @@ namespace School
             SchoolShuriken shuriken = sender as SchoolShuriken;
             ScoreManager.IncrementScore(shuriken.GetLastPlayerTouched());
             ParticleSystem blood = Instantiate(bloodParticleSystem, e.GetHitPosition(), Quaternion.identity);
-            Destroy(blood.gameObject, 2f);
+            Destroy(blood.gameObject, 4f);
         }
 
         private void OnShurikenDestroyed(object sender, EventArgs args)
