@@ -13,6 +13,7 @@ namespace School
     
         [SerializeField] private PlayerID player = default;
         [SerializeField] private GameObject shieldImpact = default;
+        [SerializeField] private Tutorial tutorial;
         private bool moveLocked;
         private Rigidbody2D rigidBody;
         private GameObject shuriken;
@@ -29,6 +30,7 @@ namespace School
             shurikenPosition = shurikenTransform.localPosition;
             shuriken.SetActive(false);
             animator = GetComponent<Animator>();
+            tutorial.Hide();
         }
 
         private void Update()
@@ -67,6 +69,7 @@ namespace School
         {
             //rigidBody.velocity += move * (ACCELERATION * Time.deltaTime);
             rigidBody.velocity = move * SPEED;
+            tutorial.Complete();
         }
 
         private void LaunchShuriken()
@@ -87,6 +90,7 @@ namespace School
         public void UnlockMove()
         {
             moveLocked = false;
+            tutorial.Show();
         }
 
         public bool HasShuriken()

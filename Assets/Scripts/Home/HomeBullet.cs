@@ -13,11 +13,13 @@ namespace Home
     
         private PlayerID playerId;
         private Rigidbody2D rigidBody;
+        private SpriteRenderer spriteRenderer;
 
         private void Awake()
         {
             rigidBody = GetComponent<Rigidbody2D>();
             rigidBody.velocity = Vector2.right * Speed;
+            spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
         private void FixedUpdate()
@@ -31,7 +33,7 @@ namespace Home
         public void Setup(PlayerID player, Sprite sprite, Color lightColor)
         {
             playerId = player;
-            GetComponent<SpriteRenderer>().sprite = sprite;
+            spriteRenderer.sprite = sprite;
             bulletLight.color = lightColor;
         }
 

@@ -6,7 +6,7 @@ namespace Adventure
     public class AdventureLevel : MonoBehaviour
     {
         [SerializeField] private BaseRPGPlayer[] players = default;
-        [SerializeField] private QuestPointer questPointer = default;
+        [SerializeField] private QuestPointerManager questPointerManager = default;
         [SerializeField] private CameraFollow cameraFollow = default;
 
         [SerializeField] private StageInformation stage1 = default;
@@ -36,12 +36,12 @@ namespace Adventure
 
         private void OnDialogueEnd(object sender, EventArgs e)
         {
-            questPointer.Show();
+            questPointerManager.Show();
         }
 
         private void OnDialogueStart(object sender, EventArgs e)
         {
-            questPointer.Hide();
+            questPointerManager.Hide();
         }
 
         private void Start()
@@ -83,7 +83,7 @@ namespace Adventure
         private void InitializeQuest()
         {
             playerWithQuestComplete = 0;
-            questPointer.Show(currentStageInformation.GetQuestPosition());
+            questPointerManager.Show(currentStageInformation.GetQuestPosition());
             currentStageInformation.GetQuestPosition().OnQuestComplete += OnQuestPositionOnOnQuestComplete;
             currentStageInformation.GetQuestPosition().Activate();
         }

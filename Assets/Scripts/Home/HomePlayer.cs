@@ -16,10 +16,12 @@ namespace Home
         private const float MaxYPosition = HomeLevel.MaxYPosition;
 
         [SerializeField] private PlayerID playerId = default;
-        [SerializeField] private Transform bullet = default;
+        [SerializeField] private HomeBullet bullet = default;
         [SerializeField] private Sprite bulletSprite = default;
         [SerializeField] private HomeBulletFlash shootFlash = default;
         [SerializeField] private Light2D playerLight;
+        [SerializeField] private Tutorial moveTutorial;
+        [SerializeField] private Tutorial shootTutorial;
 
         private Transform gunPosition;
         private bool moveLocked;
@@ -30,6 +32,8 @@ namespace Home
             gunPosition = transform.Find("GunPosition");
             moveLocked = true;
             lightColor = playerLight.color;
+            moveTutorial.Hide();
+            shootTutorial.Hide();
         }
 
         private void Update()
@@ -69,22 +73,28 @@ namespace Home
         private void Move(Vector3 direction)
         {
             Vector3 newPosition = transform.position + direction * (Speed * Time.deltaTime);
-        
+
             if (
-                newPosition.x > MinXPosition && newPosition.x < MaxXPosition
-                                             && newPosition.y > MinYPosition && newPosition.y < MaxYPosition
+                newPosition.x > MinXPosition 
+                && newPosition.x < MaxXPosition
+                && newPosition.y > MinYPosition 
+                && newPosition.y < MaxYPosition
             )
+            {
                 transform.position = newPosition;
+                moveTutorial.Complete();
+            }
         }
 
         private void Shoot()
         {
             Vector3 position = gunPosition.position;
-            Transform projectile = Instantiate(bullet, position, bullet.rotation);
-            projectile.GetComponent<HomeBullet>().Setup(playerId, bulletSprite, lightColor);
+            HomeBullet projectile = Instantiate(bullet, position, Quaternion.Euler(0f, 0f, -90f));
+            projectile.Setup(playerId, bulletSprite, lightColor);
 
             shootFlash.Start();
             SoundManager.GetInstance().Play("Laser");
+            shootTutorial.Complete();
 
             OnShoot?.Invoke(this, EventArgs.Empty);
         }
@@ -108,6 +118,8 @@ namespace Home
         public void UnlockMove()
         {
             moveLocked = false;
+            moveTutorial.Show();
+            shootTutorial.Show();
         }
 
         public Vector3 GetPosition()

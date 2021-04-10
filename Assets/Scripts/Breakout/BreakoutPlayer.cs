@@ -8,6 +8,7 @@ namespace Breakout
         private const float Speed = 15f;
         
         [SerializeField] private PlayerID playerId = default;
+        [SerializeField] private Tutorial tutorial = default;
         
         private Rigidbody2D rb;
         private bool canMove;
@@ -19,6 +20,7 @@ namespace Breakout
         {
             rb = GetComponent<Rigidbody2D>();
             canMove = false;
+            tutorial.Hide();
         }
         
         private void Start()
@@ -43,9 +45,11 @@ namespace Breakout
             {
                 case UserInput.Direction.Left:
                     moveDirection = Vector2.left;
+                    tutorial.Complete();
                     break;
                 case UserInput.Direction.Right:
                     moveDirection = Vector2.right;
+                    tutorial.Complete();
                     break;
                 case UserInput.Direction.None:
                     moveDirection = Vector2.zero;
@@ -72,6 +76,7 @@ namespace Breakout
         public void UnlockMove()
         {
             canMove = true;
+            tutorial.Show();
         }
 
         public void LockMove()

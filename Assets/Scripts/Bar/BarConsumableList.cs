@@ -5,7 +5,7 @@ namespace Bar
 {
     public class BarConsumableList
     {
-        public event EventHandler Change;
+        public event EventHandler<BarConsumableChangeEventArgs> Change;
     
         private readonly List<BarConsumable> list;
         private readonly bool allowMultipleType;
@@ -36,7 +36,7 @@ namespace Bar
         
             list.Add(consumable);
 
-            Change?.Invoke(this, EventArgs.Empty);
+            Change?.Invoke(this, new BarConsumableChangeEventArgs(consumable));
 
             return true;
         }
@@ -83,7 +83,7 @@ namespace Bar
                     BarConsumable consumable = list[i];
                     list.RemoveAt(i);
 
-                    Change?.Invoke(this, EventArgs.Empty);
+                    Change?.Invoke(this, new BarConsumableChangeEventArgs(consumable));
 
                     return consumable;
                 }
@@ -103,6 +103,20 @@ namespace Bar
                 return list[i];
 
             return null;
+        }
+    }
+
+    public class BarConsumableChangeEventArgs : EventArgs
+    {
+        private readonly BarConsumable consumable;
+        public BarConsumableChangeEventArgs(BarConsumable consumable)
+        {
+            this.consumable = consumable;
+        }
+
+        public BarConsumable GetConsumable()
+        {
+            return consumable;
         }
     }
 }

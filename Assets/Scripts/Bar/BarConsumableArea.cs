@@ -10,12 +10,14 @@ namespace Bar
         [SerializeField] private Transform[] consumablePositions = default;
         [FormerlySerializedAs("consumableType")] [SerializeField] private BarConsumable.Kind consumableKind = default;
         [SerializeField] private Transform consumable = default;
+        [SerializeField] private Tutorial tutorial;
 
-        private List<GameObject> consumableList; 
+        private List<GameObject> consumableList;
 
         private void Awake()
         {
             consumableList = new List<GameObject>();
+            tutorial.Hide();
         }
         
         protected override bool IsPlayerAccepted(BarPlayer player)
@@ -31,6 +33,7 @@ namespace Bar
             BarConsumable cons = TryConsume();
             player.GetConsumableList().TryAdd(cons);
             SoundManager.GetInstance().Play("Take");
+            tutorial.Complete();
                 
             if (player.GetConsumableList().IsFull() || !HasConsumableAvailable())
                 player.HideAdviceButton();
@@ -64,6 +67,7 @@ namespace Bar
             position.z = 0f;
             Transform newConsumable = Instantiate(consumable, position, Quaternion.identity);
             consumableList.Add(newConsumable.gameObject);
+            tutorial.Show();
 
             foreach (BarPlayer player in GetPlayersInArea())
             {
