@@ -14,7 +14,7 @@ namespace Adventure
         [SerializeField] private StageInformation stage3 = default;
         [SerializeField] private StageInformation stage4 = default;
 
-        private static Stage _currentStage = Stage.Bar;
+        private static Stage _currentStage = Stage.School;
         private StageInformation currentStageInformation;
         private Loader.Scene nextScene;
         private int playerWithQuestComplete;
