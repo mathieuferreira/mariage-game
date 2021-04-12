@@ -49,9 +49,7 @@ namespace School
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            SchoolPlayer player = other.gameObject.GetComponent<SchoolPlayer>();
-
-            if (player != null)
+            if (other.gameObject.TryGetComponent(out SchoolPlayer player))
             {
                 lastPlayerTouched = player.GetPlayerId();
                 Rigidbody2D playerRigidbody2D = other.transform.GetComponent<Rigidbody2D>();
@@ -61,7 +59,8 @@ namespace School
                 SoundManager.GetInstance().Play("ImpactPlayer");
                 player.PlayBounceAnimation(other.contacts[0].point);
             }
-            else if(other.gameObject.CompareTag("Border"))
+            
+            if(other.gameObject.CompareTag("Border"))
             {
                 velocity = new Vector3(velocity.x, -velocity.y, 0f);
             }
