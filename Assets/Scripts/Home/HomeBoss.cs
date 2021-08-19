@@ -13,7 +13,7 @@ namespace Home
         private const float MaxXPosition = 20f;
         private const float MinXPosition = 10f;
         private const float MoveSpeed = 10f;
-        private const float ProjectileSpeed = 20f;
+        private const float ProjectileSpeed = 15f;
         private const float ProjectileAngle = 20f;
     
         [SerializeField] private Transform shootPosition = default;
@@ -39,6 +39,7 @@ namespace Home
         private static readonly int AnimationSpeed = Animator.StringToHash("Speed");
         private static readonly int AnimationDead = Animator.StringToHash("Dead");
         private static readonly int AnimationAttack = Animator.StringToHash("Attack");
+        private float idleTimer = 0;
 
         private void Awake()
         {
@@ -91,6 +92,11 @@ namespace Home
 
         private void HandleIdle()
         {
+            idleTimer -= Time.deltaTime;
+
+            if (idleTimer > 0f)
+                return;
+            
             RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, 50, playerMask);
 
             if (hit.collider != null)
@@ -162,6 +168,7 @@ namespace Home
         public void StartIdle()
         {
             animator.SetFloat(AnimationSpeed, 0f);
+            idleTimer = .5f;
             currentState = State.Idle;
         }
 

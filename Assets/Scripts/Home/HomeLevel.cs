@@ -13,8 +13,8 @@ namespace Home
         public const float MinYPosition = -12f;
         private const float EnemyXSpawn = 30f;
         private const float EnemyXDisappear = -30f;
-        private const float SpiderMinTimer = 1f;
-        private const float SpiderMaxTimer = 2f;
+        private const float SpiderMinTimer = .75f;
+        private const float SpiderMaxTimer = 1.5f;
         private const float BossMaxTimer = 45f;
         //private const float BossMaxTimer = 10f;
         private const float Speed = 6f;

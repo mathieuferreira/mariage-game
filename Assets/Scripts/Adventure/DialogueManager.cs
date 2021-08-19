@@ -78,9 +78,13 @@ namespace Adventure
             {
                 timer += timePerCharacters;
                 charIndex++;
-                string textToRender = textToWrite.Substring(0, charIndex);
-                textToRender += "<color=#00000000>" + textToWrite.Substring(charIndex) + "</color>";
-                box.SetText(textToRender);
+
+                if (textToWrite.Length >= charIndex)
+                {
+                    string textToRender = textToWrite.Substring(0, charIndex);
+                    textToRender += "<color=#00000000>" + textToWrite.Substring(charIndex) + "</color>";
+                    box.SetText(textToRender);
+                }
 
                 if (charIndex >= textToWrite.Length)
                 {

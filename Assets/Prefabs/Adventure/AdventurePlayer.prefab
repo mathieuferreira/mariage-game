@@ -213,7 +213,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8998183468154804024}
   - component: {fileID: 2738470130678817647}
-  - component: {fileID: 1912313049383000422}
+  - component: {fileID: 260950171621257850}
   m_Layer: 0
   m_Name: AdviceButton
   m_TagString: Untagged
@@ -275,7 +275,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 999
-  m_Sprite: {fileID: 21300000, guid: 4c76212a48f42432693a006d5c09f07d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d81795101b5a84665b995777ab2e8a8f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -286,7 +286,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &1912313049383000422
+--- !u!95 &260950171621257850
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -296,7 +296,7 @@ Animator:
   m_GameObject: {fileID: 6526846904136672714}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5be8e85c469cb4c8692a9eafa7539232, type: 2}
+  m_Controller: {fileID: 9100000, guid: 28bf9120ca7f840a888f8f06c973bd48, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

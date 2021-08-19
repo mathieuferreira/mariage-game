@@ -49,9 +49,9 @@ public static class UserInput
         switch (player)
         {
             case PlayerID.Player1:
-                return new[] { KeyCode.Tab, KeyCode.Joystick1Button2 };
+                return new[] { KeyCode.Tab, KeyCode.Joystick1Button2, KeyCode.Joystick1Button1 };
             case PlayerID.Player2:
-                return new[] { KeyCode.RightShift, KeyCode.Joystick2Button2 };
+                return new[] { KeyCode.RightShift, KeyCode.Joystick2Button2, KeyCode.Joystick2Button1 };
             default:
                 return new KeyCode[0];
         }
