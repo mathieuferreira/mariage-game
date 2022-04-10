@@ -346,10 +346,7 @@ namespace School
 
         private void NewEnemyOnOnDisappear(object sender, EventArgs e)
         {
-            if (Random.Range(0, 2) == 0)
-            {
-                SpawnBonus(((SchoolEnemy)sender).GetCurrentPosition());
-            }
+            SpawnBonus(((SchoolEnemy)sender).GetCurrentPosition());
 
             if (CountEnemyAlive() < 2)
             {

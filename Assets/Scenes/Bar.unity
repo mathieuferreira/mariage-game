@@ -2133,7 +2133,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 114, y: -25}
+  m_AnchoredPosition: {x: 114, y: 8}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &413302437
@@ -14430,7 +14430,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -129.2, y: -119.9}
+  m_AnchoredPosition: {x: 232, y: -85}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1339658977
@@ -16739,7 +16739,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 280, y: 18}
+  m_AnchoredPosition: {x: 280, y: 53}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1955887653
@@ -16843,6 +16843,7 @@ GameObject:
   - component: {fileID: 1980505943}
   - component: {fileID: 1980505944}
   - component: {fileID: 1980505945}
+  - component: {fileID: 1980505946}
   m_Layer: 0
   m_Name: BarLevel
   m_TagString: Untagged
@@ -16932,6 +16933,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxAfkTimer: 600
+--- !u!114 &1980505946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1980505941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaf9da9af8f24fba906c130799fea340, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2005165351 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 966102622794968130, guid: 5bf67ce99beda4a749b7697c37462336,
@@ -18029,12 +18042,17 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -248
       objectReference: {fileID: 0}
+    - target: {fileID: 4223719480594256054, guid: 3303ad428283d41bebba9a29e8e6b95d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 164
+      objectReference: {fileID: 0}
     - target: {fileID: 4223719480594256057, guid: 3303ad428283d41bebba9a29e8e6b95d,
         type: 3}
       propertyPath: m_Text
       value: "Vos invit\xE9s vous attendent !\n\nAllez r\xE9cup\xE9rer des bi\xE8res     
-        et des tartes au sucre       aupr\xE8s de Dom' et Lydie pour les distribuer
-        et discuter       avec vos convives !"
+        et des tartes au sucre       aupr\xE8s de Dom' et Lydie pour les distribuer.
+        Profitez en pour discuter       avec vos convives !"
       objectReference: {fileID: 0}
     - target: {fileID: 4223719480767185180, guid: 3303ad428283d41bebba9a29e8e6b95d,
         type: 3}

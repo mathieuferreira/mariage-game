@@ -5602,12 +5602,12 @@ PrefabInstance:
     - target: {fileID: 850044525824454543, guid: a64581552db704b829b5de18133bb5a7,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -124
+      value: 73
       objectReference: {fileID: 0}
     - target: {fileID: 850044525824454543, guid: a64581552db704b829b5de18133bb5a7,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -210
+      value: -179
       objectReference: {fileID: 0}
     - target: {fileID: 850044525824454543, guid: a64581552db704b829b5de18133bb5a7,
         type: 3}
@@ -6251,8 +6251,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Des zombies ont envahi le lyc\xE9e !\n\nPour avoirle DCG, il va falloir
-    s'en d\xE9barrasser !\n\nLancer vous le disque pour tous les an\xE9antir."
+  m_Text: "Des zombies ont envahi le lyc\xE9e !\n\nPour avoirl e DCG, il va falloir
+    s'en d\xE9barrasser !\n\nLancer vous les disques pour tous les an\xE9antir."
 --- !u!222 &659019803
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6596,7 +6596,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -10, y: -210}
+  m_AnchoredPosition: {x: 183, y: -177}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &811259667
@@ -7065,7 +7065,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -8, y: -152}
+  m_AnchoredPosition: {x: -182, y: -179}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &980377387
@@ -7755,6 +7755,7 @@ GameObject:
   - component: {fileID: 1266439904}
   - component: {fileID: 1266439905}
   - component: {fileID: 1266439906}
+  - component: {fileID: 1266439907}
   m_Layer: 0
   m_Name: SchoolLevel
   m_TagString: Untagged
@@ -7834,6 +7835,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxAfkTimer: 600
+--- !u!114 &1266439907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266439902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaf9da9af8f24fba906c130799fea340, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1277066192
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8218,7 +8231,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: PANIQUE A L'ECOLE
+  m_Text: LA RENCONTRE
 --- !u!222 &1409584815
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10369,12 +10382,12 @@ PrefabInstance:
     - target: {fileID: 8270493338889657256, guid: 614c1d862d2ca42e6a8a9e04746c5471,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -124
+      value: -303
       objectReference: {fileID: 0}
     - target: {fileID: 8270493338889657256, guid: 614c1d862d2ca42e6a8a9e04746c5471,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -149
+      value: -176
       objectReference: {fileID: 0}
     - target: {fileID: 8270493338889657256, guid: 614c1d862d2ca42e6a8a9e04746c5471,
         type: 3}

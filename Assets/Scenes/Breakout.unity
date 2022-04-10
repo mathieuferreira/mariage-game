@@ -41040,6 +41040,7 @@ GameObject:
   - component: {fileID: 2079958131}
   - component: {fileID: 2079958133}
   - component: {fileID: 2079958134}
+  - component: {fileID: 2079958135}
   m_Layer: 0
   m_Name: BreakoutLevel
   m_TagString: Untagged
@@ -41326,6 +41327,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxAfkTimer: 600
+--- !u!114 &2079958135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2079958129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaf9da9af8f24fba906c130799fea340, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2081514593 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 15381881055049674, guid: fc89168653437413ba2f6a42d46937fa,

@@ -1190,6 +1190,7 @@ GameObject:
   - component: {fileID: 591892029}
   - component: {fileID: 591892031}
   - component: {fileID: 591892032}
+  - component: {fileID: 591892033}
   m_Layer: 0
   m_Name: HomeLevel
   m_TagString: Untagged
@@ -1292,6 +1293,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxAfkTimer: 600
+--- !u!114 &591892033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591892027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaf9da9af8f24fba906c130799fea340, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &632158907
 GameObject:
   m_ObjectHideFlags: 0
@@ -2721,6 +2734,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -138
       objectReference: {fileID: 0}
+    - target: {fileID: 4223719480594256054, guid: 3303ad428283d41bebba9a29e8e6b95d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 113
+      objectReference: {fileID: 0}
     - target: {fileID: 4223719480594256057, guid: 3303ad428283d41bebba9a29e8e6b95d,
         type: 3}
       propertyPath: m_Text
@@ -2761,7 +2779,7 @@ PrefabInstance:
     - target: {fileID: 4223719480873420849, guid: 3303ad428283d41bebba9a29e8e6b95d,
         type: 3}
       propertyPath: m_Text
-      value: MENAGE DE L'EXTREME
+      value: "EMMENAGEMENT \nDE L'EXTREME"
       objectReference: {fileID: 0}
     - target: {fileID: 4223719481344439880, guid: 3303ad428283d41bebba9a29e8e6b95d,
         type: 3}
